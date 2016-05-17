@@ -1,0 +1,13 @@
+// Core variables and mixins
+@import "../bower_components/bootstrap/scss/_variables.scss";
+@import "../bower_components/bootstrap/scss/_mixins.scss";
+// Reset and dependencies
+@import "../bower_components/bootstrap/scss/_normalize";
+@import "../bower_components/bootstrap/scss/_print";
+
+// Core CSS
+@import "../bower_components/bootstrap/scss/_reboot";
+@import "../bower_components/bootstrap/scss/_type";
+@import "../bower_components/bootstrap/scss/_images";
+@import "../bower_components/bootstrap/scss/_grid";
+@import "../bower_components/bootstrap/scss/_buttons";

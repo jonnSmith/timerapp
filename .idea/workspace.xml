@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dd590151-5007-464c-aa25-29dee1479840" name="Default" comment="" />
+    <ignored path="timer.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="timer" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="app.coffee" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/app.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+              <folding>
+                <marker date="1463501695680" expanded="true" signature="438:475" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.coffee" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/main.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="authservice.coffee" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/services/authservice.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bower.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bower.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.jade" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/index.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="314">
+              <caret line="80" column="59" selection-start-line="80" selection-start-column="59" selection-end-line="80" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/scripts/app.coffee" />
+        <option value="$PROJECT_DIR$/app/scripts/controllers/main.coffee" />
+        <option value="$PROJECT_DIR$/bower.json" />
+        <option value="$PROJECT_DIR$/app/index.jade" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true">
+    <gruntfile path="$PROJECT_DIR$/Gruntfile.js">
+      <alias-task name="build" info="Alias for &quot;clean:dist&quot;, &quot;bowerInstall&quot;, &quot;jade:dist&quot;, &quot;coffee:dist&quot;, &quot;stylus:dist&quot;, &quot;useminPrepare&quot;, &quot;concurrent:dist&quot;, &quot;autoprefixer&quot;, &quot;concat&quot;, &quot;ngmin&quot;, &quot;copy:fonts&quot;, &quot;copy:dist&quot;, &quot;cdnify&quot;, &quot;cssmin&quot;, &quot;uglify&quot;, &quot;rev&quot;, &quot;usemin&quot;, &quot;htmlmin&quot;, &quot;sass&quot;, &quot;pleeease&quot;, &quot;copy:views&quot;, &quot;clean:views&quot; tasks." file-path="$PROJECT_DIR$/Gruntfile.js">
+        <dependency value="clean:dist" />
+        <dependency value="bowerInstall" />
+        <dependency value="jade:dist" />
+        <dependency value="coffee:dist" />
+        <dependency value="stylus:dist" />
+        <dependency value="useminPrepare" />
+        <dependency value="concurrent:dist" />
+        <dependency value="autoprefixer" />
+        <dependency value="concat" />
+        <dependency value="ngmin" />
+        <dependency value="copy:fonts" />
+        <dependency value="copy:dist" />
+        <dependency value="cdnify" />
+        <dependency value="cssmin" />
+        <dependency value="uglify" />
+        <dependency value="rev" />
+        <dependency value="usemin" />
+        <dependency value="htmlmin" />
+        <dependency value="sass" />
+        <dependency value="pleeease" />
+        <dependency value="copy:views" />
+        <dependency value="clean:views" />
+      </alias-task>
+      <core-task name="any-newer" info="DEPRECATED TASK.  Use the &quot;newer&quot; task instead" file-path="$PROJECT_DIR$/node_modules/grunt-newer/tasks/newer.js" multi="false" />
+      <core-task name="autoprefixer" info="Parse CSS and add vendor prefixes to CSS rules using values from the Can I Use website." file-path="$PROJECT_DIR$/node_modules/grunt-autoprefixer/tasks/autoprefixer.js" multi="true">
+        <target value="dist" />
+      </core-task>
+      <core-task name="bowerInstall" info="Inject all components in your HTML file." file-path="$PROJECT_DIR$/node_modules/grunt-bower-install/tasks/bower-install.js" multi="true">
+        <target value="app" />
+      </core-task>
+      <core-task name="cdnify" info="replace scripts with refs to the Google CDN" file-path="$PROJECT_DIR$/node_modules/grunt-google-cdn/tasks/cdnify.js" multi="true">
+        <target value="dist" />
+      </core-task>
+      <core-task name="clean" info="Clean files and folders." file-path="$PROJECT_DIR$/node_modules/grunt-contrib-clean/tasks/clean.js" multi="true">
+        <target value="dist" />
+        <target value="views" />
+      </core-task>
+      <core-task name="coffee" info="Compile CoffeeScript files into JavaScript" file-path="$PROJECT_DIR$/node_modules/grunt-contrib-coffee/tasks/coffee.js" multi="true">
+        <target value="server" />
+        <target value="dist" />
+        <target value="test" />
+      </core-task>
+      <core-task name="concat" info="Concatenate files." file-path="$PROJECT_DIR$/node_modules/grunt-contrib-concat/tasks/concat.js" multi="true" />
+      <core-task name="concurrent" info="Run grunt tasks concurrently" file-path="$PROJECT_DIR$/node_modules/grunt-concurrent/tasks/concurrent.js" multi="true">
+        <target value="server" />
+        <target value="test" />
+        <target value="dist" />
+      </core-task>
+      <core-task name="connect" info="Start a connect web server." file-path="$PROJECT_DIR$/node_modules/grunt-contrib-connect/tasks/connect.js" multi="true">
+        <target value="livereload" />
+        <target value="dist" />
+      </core-task>
+      <core-task name="copy" info="Copy files." file-path="$PROJECT_DIR$/node_modules/grunt-contrib-copy/tasks/copy.js" multi="true">
+        <target value="fonts" />
+        <target value="dist" />
+        <target value="styles" />
+        <target value="views" />
+      </core-task>
+      <core-task name="cssmin" info="Minify CSS files" file-path="$PROJECT_DIR$/node_modules/grunt-contrib-cssmin/tasks/cssmin.js" multi="true">
+        <target value="usemin" />
+        <target value="auto" />
+      </core-task>
+      <core-task name="gtx-log" info="Log values to console" file-path="$PROJECT_DIR$/node_modules/gruntfile-gtx/tasks/gtx-log.js" multi="true" />
+      <core-task name="htmlmin" info="Minify HTML" file-path="$PROJECT_DIR$/node_modules/grunt-contrib-htmlmin/tasks/htmlmin.js" multi="true">
+        <target value="dist" />
+      </core-task>
+      <core-task name="imagemin" info="Minify PNG and JPEG images" file-path="$PROJECT_DIR$/node_modules/grunt-contrib-imagemin/tasks/imagemin.js" multi="true">
+        <target value="dist" />
+      </core-task>
+      <core-task name="jade" info="Compile jade templates." file-path="$PROJECT_DIR$/node_modules/grunt-contrib-jade/tasks/jade.js" multi="true">
+        <target value="server" />
+        <target value="dist" />
+      </core-task>
+      <core-task name="jshint" info="Validate files with JSHint." file-path="$PROJECT_DIR$/node_modules/grunt-contrib-jshint/tasks/jshint.js" multi="true">
+        <target value="all" />
+      </core-task>
+      <core-task name="karma" info="run karma." file-path="$PROJECT_DIR$/node_modules/grunt-karma/tasks/grunt-karma.js" multi="true">
+        <target value="unit" />
+      </core-task>
+      <core-task name="newer" info="Run a task with only those source files that have been modified since the last successful run." file-path="$PROJECT_DIR$/node_modules/grunt-newer/tasks/newer.js" multi="false" />
+      <core-task name="newer-clean" info="Remove cached timestamps." file-path="$PROJECT_DIR$/node_modules/grunt-newer/tasks/newer.js" multi="false" />
+      <core-task name="newer-postrun" info="Internal task." file-path="$PROJECT_DIR$/node_modules/grunt-newer/tasks/newer.js" multi="false" />
+      <core-task name="ngmin" info="Annotate AngularJS scripts for minification" file-path="$PROJECT_DIR$/node_modules/grunt-ngmin/tasks/ngmin.js" multi="true">
+        <target value="dist" />
+      </core-task>
+      <core-task name="pleeease" info="Postprocess CSS with ease" file-path="$PROJECT_DIR$/node_modules/grunt-pleeease/tasks/pleeease.js" multi="true">
+        <target value="dist" />
+      </core-task>
+      <core-task name="purifycss" info="Clean unnecessary CSS" file-path="$PROJECT_DIR$/node_modules/grunt-purifycss/tasks/purifycss.js" multi="true">
+        <target value="main" />
+      </core-task>
+      <core-task name="recess" info="Lint and minify CSS and LESS using RECESS" file-path="$PROJECT_DIR$/node_modules/grunt-recess/tasks/recess.js" multi="true" />
+      <core-task name="rev" info="Prefix static asset file names with a content hash" file-path="$PROJECT_DIR$/node_modules/grunt-rev/tasks/rev.js" multi="true">
+        <target value="dist" />
+      </core-task>
+      <core-task name="sass" info="Compile Sass to CSS" file-path="$PROJECT_DIR$/node_modules/grunt-contrib-sass/tasks/sass.js" multi="true">
+        <target value="dist" />
+      </core-task>
+      <core-task name="stylus" info="Compile Stylus files into CSS" file-path="$PROJECT_DIR$/node_modules/grunt-contrib-stylus/tasks/stylus.js" multi="true">
+        <target value="test" />
+        <target value="server" />
+        <target value="dist" />
+      </core-task>
+      <core-task name="svgmin" info="Minify SVG" file-path="$PROJECT_DIR$/node_modules/grunt-svgmin/tasks/svgmin.js" multi="true">
+        <target value="dist" />
+      </core-task>
+      <core-task name="uglify" info="Minify files with UglifyJS." file-path="$PROJECT_DIR$/node_modules/grunt-contrib-uglify/tasks/uglify.js" multi="true" />
+      <core-task name="usemin" info="Replaces references to non-minified scripts / stylesheets" file-path="$PROJECT_DIR$/node_modules/grunt-usemin/tasks/usemin.js" multi="true">
+        <target value="html" />
+        <target value="css" />
+      </core-task>
+      <core-task name="useminPrepare" info="Using HTML markup as the primary source of information" file-path="$PROJECT_DIR$/node_modules/grunt-usemin/tasks/usemin.js" multi="true" />
+      <core-task name="watch" info="Run predefined tasks whenever watched files change." file-path="$PROJECT_DIR$/node_modules/grunt-contrib-watch/tasks/watch.js" multi="false">
+        <target value="bower" />
+        <target value="coffee" />
+        <target value="coffeeTest" />
+        <target value="stylus" />
+        <target value="jade" />
+        <target value="gruntfile" />
+        <target value="livereload" />
+      </core-task>
+    </gruntfile>
+  </component>
+  <component name="JsBuildToolPackageJson" detection-done="true">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-7" />
+    <option name="width" value="1932" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timer" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="timer" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path" value="C:\Program Files\nodejs\node" />
+    <property name="js.buildTools.grunt.grunt-cli.package" value="C:\Users\eugen\AppData\Roaming\npm\node_modules\grunt-cli" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.CoffeeScript" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="js.build_tools.grunt" factoryName="Grunt.js">
+      <node-interpreter value="project" />
+      <envs />
+      <force value="false" />
+      <verbose value="false" />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dd590151-5007-464c-aa25-29dee1479840" name="Default" comment="" />
+      <created>1463501645396</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1463501645396</updated>
+      <workItem from="1463501646758" duration="1173000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1173000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="0" width="1932" height="1047" extended-state="0" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24946581" sideWeight="0.49562362" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Grunt " active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32896176" sideWeight="0.50641024" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32896176" sideWeight="0.49358973" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896176" sideWeight="0.49358973" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/services/authservice.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/main.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/app.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+          <folding>
+            <marker date="1463501695680" expanded="true" signature="438:475" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="80" column="59" selection-start-line="80" selection-start-column="59" selection-end-line="80" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,87 @@
+{
+  "sitename": "CVG",
+  "description": "CV Angular Generator",
+  "config": {
+    "editor_toolbar": "[['h1','h2','h3', 'ul', 'ol', 'redo', 'undo', 'clear','bold','italics']]"
+  },
+  "button": {
+    "print": "Print",
+    "save": "Save",
+    "upload_image": "Click to upload"
+  },
+  "cv": {
+    "name": "John Doe",
+    "position": "Front-end developer, ui/ux engineer",
+    "info": {
+      "heading": "Info block",
+      "icon": "fa-briefcase",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium, sem vitae gravida lacinia, orci ligula euismod lectus, non sodales mi nunc in sapien. Maecenas vel accumsan ante. Aliquam pretium velit iaculis pellentesque semper. In malesuada massa quam, vitae commodo justo fermentum ut.",
+      "icons": {
+        "fa-briefcase": "fa-briefcase",
+        "fa-facebook": "fa-facebook",
+        "fa-vk": "fa-vk",
+        "fa-magic": "Magic",
+        "fa-magnet": "Magnet",
+        "fa-male": "Male",
+        "fa-map": "Map",
+        "fa-map-marker": "Map marker",
+        "fa-map-o": "Map o",
+        "fa-map-pin": "Map pin",
+        "fa-map-signs": "Map signs",
+        "fa-mars": "Mars",
+        "fa-mars-double": "Mars double",
+        "fa-mars-stroke": "Mars stroke",
+        "fa-mars-stroke-h": "Mars stroke h",
+        "fa-mars-stroke-v": "Mars stroke v",
+        "fa-maxcdn": "Maxcdn",
+        "fa-meanpath": "Meanpath",
+        "fa-medium": "Medium",
+        "fa-medkit": "Medkit",
+        "fa-meh-o": "Meh o",
+        "fa-mercury": "Mercury"
+      }
+    },
+    "skills": {
+      "heading": "Rating block",
+      "icon": "fa-opencart",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium, sem vitae gravida lacinia, orci ligula euismod lectus, non sodales mi nunc in sapien. Maecenas vel accumsan ante. Aliquam pretium velit iaculis pellentesque semper. In malesuada massa quam, vitae commodo justo fermentum ut.",
+      "icons": {
+        "fa-opencart": "Opencart",
+        "fa-openid": "Openid",
+        "fa-opera": "Opera",
+        "fa-optin-monster": "Optin monster",
+        "fa-outdent": "Outdent",
+        "fa-pagelines": "Pagelines",
+        "fa-paint-brush": "Paint brush",
+        "fa-paper-plane": "Paper plane",
+        "fa-paper-plane-o": "Paper plane o",
+        "fa-paperclip": "Paperclip",
+        "fa-paragraph": "Paragraph",
+        "fa-pause": "Pause",
+        "fa-paw": "Paw",
+        "fa-paypal": "Paypal",
+        "fa-pencil": "Pencil",
+        "fa-pencil-square": "Pencil square",
+        "fa-pencil-square-o": "Pencil square o",
+        "fa-phone": "Phone",
+        "fa-phone-square": "Phone square",
+        "fa-picture-o": "Picture o"
+      },
+      "ratings" : {
+        "rating1": {
+          "current": "8",
+          "max": "10",
+          "name": "GruntJS",
+          "show": false
+        },
+        "rating2": {
+          "current": "5",
+          "max": "10",
+          "name": "AngularJS",
+          "show": false
+        }
+      }
+    }
+  },
+  "copyright": "© Jonn Smith, powered by Angular 1.4.9, based on generator-angular-jade-stylus"
+}

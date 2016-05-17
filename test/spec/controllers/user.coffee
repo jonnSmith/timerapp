@@ -1,17 +1,17 @@
 'use strict'
 
-describe 'Controller: LogincontrollerCtrl', ->
+describe 'Controller: UserCtrl', ->
 
   # load the controller's module
   beforeEach module 'timerApp'
 
-  LogincontrollerCtrl = {}
+  UserCtrl = {}
   scope = {}
 
   # Initialize the controller and a mock scope
   beforeEach inject ($controller, $rootScope) ->
     scope = $rootScope.$new()
-    LogincontrollerCtrl = $controller 'LogincontrollerCtrl', {
+    UserCtrl = $controller 'UserCtrl', {
       $scope: scope
     }
 

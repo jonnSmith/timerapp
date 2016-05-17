@@ -40,7 +40,7 @@ body(ng-app="timerApp")
 
     // Add your site or application content here
 
-    div.container(ng-view)
+    div.container(ui-view)
 
 
     // Google Analytics: change UA-XXXXX-X to be your site's ID
@@ -84,7 +84,7 @@ body(ng-app="timerApp")
 
     // build:js(.tmp) scripts/main.js
     script(src="scripts/app.js")
-    script(src="scripts/controllers/main.js")
-    script(src="scripts/services/authservice.js")
-    script(src="scripts/controllers/logincontroller.js")
+    script(src="scripts/controllers/authcontroller.js")
+    script(src="scripts/controllers/auth.js")
+    script(src="scripts/controllers/user.js")
     // endbuild

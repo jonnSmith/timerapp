@@ -1,0 +1,11 @@
+.col-sm-4.col-sm-offset-4
+    .well
+        h3 Login
+        form
+            p.alert.alert-danger(ng-if='auth.loginError')
+                strong Error:  {{auth.loginErrorText}}
+            .form-group
+                input.form-control(type='email', placeholder='Email', ng-model='auth.email')
+            .form-group
+                input.form-control(type='password', placeholder='Password', ng-model='auth.password')
+            button.btn.btn-primary(ng-click='auth.login()') Submit

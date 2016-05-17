@@ -4,9 +4,11 @@ module.exports = {
             dot: true,
             src: [
                 '.tmp',
-                '!<%= package.dist %>/.git*',
-                '!<%= package.dist %>/languages*',
-                '!<%= package.dist %>/.idea*'
+                '<%= package.dist %>/views/*',
+                '<%= package.dist %>/scripts/*',
+                '<%= package.dist %>/styles/*',
+                '<%= package.dist %>/images/*',
+                '<%= package.views %>/index.blade.php'
             ]
         }]
     },

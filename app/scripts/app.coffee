@@ -3,12 +3,12 @@
 angular
 .module('timerApp', [
     'ui.router',
-    'satellizer'
+    'satellizer',
+    'ui.bootstrap'
 ])
-.config ($stateProvider, $urlRouterProvider, $authProvider) ->
+.config ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) ->
     $authProvider.loginUrl = '/api/authenticate'
-    $urlRouterProvider
-    .otherwise('/auth')
+    $urlRouterProvider.otherwise('/auth')
     $stateProvider
     .state('auth',
         url: '/auth'
@@ -20,20 +20,24 @@ angular
         templateUrl: 'views/dashboard.html'
         controller: 'DashboardCtrl as dashboard'
     return
-
-.run ($rootScope, $state) ->
+    #$locationProvider
+    #.html5Mode
+        #enabled: true
+        #requireBase: false
+.run ($rootScope, $state, $location) ->
     $rootScope.authenticated = false
-
-    $rootScope.checkRights = ($rootScope, $state) ->
+    $rootScope.checkRights = ($rootScope, $state, $location) ->
         $user = JSON.parse(localStorage.getItem('user'))
         if $user && !$rootScope.authenticated
             $rootScope.authenticated = true
             $rootScope.currentUser = $user
+            if $state.$urlRouter.location == '' || $state.$urlRouter.location == '/auth'
+                console.log 'auth'
+                $location.path('/dashboard')
         else if !$user
-            $state.go 'auth'
+            $location.path('/auth')
         return
-
     $rootScope.$on '$locationChangeStart', (event, next, current) ->
-        $rootScope.checkRights($rootScope, $state)
+        $rootScope.checkRights($rootScope, $state, $location)
         return
 

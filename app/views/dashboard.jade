@@ -13,3 +13,6 @@
         .form-group
             h5(ng-if='authenticated') Welcome, {{currentUser.name}}
             button.btn.btn-danger(ng-click='dashboard.logout()') Logout
+        .form-group
+            h5 Time
+            |{{dashboard.time.time|date:'medium'}}

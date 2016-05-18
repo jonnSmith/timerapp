@@ -75,16 +75,14 @@ body(ng-app="timerApp")
     script(src='bower_components/bootstrap/dist/js/bootstrap.js')
     script(src='bower_components/angular-ui-router/release/angular-ui-router.js')
     script(src='bower_components/satellizer/satellizer.js')
+    script(src='bower_components/angular-bootstrap/ui-bootstrap-tpls.js')
     // endbower
     // endbuild
 
     // build:js(.tmp) scripts/main.js
     script(src="scripts/app.js")
-    script(src="scripts/controllers/authcontroller.js")
     script(src="scripts/controllers/auth.js")
-    script(src="scripts/controllers/user.js")
-    script(src="scripts/services/local.js")
-    script(src="scripts/services/localuser.js")
     script(src="scripts/controllers/dashboard.js")
     script(src="scripts/services/usersfactory.js")
+    script(src="scripts/services/timefactory.js")
     // endbuild

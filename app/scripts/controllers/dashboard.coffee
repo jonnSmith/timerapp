@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'DashboardCtrl', ($scope, usersFactory, $auth, $rootScope, $state) ->
+.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $state, usersFactory, timeFactory) ->
     vm = this
 
     usersFactory.getUsers().success((users) ->
@@ -10,6 +10,10 @@ angular.module('timerApp')
     ).error (error) ->
         vm.error = error
         return
+
+    time = new Date().getTime()
+
+    vm.time = timeFactory.init(time);
 
     vm.logout = ->
         $auth.logout().then ->

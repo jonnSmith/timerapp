@@ -1,0 +1,15 @@
+.col-sm-6
+    .well
+        h3 Users
+        ul.list-group(ng-if='dashboard.users')
+            li.list-group-item(ng-repeat='user in dashboard.users')
+                h4 {{user.name}}
+                h5 {{user.email}}
+        .alert.alert-danger(ng-if='user.error')
+            strong There was an error:
+            | {{user.error.error}}
+.col-sm-6
+    .well
+        .form-group
+            h5(ng-if='authenticated') Welcome, {{currentUser.name}}
+            button.btn.btn-danger(ng-click='dashboard.logout()') Logout

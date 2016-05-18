@@ -3,7 +3,7 @@
         h3 Login
         form
             p.alert.alert-danger(ng-if='auth.loginError')
-                strong Error:  {{auth.loginErrorText}}
+                strong Error: {{auth.loginErrorText}}
             .form-group
                 input.form-control(type='email', placeholder='Email', ng-model='auth.email')
             .form-group

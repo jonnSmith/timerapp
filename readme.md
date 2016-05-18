@@ -24,7 +24,7 @@ go to the app root
 
     npm install
     bower install
-    grunt build
+    grunt build --force
     
 ### Configuration file package.json:
 

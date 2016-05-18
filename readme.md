@@ -19,6 +19,7 @@ go to the app root
     npm install -g grunt-cli
     npm install -g bower
     npm install -g karma-cli
+    npm install -g jshint
     npm install karma jasmine-core phantomjs --save-dev
 
     npm install

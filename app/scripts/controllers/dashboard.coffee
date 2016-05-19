@@ -17,6 +17,8 @@ angular.module('timerApp')
 
     $rootScope.title = 'Dashboard'
 
+    vm.token = $auth.getToken()
+
     vm.logout = ->
         $auth.logout().then ->
             localStorage.removeItem 'user'

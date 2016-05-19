@@ -16,3 +16,7 @@
         .form-group
             h5 Time
             |{{dashboard.time.time|date:'medium'}}
+        .form-group
+            h5 Auth token
+            .highlight.full-width
+                    code.language-html {{ dashboard.token }}

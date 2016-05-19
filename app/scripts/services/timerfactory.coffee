@@ -7,6 +7,7 @@ angular.module('timerApp')
     ($rootScope, $timeout) ->
         obj = {}
         obj.is_start = false
+        obj.step = 1000
 
         obj.setTimer = (startTime) ->
             obj.start = startTime
@@ -15,7 +16,7 @@ angular.module('timerApp')
 
         obj.runTimer = (run) ->
             obj.is_start = run
-            obj.timer = Math.floor(obj.timer/1000)*1000
+            obj.timer = Math.floor(obj.timer/obj.step)*obj.step
             obj.start = new Date().getTime() - obj.timer
             obj.setTimer(obj.start)
             return
@@ -34,7 +35,7 @@ angular.module('timerApp')
         obj.updateTimer = () ->
             obj.timer = new Date().getTime() - obj.start
             if obj.is_start
-                $timeout obj.updateTimer, 1000
+                $timeout obj.updateTimer, obj.step
             return
 
         obj

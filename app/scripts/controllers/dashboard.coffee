@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $state, usersFactory, timeFactory) ->
+.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $state, usersFactory, timeFactory, timerFactory) ->
     vm = this
 
     usersFactory.getUsers().success((users) ->
@@ -13,7 +13,8 @@ angular.module('timerApp')
 
     time = new Date().getTime()
 
-    vm.time = timeFactory.init(time);
+    vm.time = timeFactory.init(time)
+    vm.timer = timerFactory.setTimer(time)
 
     $rootScope.title = 'Dashboard'
 

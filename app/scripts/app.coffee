@@ -28,11 +28,12 @@ angular
     $rootScope.authenticated = false
     $rootScope.checkRights = ($rootScope, $state, $location) ->
         $user = JSON.parse(localStorage.getItem('user'))
+        console.log $state.$urlRouter.location
         if $user && !$rootScope.authenticated
+            console.log $user
             $rootScope.authenticated = true
             $rootScope.currentUser = $user
-            if $state.$urlRouter.location == '' || $state.$urlRouter.location == '/auth'
-                console.log 'auth'
+            if $state.$urlRouter.location == '' || $state.$urlRouter.location == '/auth' || $state.$urlRouter.location == 'auth'
                 $location.path('/dashboard')
         else if !$user
             $location.path('/auth')

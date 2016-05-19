@@ -15,6 +15,8 @@ angular.module('timerApp')
 
     vm.time = timeFactory.init(time);
 
+    $rootScope.title = 'Dashboard'
+
     vm.logout = ->
         $auth.logout().then ->
             localStorage.removeItem 'user'

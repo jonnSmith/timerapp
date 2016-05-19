@@ -26,6 +26,8 @@ angular
         #requireBase: false
 .run ($rootScope, $state, $location) ->
     $rootScope.authenticated = false
+    $rootScope.lamguage = 'en'
+    $rootScope.title = 'LAB Timer'
     $rootScope.checkRights = ($rootScope, $state, $location) ->
         $user = JSON.parse(localStorage.getItem('user'))
         console.log $state.$urlRouter.location

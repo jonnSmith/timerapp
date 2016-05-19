@@ -5,6 +5,7 @@ angular.module('timerApp')
     vm = this
     vm.loginError = false
     vm.loginErrorText
+    $rootScope.title = 'Login'
     vm.login = ->
         credentials =
             email: vm.email

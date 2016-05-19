@@ -24,20 +24,19 @@ angular
     #.html5Mode
         #enabled: true
         #requireBase: false
-.run ($rootScope, $state, $location) ->
+.run ($rootScope, $state, $location, $auth) ->
     $rootScope.authenticated = false
     $rootScope.lamguage = 'en'
     $rootScope.title = 'LAB Timer'
     $rootScope.checkRights = ($rootScope, $state, $location) ->
         $user = JSON.parse(localStorage.getItem('user'))
-        console.log $state.$urlRouter.location
-        if $user && !$rootScope.authenticated
-            console.log $user
+        $is_auth = $auth.isAuthenticated()
+        if $user && !$rootScope.authenticated && $is_auth
             $rootScope.authenticated = true
             $rootScope.currentUser = $user
             if $state.$urlRouter.location == '' || $state.$urlRouter.location == '/auth' || $state.$urlRouter.location == 'auth'
                 $location.path('/dashboard')
-        else if !$user
+        else if !$user || !$is_auth
             $location.path('/auth')
         return
     $rootScope.$on '$locationChangeStart', (event, next, current) ->

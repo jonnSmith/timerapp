@@ -5,9 +5,9 @@
             li.list-group-item(ng-repeat='user in dashboard.users')
                 h4 {{user.name}}
                 h5 {{user.email}}
-        .alert.alert-danger(ng-if='user.error')
+        .alert.alert-danger(ng-if='dashboard.error')
             strong There was an error:
-            | {{user.error.error}}
+            | {{dashboard.error}}
 .col-sm-6
     .well
         .form-group

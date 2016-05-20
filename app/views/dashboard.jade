@@ -2,9 +2,7 @@
     .well
         h3 Users
         ul.list-group(ng-if='dashboard.users')
-            li.list-group-item(ng-repeat='user in dashboard.users')
-                h4 {{user.name}}
-                h5 {{user.email}}
+            li.list-group-item(ng-repeat='user in dashboard.users', ng-class="user.time_is_open ? 'bg-success' : 'bg-inverse opacity-70'") {{user.name}} {{user.email}}
         .alert.alert-danger(ng-if='dashboard.error')
             strong There was an error:
             | {{dashboard.error}}
@@ -25,6 +23,13 @@
                 button.btn.btn-secondary(type='button', ng-click='dashboard.getTimer()') Show
             p(ng-if='timerStart') {{timerStart}}
             p(ng-if='timerStop') {{timerStop}}
+        .form-group
+            h5 Set time
+            .btn-group(role='group', aria-label='timerButtons')
+                button.btn.btn-secondary(ng-show="currentUser.time_is_open") {{ currentUser.time_open.start }}
+                button.btn.btn-secondary(type='button', ng-hide='currentUser.time_is_open', ng-click='dashboard.startApiTimer()') Start
+                button.btn.btn-secondary(type='button', ng-show='currentUser.time_is_open', ng-click='dashboard.stopApiTimer()') Stop
+            p(ng-if='currentUser.time_last_closed.start') {{ currentUser.time_last_closed.start }} {{ currentUser.time_last_closed.end }}
         .form-group
             h5 Auth token
             .highlight.full-width

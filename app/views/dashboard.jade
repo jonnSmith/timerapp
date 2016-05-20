@@ -20,11 +20,11 @@
             h5 Timer
             .btn-group(role='group', aria-label='timerButtons')
                 button.btn.btn-secondary {{dashboard.timer.timer|date:'mm:ss'}}
-                button.btn.btn-secondary(type='button', ng-click='dashboard.timer.runTimer(true)') Start
-                button.btn.btn-secondary(type='button', ng-click='dashboard.timer.runTimer(false)') Stop
-                button.btn.btn-secondary(type='button', ng-click='dashboard.timer.clearTimer()') Clear
-                button.btn.btn-secondary(type='button', ng-click='dashboard.timer.saveTimer()') Save
-            p(ng-if='timerValue') {{timerValue|date:'mm:ss'}}
+                button.btn.btn-secondary(type='button', ng-click='dashboard.startTimer()') Start
+                button.btn.btn-secondary(type='button', ng-click='dashboard.stopTimer()') Stop
+                button.btn.btn-secondary(type='button', ng-click='dashboard.getTimer()') Show
+            p(ng-if='timerStart') {{timerStart}}
+            p(ng-if='timerStop') {{timerStop}}
         .form-group
             h5 Auth token
             .highlight.full-width

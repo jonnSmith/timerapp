@@ -16,10 +16,11 @@ angular.module('timerApp')
 
         obj.runTimer = (run) ->
             obj.is_start = run
+            runTime = new Date().getTime()
             obj.timer = Math.floor(obj.timer/obj.step)*obj.step
-            obj.start = new Date().getTime() - obj.timer
+            obj.start = runTime - obj.timer
             obj.setTimer(obj.start)
-            return
+            runTime
 
         obj.clearTimer = () ->
             obj.start = new Date().getTime()
@@ -28,9 +29,8 @@ angular.module('timerApp')
             return
 
         obj.saveTimer = () ->
-            $rootScope.timerValue = obj.timer
             obj.clearTimer()
-            return
+            obj.start
 
         obj.updateTimer = () ->
             obj.timer = new Date().getTime() - obj.start

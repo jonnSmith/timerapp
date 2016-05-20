@@ -4,7 +4,8 @@ angular
 .module('timerApp', [
     'ui.router',
     'satellizer',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngGeolocation'
 ])
 .config ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) ->
     $authProvider.loginUrl = '/api/authenticate'
@@ -24,10 +25,14 @@ angular
     #.html5Mode
         #enabled: true
         #requireBase: false
-.run ($rootScope, $state, $location, $auth) ->
+.run ($rootScope, $state, $location, $auth, $geolocation) ->
     $rootScope.authenticated = false
     $rootScope.lamguage = 'en'
     $rootScope.title = 'LAB Timer'
+    $geolocation.watchPosition
+        timeout: 60000
+        maximumAge: 250
+        enableHighAccuracy: true
     $rootScope.checkRights = ($rootScope, $state, $location) ->
         $user = JSON.parse(localStorage.getItem('user'))
         $is_auth = $auth.isAuthenticated()

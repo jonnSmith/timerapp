@@ -3,8 +3,7 @@
 angular.module('timerApp')
 .controller 'AuthCtrl', ($auth, $state,$http,$rootScope) ->
     vm = this
-    vm.loginError = false
-    vm.loginErrorText
+    $rootScope.error = false
     $rootScope.title = 'Login'
     vm.login = ->
         credentials =
@@ -19,8 +18,7 @@ angular.module('timerApp')
                 $state.go 'dashboard'
                 return
             ), (error) ->
-                vm.loginError = true
-                vm.loginErrorText = error.data.error
+                $rootScope.error = error.data.error
                 return
         return
     return

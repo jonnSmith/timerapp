@@ -2,13 +2,16 @@
 
 angular.module('timerApp')
 .controller 'DashboardCtrl', ($scope, $auth, $rootScope, $state, usersFactory, timeFactory, timerFactory, apiTimeFactory, $geolocation) ->
+
+    $rootScope.error = false
+    $rootScope.title = 'Dashboard'
     vm = this
 
     usersFactory.getUsers().success((users) ->
         vm.users = users
         return
     ).error (error) ->
-        vm.error = error
+        $rootScope.error = error
         return
 
     time = new Date().getTime()
@@ -31,10 +34,15 @@ angular.module('timerApp')
     vm.startApiTimer = () ->
         apiTimeFactory.startTimer().success((response) ->
             usersFactory.setUser()
-            console.log response
+            usersFactory.getUsers().success((users) ->
+                vm.users = users
+                return
+            ).error (error) ->
+                $rootScope.error = error
+                return
             return
         ).error (error) ->
-            console.log error
+            $rootScope.error = error
             return
         return
 
@@ -53,10 +61,15 @@ angular.module('timerApp')
     vm.stopApiTimer = () ->
         apiTimeFactory.stopTimer().success((response) ->
             usersFactory.setUser()
-            console.log response
+            usersFactory.getUsers().success((users) ->
+                vm.users = users
+                return
+            ).error (error) ->
+                $rootScope.error = error
+                return
             return
         ).error (error) ->
-            console.log error
+            $rootScope.error = error
             return
         return
 
@@ -64,8 +77,6 @@ angular.module('timerApp')
         $rootScope.timerStart = JSON.parse(localStorage.getItem('timer.start'))
         $rootScope.timerStop = JSON.parse(localStorage.getItem('timer.stop'))
         return
-
-    $rootScope.title = 'Dashboard'
 
     vm.token = $auth.getToken()
 

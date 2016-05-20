@@ -3,9 +3,9 @@
         h3 Users
         ul.list-group(ng-if='dashboard.users')
             li.list-group-item(ng-repeat='user in dashboard.users', ng-class="user.time_is_open ? 'bg-success' : 'bg-inverse opacity-70'") {{user.name}} {{user.email}}
-        .alert.alert-danger(ng-if='dashboard.error')
+        .alert.alert-danger(ng-if='error')
             strong There was an error:
-            | {{dashboard.error}}
+            | {{error}}
 .col-sm-6
     .well
         .form-group

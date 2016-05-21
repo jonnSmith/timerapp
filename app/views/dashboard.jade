@@ -15,18 +15,10 @@
             h5 Time
             |{{dashboard.time.time|date:'medium'}}
         .form-group
-            h5 Timer
-            .btn-group(role='group', aria-label='timerButtons')
-                button.btn.btn-secondary {{dashboard.timer.timer|date:'mm:ss'}}
-                button.btn.btn-secondary(type='button', ng-click='dashboard.startTimer()') Start
-                button.btn.btn-secondary(type='button', ng-click='dashboard.stopTimer()') Stop
-                button.btn.btn-secondary(type='button', ng-click='dashboard.getTimer()') Show
-            p(ng-if='timerStart') {{timerStart}}
-            p(ng-if='timerStop') {{timerStop}}
-        .form-group
             h5 Set time
             .btn-group(role='group', aria-label='timerButtons')
                 button.btn.btn-secondary(ng-show="currentUser.time_is_open") {{ currentUser.time_open.start }}
+                button.btn.btn-secondary {{dashboard.timer.timer|date : 'HH:mm:ss' : 'UTC'}}
                 button.btn.btn-secondary(type='button', ng-hide='currentUser.time_is_open', ng-click='dashboard.startApiTimer()') Start
                 button.btn.btn-secondary(type='button', ng-show='currentUser.time_is_open', ng-click='dashboard.stopApiTimer()') Stop
             p(ng-if='currentUser.time_last_closed.start') {{ currentUser.time_last_closed.start }} {{ currentUser.time_last_closed.end }}

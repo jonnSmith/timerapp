@@ -14,9 +14,12 @@ angular.module('timerApp')
             obj.updateTimer()
             obj
 
-        obj.runTimer = (run) ->
+        obj.runTimer = (run, startTime = false) ->
             obj.is_start = run
             runTime = new Date().getTime()
+            if startTime
+                runTime = Date.parse if angular.isString(startTime) then startTime.replace(/\-/g, '/') else startTime
+                console.log runTime + ' - ' + startTime
             obj.timer = Math.floor(obj.timer/obj.step)*obj.step
             obj.start = runTime - obj.timer
             obj.setTimer(obj.start)

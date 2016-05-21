@@ -4,16 +4,16 @@ angular.module('timerApp')
 .factory 'apiTimeFactory', ($http,$auth) ->
     urlBase = 'api/time'
     apiTimeFactory = {}
-    apiTimeFactory.startTimer = () ->
+    apiTimeFactory.startTimer = (location) ->
         data =
-            start_location: 'test'
+            location: location
         $http
             method: 'POST'
             url: urlBase+'/start'
             data: data
-    apiTimeFactory.stopTimer = () ->
+    apiTimeFactory.stopTimer = (location) ->
         data =
-            end_location: 'test'
+            location: location
         $http
             method: 'POST'
             url: urlBase+'/end'

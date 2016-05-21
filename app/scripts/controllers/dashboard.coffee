@@ -19,21 +19,18 @@ angular.module('timerApp')
     vm.time = timeFactory.init(time)
     vm.timer = timerFactory.setTimer(time)
 
-    vm.startTimer = () ->
-        startTime = vm.timer.runTimer(true)
-        timerStart =
-            uid: $rootScope.currentUser.id
-            time: startTime
-        if $geolocation.position.coords
-            timerStart.latitude = $geolocation.position.coords.latitude
-            timerStart.longitude = $geolocation.position.coords.longitude
-            timerStart.accuracy = $geolocation.position.coords.accuracy
-        localStorage.setItem 'timer.start',  JSON.stringify(timerStart)
-        return
+    vm.timer.runTimer(true, $rootScope.currentUser.time_open.start)
 
     vm.startApiTimer = () ->
-        apiTimeFactory.startTimer().success((response) ->
+        location =  {}
+        if $geolocation.position.coords
+            location.latitude = $geolocation.position.coords.latitude
+            location.longitude = $geolocation.position.coords.longitude
+            location.accuracy = $geolocation.position.coords.accuracy
+        location = JSON.stringify(location)
+        apiTimeFactory.startTimer(location).success((response) ->
             usersFactory.setUser()
+            vm.timer.runTimer(true, $rootScope.currentUser.time_open.start)
             usersFactory.getUsers().success((users) ->
                 vm.users = users
                 return
@@ -46,21 +43,16 @@ angular.module('timerApp')
             return
         return
 
-    vm.stopTimer = () ->
-        stopTime = vm.timer.saveTimer()
-        timerStop =
-            uid: $rootScope.currentUser.id
-            time: stopTime
-        if $geolocation.position.coords
-            timerStop.latitude = $geolocation.position.coords.latitude
-            timerStop.longitude = $geolocation.position.coords.longitude
-            timerStop.accuracy = $geolocation.position.coords.accuracy
-        localStorage.setItem 'timer.stop',  JSON.stringify(timerStop)
-        return
-
     vm.stopApiTimer = () ->
-        apiTimeFactory.stopTimer().success((response) ->
+        location = {}
+        if $geolocation.position.coords
+            location.latitude = $geolocation.position.coords.latitude
+            location.longitude = $geolocation.position.coords.longitude
+            location.accuracy = $geolocation.position.coords.accuracy
+        location = JSON.stringify(location)
+        apiTimeFactory.stopTimer(location).success((response) ->
             usersFactory.setUser()
+            vm.timer.saveTimer()
             usersFactory.getUsers().success((users) ->
                 vm.users = users
                 return

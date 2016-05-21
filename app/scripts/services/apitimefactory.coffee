@@ -5,7 +5,17 @@ angular.module('timerApp')
     urlBase = 'api/time'
     apiTimeFactory = {}
     apiTimeFactory.startTimer = () ->
-        $http.get urlBase+'/start'
+        data =
+            start_location: 'test'
+        $http
+            method: 'POST'
+            url: urlBase+'/start'
+            data: data
     apiTimeFactory.stopTimer = () ->
-        $http.get urlBase+'/end'
+        data =
+            end_location: 'test'
+        $http
+            method: 'POST'
+            url: urlBase+'/end'
+            data: data
     apiTimeFactory

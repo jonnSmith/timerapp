@@ -14,6 +14,14 @@ angular.module('timerApp')
         $rootScope.error = error
         return
 
+    vm.refreshUsers = () ->
+        usersFactory.getUsers().success((users) ->
+            vm.users = users
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
     time = new Date().getTime()
 
     vm.time = timeFactory.init(time)
@@ -63,11 +71,6 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
-        return
-
-    vm.getTimer = () ->
-        $rootScope.timerStart = JSON.parse(localStorage.getItem('timer.start'))
-        $rootScope.timerStop = JSON.parse(localStorage.getItem('timer.stop'))
         return
 
     vm.token = $auth.getToken()

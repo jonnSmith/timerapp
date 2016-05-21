@@ -10,7 +10,9 @@
     .well
         .form-group
             h5(ng-if='authenticated') Welcome, {{currentUser.name}}
-            button.btn.btn-danger(ng-click='dashboard.logout()') Logout
+            .btn-group(role='group', aria-label='usersButtons')
+                button.btn.btn-secondary(ng-click='dashboard.logout()') Logout
+                button.btn.btn-secondary(ng-click='dashboard.refreshUsers()') Refresh
         .form-group
             h5 Time
             |{{dashboard.time.time|date:'medium'}}

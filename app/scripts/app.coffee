@@ -29,6 +29,7 @@ angular
     $rootScope.authenticated = false
     $rootScope.lamguage = 'en'
     $rootScope.title = 'LAB Timer'
+    $rootScope.error = false
     $geolocation.watchPosition
         timeout: 60000
         maximumAge: 250
@@ -47,4 +48,7 @@ angular
     $rootScope.$on '$locationChangeStart', (event, next, current) ->
         $rootScope.checkRights($rootScope, $state, $location)
         return
-
+    $rootScope.$watch 'error', ->
+        if $rootScope.error
+            $rootScope.checkRights($rootScope, $state, $location)
+        return

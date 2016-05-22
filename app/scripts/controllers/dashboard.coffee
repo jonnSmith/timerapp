@@ -27,7 +27,8 @@ angular.module('timerApp')
     vm.time = timeFactory.init(time)
     vm.timer = timerFactory.setTimer(time)
 
-    vm.timer.runTimer(true, $rootScope.currentUser.time_open.start)
+    if $rootScope.currentUser.time_open.start
+        vm.timer.runTimer(true, $rootScope.currentUser.time_open.start)
 
     vm.startApiTimer = () ->
         location =  {}

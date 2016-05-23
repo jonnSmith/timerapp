@@ -27,7 +27,9 @@
             h5 Times
             ul.list-group(ng-if='currentUser.time_last_closed.start')
                 li.list-group-item
-                    time-range(start!="{{ currentUser.time_last_closed.start }}", end!="{{ currentUser.time_last_closed.end }}")
+                    p {{ currentUser.time_last_closed.start|date : 'YYYY-M-d' }}
+                        |&nbsp;:
+                        time-range(start!="{{ currentUser.time_last_closed.start }}", end!="{{ currentUser.time_last_closed.end }}", last="true")
                     address-show(location!="{{ currentUser.time_last_closed.end_location }}")
                     address-show(location!="{{ currentUser.time_last_closed.start_location }}")
         .form-group

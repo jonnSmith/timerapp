@@ -49,7 +49,7 @@ angular
                 console.log refresh_token
             $location.path('/auth')
         return
-    $rootScope.$on '$locationChangeStart', (event, next, current) ->
+    $rootScope.$on '$locationChangeStart', () ->
         $rootScope.checkRights($rootScope, $state, $location)
         return
     $rootScope.$watch 'error', ->

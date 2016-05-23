@@ -9,7 +9,7 @@ angular.module('timerApp')
         end = Date.parse if angular.isString(attrs.end) then attrs.end.replace(/\-/g, '/') else attrs.end
         range = end - start
         if range
-            element.text $filter('date')(range, 'HH:mm:ss', 'UTC')
+            element.text $filter('date')(start, 'yyyy-MM-dd') + ' : ' + $filter('date')(range, 'HH:mm:ss', 'UTC')
         if attrs.last
             $rootScope.$watch 'currentUser.time_last_closed.end', ->
                 closed = $rootScope.currentUser.time_last_closed
@@ -17,7 +17,7 @@ angular.module('timerApp')
                 end = Date.parse if angular.isString(closed.end) then closed.end.replace(/\-/g, '/') else closed.end
                 range = end - start
                 if range
-                    element.text $filter('date')(range, 'HH:mm:ss', 'UTC')
+                    element.text $filter('date')(start, 'yyyy-MM-dd') + ' : ' + $filter('date')(range, 'HH:mm:ss', 'UTC')
                 return
         return
     replace: true

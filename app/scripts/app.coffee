@@ -25,7 +25,7 @@ angular
     #.html5Mode
         #enabled: true
         #requireBase: false
-.run ($rootScope, $state, $location, $auth, $geolocation) ->
+.run ($rootScope, $state, $location, $auth, $geolocation, usersFactory) ->
     $rootScope.authenticated = false
     $rootScope.lamguage = 'en'
     $rootScope.title = 'LAB Timer'
@@ -43,6 +43,10 @@ angular
             if $state.$urlRouter.location == '' || $state.$urlRouter.location == '/auth' || $state.$urlRouter.location == 'auth'
                 $location.path('/dashboard')
         else if !$user || !$is_auth
+            if $user
+                refresh_token = usersFactory.refreshUser()
+                $auth.setToken refresh_token
+                console.log refresh_token
             $location.path('/auth')
         return
     $rootScope.$on '$locationChangeStart', (event, next, current) ->

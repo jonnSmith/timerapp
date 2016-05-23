@@ -3,13 +3,12 @@
 angular.module('timerApp')
 .factory 'usersFactory', ($http,$auth,$rootScope) ->
     urlBase = 'api/authenticate'
-    #$token = $auth.getToken()
-    #data = token: $token
-    #config =
-    #    params: data
+    $token = $auth.getToken()
+    data = token: $token
+    config =
+        params: data
     usersFactory = {}
     usersFactory.getUsers = () ->
-        #$http.get(urlBase, config)
         $http.get urlBase
     usersFactory.setUser = () ->
         $http.get(urlBase+'/user').then (response) ->
@@ -17,4 +16,8 @@ angular.module('timerApp')
             localStorage.setItem 'user', user
             $rootScope.currentUser = response.data.user
             return
+    usersFactory.refreshUser = () ->
+        $http.get(urlBase+'/refresh', config).then (response) ->
+            new_token = response.token
+            new_token
     usersFactory

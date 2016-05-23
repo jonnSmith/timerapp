@@ -23,7 +23,13 @@
                 button.btn.btn-secondary {{dashboard.timer.timer|date : 'HH:mm:ss' : 'UTC'}}
                 button.btn.btn-secondary(type='button', ng-hide='currentUser.time_is_open', ng-click='dashboard.startApiTimer()') Start
                 button.btn.btn-secondary(type='button', ng-show='currentUser.time_is_open', ng-click='dashboard.stopApiTimer()') Stop
-            p(ng-if='currentUser.time_last_closed.start') {{ currentUser.time_last_closed.start }} {{ currentUser.time_last_closed.end }}
+        .form-group
+            h5 Times
+            ul.list-group(ng-if='currentUser.time_last_closed.start')
+                li.list-group-item
+                    time-range(start!="{{ currentUser.time_last_closed.start }}", end!="{{ currentUser.time_last_closed.end }}")
+                    address-show(location!="{{ currentUser.time_last_closed.end_location }}")
+                    address-show(location!="{{ currentUser.time_last_closed.start_location }}")
         .form-group
             h5 Auth token
             .highlight.full-width

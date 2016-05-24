@@ -24,13 +24,15 @@ angular
     #.html5Mode
         #enabled: true
         #requireBase: false
-.run ($rootScope, $state, $location, $auth, $geolocation, usersFactory) ->
+.run ($rootScope, $state, $location, $auth, $geolocation,usersFactory) ->
     $rootScope.authenticated = false
     $rootScope.language = 'en'
     $rootScope.title = 'LAB Timer'
     $rootScope.error = false
+    $rootScope.interval= 10*60*1000
+    $rootScope.token = $auth.getToken()
     $geolocation.watchPosition
-        timeout: 60000
+        timeout: $rootScope.interval
         maximumAge: 250
         enableHighAccuracy: true
     $rootScope.checkRights = ($rootScope, $state, $location) ->
@@ -42,12 +44,24 @@ angular
             if $state.$urlRouter.location == '' || $state.$urlRouter.location == '/auth' || $state.$urlRouter.location == 'auth'
                 $location.path('/dashboard')
         else if !$user || !$is_auth
-            if $user
-                refresh_token = usersFactory.refreshUser()
-                $auth.setToken refresh_token
-                console.log refresh_token
             $location.path('/auth')
         return
+    $rootScope.refreshToken = ->
+        $is_auth = $auth.isAuthenticated()
+        if $is_auth
+            usersFactory.refreshUser().success((response) ->
+                token = response.token
+                $rootScope.token = token
+                $auth.setToken token
+                return
+            ).error (error) ->
+                $rootScope.error = error
+                return
+        return
+    setInterval (->
+        $rootScope.refreshToken()
+        return
+    ), $rootScope.interval
     $rootScope.$on '$locationChangeStart', (event, next, current) ->
         $rootScope.checkRights($rootScope, $state, $location)
         return

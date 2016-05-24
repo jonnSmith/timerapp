@@ -17,8 +17,5 @@ angular.module('timerApp')
             $rootScope.currentUser = response.data.user
             return
     usersFactory.refreshUser = () ->
-        $http.get(urlBase+'/refresh', config).then (response) ->
-            console.log token + ' - ' + response
-            new_token = response.token
-            new_token
+        $http.get(urlBase+'/refresh')
     usersFactory

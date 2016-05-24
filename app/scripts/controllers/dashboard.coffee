@@ -74,14 +74,15 @@ angular.module('timerApp')
             return
         return
 
-    vm.token = $auth.getToken()
-
     vm.logout = ->
-        $auth.logout().then ->
+        $auth.logout().then ( ->
             localStorage.removeItem 'user'
             $rootScope.authenticated = false
             $rootScope.currentUser = null
             $state.go 'auth'
+            return
+        ), (error) ->
+            $rootScope.error = error.data.error
             return
         return
 

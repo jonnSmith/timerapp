@@ -12,7 +12,8 @@
             h5(ng-if='authenticated') Welcome, {{currentUser.name}}
             .btn-group(role='group', aria-label='usersButtons')
                 button.btn.btn-secondary(ng-click='dashboard.logout()') Logout
-                button.btn.btn-secondary(ng-click='dashboard.refreshUsers()') Refresh
+                button.btn.btn-secondary(ng-click='dashboard.refreshUsers()') Refresh users
+                button.btn.btn-secondary(ng-click='refreshToken()') Refresh token
         .form-group
             h5 Time
             |{{dashboard.time.time|date:'medium'}}
@@ -33,4 +34,4 @@
         .form-group
             h5 Auth token
             .highlight.full-width
-                    code.language-html {{ dashboard.token }}
+                    code.language-html {{ token }}

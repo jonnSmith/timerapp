@@ -15,6 +15,7 @@ angular.module('timerApp')
                 localStorage.setItem 'user', user
                 $rootScope.authenticated = true
                 $rootScope.currentUser = response.data.user
+                $rootScope.token = $auth.getToken()
                 $state.go 'dashboard'
                 return
             ), (error) ->

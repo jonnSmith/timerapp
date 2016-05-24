@@ -27,7 +27,7 @@ angular.module('timerApp')
     vm.time = timeFactory.init(time)
     vm.timer = timerFactory.setTimer(time)
 
-    if $rootScope.currentUser.time_open.start
+    if $rootScope.currentUser.time_open && $rootScope.currentUser.time_open.start
         vm.timer.runTimer(true, $rootScope.currentUser.time_open.start)
 
     vm.startApiTimer = () ->
@@ -71,18 +71,6 @@ angular.module('timerApp')
             return
         ).error (error) ->
             $rootScope.error = error
-            return
-        return
-
-    vm.logout = ->
-        $auth.logout().then ( ->
-            localStorage.removeItem 'user'
-            $rootScope.authenticated = false
-            $rootScope.currentUser = null
-            $state.go 'auth'
-            return
-        ), (error) ->
-            $rootScope.error = error.data.error
             return
         return
 

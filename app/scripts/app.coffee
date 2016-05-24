@@ -44,6 +44,7 @@ angular
             if $state.$urlRouter.location == '' || $state.$urlRouter.location == '/auth' || $state.$urlRouter.location == 'auth'
                 $location.path('/dashboard')
         else if !$user || !$is_auth
+            $rootScope.logout()
             $location.path('/auth')
         return
     $rootScope.refreshToken = ->
@@ -65,7 +66,21 @@ angular
     $rootScope.$on '$locationChangeStart', (event, next, current) ->
         $rootScope.checkRights($rootScope, $state, $location)
         return
+    $rootScope.logout = ->
+        $auth.logout().then ( ->
+            localStorage.removeItem 'user'
+            $rootScope.authenticated = false
+            $rootScope.currentUser = null
+            $state.go 'auth'
+            return
+        ), (error) ->
+            $rootScope.error = error.data.error
+            return
+        return
     $rootScope.$watch 'error', ->
         if $rootScope.error
-            $rootScope.checkRights($rootScope, $state, $location)
+            if $rootScope.error.error && $rootScope.error.error == 'user_not_found'
+                $rootScope.logout()
+            else
+                $rootScope.checkRights($rootScope, $state, $location)
         return

@@ -11,7 +11,7 @@
         .form-group
             h5(ng-if='authenticated') Welcome, {{currentUser.name}}
             .btn-group(role='group', aria-label='usersButtons')
-                button.btn.btn-secondary(ng-click='dashboard.logout()') Logout
+                button.btn.btn-secondary(ng-click='logout()') Logout
                 button.btn.btn-secondary(ng-click='dashboard.refreshUsers()') Refresh users
                 button.btn.btn-secondary(ng-click='refreshToken()') Refresh token
         .form-group

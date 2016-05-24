@@ -1,0 +1,19 @@
+.col-sm-6.col-sm-offset-3
+    .well
+        h3 Create user
+        .form-group
+            h5(ng-if='authenticated') Welcome, {{currentUser.name}}
+            .btn-group(role='group', aria-label='usersButtons')
+                button.btn.btn-secondary(ng-click='logout()') Logout
+                button.btn.btn-secondary(ng-click='refreshToken()') Refresh token
+                button.btn.btn-secondary(ui-sref="dashboard") Dashboard
+        form
+            p.alert.alert-danger(ng-if='error')
+                strong Error: {{error}}
+            .form-group
+                input.form-control(type='email', placeholder='Email', ng-model='create_user.email')
+            .form-group
+                input.form-control(type='text', placeholder='Name', ng-model='create_user.name')
+            .form-group
+                input.form-control(type='text', placeholder='Password', ng-model='create_user.password')
+            button.btn.btn-primary(ng-click='create_user.createUser()') Submit

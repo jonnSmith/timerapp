@@ -8,7 +8,7 @@ angular
 ])
 .config ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) ->
     $authProvider.loginUrl = '/api/authenticate'
-    $urlRouterProvider.otherwise('/auth')
+    $urlRouterProvider.otherwise('/dashboard')
     $stateProvider
     .state('auth',
         url: '/auth'
@@ -19,6 +19,10 @@ angular
         url: '/dashboard'
         templateUrl: 'views/dashboard.html'
         controller: 'DashboardCtrl as dashboard'
+    .state 'create_user',
+        url: '/create_user'
+        templateUrl: 'views/create_user.html'
+        controller: 'CreateuserCtrl as create_user'
     return
     #$locationProvider
     #.html5Mode

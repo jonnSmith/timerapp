@@ -14,6 +14,7 @@
                 button.btn.btn-secondary(ng-click='logout()') Logout
                 button.btn.btn-secondary(ng-click='dashboard.refreshUsers()') Refresh users
                 button.btn.btn-secondary(ng-click='refreshToken()') Refresh token
+                a.btn.btn-secondary(ui-sref="create_user") Create user
         .form-group
             h5 Time
             |{{dashboard.time.time|date:'medium'}}

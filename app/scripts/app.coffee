@@ -4,7 +4,6 @@ angular
 .module('timerApp', [
     'ui.router',
     'satellizer',
-    'ui.bootstrap',
     'ngGeolocation'
 ])
 .config ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) ->
@@ -27,7 +26,7 @@ angular
         #requireBase: false
 .run ($rootScope, $state, $location, $auth, $geolocation, usersFactory) ->
     $rootScope.authenticated = false
-    $rootScope.lamguage = 'en'
+    $rootScope.language = 'en'
     $rootScope.title = 'LAB Timer'
     $rootScope.error = false
     $geolocation.watchPosition
@@ -49,7 +48,7 @@ angular
                 console.log refresh_token
             $location.path('/auth')
         return
-    $rootScope.$on '$locationChangeStart', () ->
+    $rootScope.$on '$locationChangeStart', (event, next, current) ->
         $rootScope.checkRights($rootScope, $state, $location)
         return
     $rootScope.$watch 'error', ->

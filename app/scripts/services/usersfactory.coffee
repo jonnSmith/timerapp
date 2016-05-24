@@ -3,8 +3,8 @@
 angular.module('timerApp')
 .factory 'usersFactory', ($http,$auth,$rootScope) ->
     urlBase = 'api/authenticate'
-    $token = $auth.getToken()
-    data = token: $token
+    token = $auth.getToken()
+    data = token: token
     config =
         params: data
     usersFactory = {}
@@ -18,6 +18,7 @@ angular.module('timerApp')
             return
     usersFactory.refreshUser = () ->
         $http.get(urlBase+'/refresh', config).then (response) ->
+            console.log token + ' - ' + response
             new_token = response.token
             new_token
     usersFactory

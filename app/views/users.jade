@@ -1,0 +1,22 @@
+.row
+    include ../layout/navbar
+.container
+    .dashboard
+        include ../layout/error-block
+        .row
+            .col-sm-6
+                h3 Add user
+                form
+                    .form-group
+                        input.form-control(type='email', placeholder='Email', ng-model='users.email')
+                    .form-group
+                        input.form-control(type='text', placeholder='Name', ng-model='users.name')
+                    .form-group
+                        input.form-control(type='text', placeholder='Password', ng-model='users.password')
+                    button.btn.btn-primary(ng-click='users.createUser()') Submit
+            .col-sm-6
+                h3 Add group
+                    form
+                        .form-group
+                            input.form-control(type='text', placeholder='Name', ng-model='users.group_name')
+                        button.btn.btn-primary(ng-click='users.createGroup()') Submit

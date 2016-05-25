@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'CreateuserCtrl', ($scope, $auth, $state, $rootScope, usersFactory) ->
+.controller 'UsersCtrl', ($scope, $auth, $state, $rootScope, usersFactory) ->
     $rootScope.error = false
     $rootScope.title = 'Create user'
     vm = this

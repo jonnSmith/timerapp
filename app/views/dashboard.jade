@@ -1,38 +1,51 @@
-.col-sm-6
-    .well
-        h3 Users
-        ul.list-group(ng-if='dashboard.users')
-            li.list-group-item(ng-repeat='user in dashboard.users', ng-class="user.time_is_open ? 'bg-success' : 'bg-inverse opacity-70'") {{user.name}} {{user.email}}
-        .alert.alert-danger(ng-if='error')
-            strong There was an error:
-            | {{error}}
-.col-sm-6
-    .well
-        .form-group
-            h5(ng-if='authenticated') Welcome, {{currentUser.name}}
-            .btn-group(role='group', aria-label='usersButtons')
-                button.btn.btn-secondary(ng-click='logout()') Logout
-                button.btn.btn-secondary(ng-click='dashboard.refreshUsers()') Refresh users
-                button.btn.btn-secondary(ng-click='refreshToken()') Refresh token
-                a.btn.btn-secondary(ui-sref="create_user") Create user
-        .form-group
-            h5 Time
-            |{{dashboard.time.time|date:'medium'}}
-        .form-group
-            h5 Set time
-            .btn-group(role='group', aria-label='timerButtons')
-                button.btn.btn-secondary(ng-show="currentUser.time_is_open") {{ currentUser.time_open.start }}
-                button.btn.btn-secondary {{dashboard.timer.timer|date : 'HH:mm:ss' : 'UTC'}}
-                button.btn.btn-secondary(type='button', ng-hide='currentUser.time_is_open', ng-click='dashboard.startApiTimer()') Start
-                button.btn.btn-secondary(type='button', ng-show='currentUser.time_is_open', ng-click='dashboard.stopApiTimer()') Stop
-        .form-group
-            h5 Times
-            ul.list-group(ng-if='currentUser.time_last_closed.start')
-                li.list-group-item
-                    time-range(start!="{{ currentUser.time_last_closed.start }}", end!="{{ currentUser.time_last_closed.end }}", last="true")
-                    address-show(location!="{{ currentUser.time_last_closed.end_location }}")
-                    address-show(location!="{{ currentUser.time_last_closed.start_location }}")
-        .form-group
-            h5 Auth token
-            .highlight.full-width
-                    code.language-html {{ token }}
+.row
+     include ../layout/navbar
+.container
+    .dashboard
+        include ../layout/error-block
+        .row
+            .col-sm-6
+                    h3 Users
+                        a.pull-sm-right.color-primary.icon-button(ng-click='dashboard.refreshUsers()')
+                            i.material-icons.color-primary-dark cached
+                            span Refresh
+                    .list-container(ng-if='dashboard.users')
+                        .list-item.small(ng-repeat='user in dashboard.users', ng-class="user.time_is_open ? 'bg-primary' : 'bg-text'")
+                            i.list-icon.material-icons(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'", ng-bind="user.time_is_open ? 'check_circle' : 'assignment_ind'")
+                            h3(ng-class="user.time_is_open ? 'color-text' : 'color-primary-text'") {{user.name}}
+                            p(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'") {{user.email}}
+
+            .col-sm-6
+                .form-group
+                    h5 Time
+                    |{{dashboard.time.time|date:'medium'}}
+                .form-group
+                    h5 Set time
+                    .btn-group.timer-btn-group(role='group', aria-label='timerButtons')
+                        button.btn.btn-secondary(ng-show="currentUser.time_is_open")
+                            i.material-icons.color-primary alarm
+                            span {{ currentUser.time_open.start }}
+                        button.btn.btn-secondary
+                            i.material-icons.color-primary hourglass_empty
+                            span {{dashboard.timer.timer|date : 'HH:mm:ss' : 'UTC'}}
+                        button.btn.btn-secondary(type='button', ng-hide='currentUser.time_is_open', ng-click='dashboard.startApiTimer()')
+                            i.material-icons.color-primary alarm_add
+                            span Start
+                        button.btn.btn-secondary(type='button', ng-show='currentUser.time_is_open', ng-click='dashboard.stopApiTimer()')
+                            i.material-icons.color-primary alarm_off
+                            span Stop
+                .form-group
+                    h5 Times
+                    .list-container
+                        .list-item.small.bg-text(ng-if='currentUser.time_last_closed.start')
+                            i.list-icon.material-icons.color-primary query_builder
+                            i.list-icon.second.material-icons.color-secundary-text room
+                            h3
+                                time-range(start!="{{ currentUser.time_last_closed.start }}", end!="{{ currentUser.time_last_closed.end }}", last="true")
+                            p
+                                address-show(location!="{{ currentUser.time_last_closed.end_location }}")
+                                address-show(location!="{{ currentUser.time_last_closed.start_location }}")
+                .form-group
+                    h5 Auth token
+                    .highlight.full-width
+                            code.language-html {{ token }}

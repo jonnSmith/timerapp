@@ -1,0 +1,17 @@
+.navbar.bg-primary-dark
+    .container
+        .navbar-icons(ng-if='authenticated')
+            .icons-left
+                a.username.color-text(ui-sref="dashboard")
+                    i.material-icons.color-text account_circle
+                    span Hi, {{currentUser.name}}
+                a.color-text(ui-sref="users")
+                    i.material-icons.color-text supervisor_account
+                    span Manage users
+            .icons-right
+                a.color-text(ng-click='logout()')
+                    i.material-icons.color-text exit_to_app
+                    span Logout
+                a.color-text(ng-click='refreshToken()')
+                    i.material-icons.color-text update
+                    span Refresh token

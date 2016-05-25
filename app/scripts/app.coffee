@@ -19,10 +19,10 @@ angular
         url: '/dashboard'
         templateUrl: 'views/dashboard.html'
         controller: 'DashboardCtrl as dashboard'
-    .state 'create_user',
-        url: '/create_user'
-        templateUrl: 'views/create_user.html'
-        controller: 'CreateuserCtrl as create_user'
+    .state 'users',
+        url: '/users'
+        templateUrl: 'views/users.html'
+        controller: 'UsersCtrl as users'
     return
     #$locationProvider
     #.html5Mode

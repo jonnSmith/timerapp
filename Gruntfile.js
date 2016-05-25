@@ -18,6 +18,7 @@ module.exports = function (grunt) {
     gtx.alias('build', [
         'clean:dist',
         'bowerInstall',
+        'sass',
         'jade:dist',
         'coffee:dist',
         'stylus:dist',
@@ -34,7 +35,6 @@ module.exports = function (grunt) {
         'rev',
         'usemin',
         'htmlmin',
-        'sass',
         'pleeease',
         'copy:views',
         'clean:views'

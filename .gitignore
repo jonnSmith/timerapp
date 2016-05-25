@@ -5,3 +5,5 @@ dist
 app/bower_components
 .idea
 package.json
+app/styles/bootstrap.css
+app/styles/bootstrap.css.map

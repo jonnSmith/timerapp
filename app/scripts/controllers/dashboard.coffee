@@ -22,7 +22,7 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-    refresh_users_interval = 5*60*1000
+    refresh_users_interval = 5.5*60*1000
 
     setInterval (->
         vm.refreshUsers()

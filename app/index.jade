@@ -11,7 +11,6 @@ html(ng-app="timerApp")
         // Place favicon.ico and apple-touch-icon.png in the root directory
         // build:css styles/vendor.css
         link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.css')
-        link(rel='stylesheet', href='bower_components/font-awesome/css/font-awesome.css')
         // bower:css
         link(rel='stylesheet', href='bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')
         // endbower
@@ -30,8 +29,7 @@ html(ng-app="timerApp")
         <![endif]-->
 
         // Add your site or application content here
-
-        div.container(ui-view)
+        .container(ui-view)
 
         // build:js scripts/vendor.js
         // bower:js

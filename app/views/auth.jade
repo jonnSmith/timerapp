@@ -1,11 +1,19 @@
-.col-sm-4.col-sm-offset-4
-    .well
-        h3 Login
-        form
-            p.alert.alert-danger(ng-if='error')
-                strong Error: {{error}}
-            .form-group
-                input.form-control(type='email', placeholder='Email', ng-model='auth.email')
-            .form-group
-                input.form-control(type='password', placeholder='Password', ng-model='auth.password')
-            button.btn.btn-primary(ng-click='auth.login()') Submit
+.table
+    .table-cell
+        .col-sm-4.col-sm-offset-4
+            .hero.valign-wrapper.bg-primary
+                .titles.logo
+                    h1.heading.color-text
+                        i.material-icons.color-text alarm_on
+                        span {{title}}
+            .list-container.bg-base
+                .list-item
+                    i.list-icon.material-icons.color-secundary-text account_circle
+                    form
+                        p.alert.alert-danger(ng-if='error')
+                            strong Error: {{error}}
+                        .form-group
+                            input.form-control(type='email', placeholder='Email', ng-model='auth.email')
+                        .form-group
+                            input.form-control(type='password', placeholder='Password', ng-model='auth.password')
+                        button.btn.btn-primary(ng-click='auth.login()') Submit

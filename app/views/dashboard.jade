@@ -7,7 +7,7 @@
             .col-sm-6
                     h3 Users
                         a.pull-sm-right.color-primary.icon-button(ng-click='dashboard.refreshUsers()')
-                            i.material-icons.color-primary-dark cached
+                            i.material-icons.color-primary-dark restore_page
                             span Refresh
                     .list-container(ng-if='dashboard.users')
                         .list-item.small(ng-repeat='user in dashboard.users', ng-class="user.time_is_open ? 'bg-primary' : 'bg-text'")
@@ -26,7 +26,7 @@
                             i.material-icons.color-primary alarm
                             span {{ currentUser.time_open.start }}
                         button.btn.btn-secondary
-                            i.material-icons.color-primary hourglass_empty
+                            i.material-icons.color-primary(ng-bind="currentUser.time_is_open ? 'hourglass_full' : 'hourglass_empty'")
                             span {{dashboard.timer.timer|date : 'HH:mm:ss' : 'UTC'}}
                         button.btn.btn-secondary(type='button', ng-hide='currentUser.time_is_open', ng-click='dashboard.startApiTimer()')
                             i.material-icons.color-primary alarm_add

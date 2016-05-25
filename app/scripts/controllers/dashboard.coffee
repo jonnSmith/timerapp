@@ -22,12 +22,19 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
+    refresh_users_interval = 5*60*1000
+
+    setInterval (->
+        vm.refreshUsers()
+        return
+    ), refresh_users_interval
+
     time = new Date().getTime()
 
     vm.time = timeFactory.init(time)
     vm.timer = timerFactory.setTimer(time)
 
-    if $rootScope.currentUser.time_open.start && !angular.isUndefined($rootScope.currentUser.time_open.start)
+    if $rootScope.currentUser && $rootScope.currentUser.time_open.start && !angular.isUndefined($rootScope.currentUser.time_open.start)
         vm.timer.runTimer(true, $rootScope.currentUser.time_open.start)
 
     vm.startApiTimer = () ->

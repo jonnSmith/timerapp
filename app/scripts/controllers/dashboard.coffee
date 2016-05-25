@@ -24,10 +24,12 @@ angular.module('timerApp')
 
     refresh_users_interval = 5.5*60*1000
 
-    #setInterval (->
-    #    vm.refreshUsers()
-    #    return
-    #), refresh_users_interval
+    setInterval (->
+        token = $auth.getToken()
+        $auth.setToken token
+        vm.refreshUsers()
+        return
+    ), refresh_users_interval
 
     time = new Date().getTime()
 

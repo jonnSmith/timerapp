@@ -18,10 +18,10 @@
 
             .col-sm-6
                 .form-group
-                    h5 Time
+                    h3 Time
                     |{{dashboard.time.time|date:'medium'}}
                 .form-group
-                    h5 Set time
+                    h3 Set time
                     .btn-group.timer-btn-group(role='group', aria-label='timerButtons')
                         button.btn.btn-secondary(ng-show="currentUser.time_is_open")
                             i.material-icons.color-primary alarm
@@ -36,7 +36,7 @@
                             i.material-icons.color-primary alarm_off
                             span Stop
                 .form-group
-                    h5 Last closed time
+                    h3 Last closed time
                     .list-container
                         .list-item.small.bg-text(ng-if='currentUser.time_last_closed.start', ng-init="dashboard.show_map = false")
                             i.list-icon.material-icons.color-primary query_builder

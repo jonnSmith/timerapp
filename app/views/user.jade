@@ -26,6 +26,8 @@
                             input.form-control(type='email', placeholder='Email', ng-model='user.user.email')
                         .form-group
                             input.form-control(type='text', placeholder='Name', ng-model='user.user.name')
+                        .form-group
+                            input.form-control(type='text', placeholder='Password', ng-model='user.user.password')
                         button.btn.btn-primary(ng-click='user.updateUser()') Submit
                 h3 Groups
                     a.pull-sm-right.color-primary.icon-button(ng-click='user.getGroups()')

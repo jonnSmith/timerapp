@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'UserCtrl', ($scope, $auth, $state, $stateParams, $rootScope, userFactory, groupFactory) ->
+.controller 'UserCtrl', ($scope, $auth, $state, $stateParams, $rootScope, userFactory, usersFactory, groupFactory) ->
     $rootScope.error = false
     $rootScope.splash = false
     vm = this
@@ -39,7 +39,6 @@ angular.module('timerApp')
         range = vm.range
         userFactory.getUserTimes(vm.uid, range).success((times) ->
             vm.times = times
-            console.log vm.times
             return
         ).error (error) ->
             $rootScope.error = error
@@ -51,10 +50,11 @@ angular.module('timerApp')
         data =
             email: vm.user.email
             name: vm.user.name
+            password: vm.user.password
             user_group_id: vm.user.user_group_id.id
         userFactory.updateUser(vm.uid, data).success((user) ->
             vm.user = user
-            $rootScope.currentUser = user
+            usersFactory.setUser()
             $rootScope.title = user.name
             return
         ).error (error) ->
@@ -66,6 +66,7 @@ angular.module('timerApp')
             $rootScope.splash = 'Change group: ' + response.status
             vm.getUser()
             vm.getGroups()
+            usersFactory.setUser()
             return
         ).error (error) ->
             $rootScope.error = error

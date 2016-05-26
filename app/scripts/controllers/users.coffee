@@ -5,7 +5,7 @@ angular.module('timerApp')
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
-    $rootScope.title = 'Create user'
+    $rootScope.title = 'Manage users'
 
     vm.createUser = () ->
         data =
@@ -20,6 +20,29 @@ angular.module('timerApp')
             return
         return
 
+    vm.getGroupUsers = () ->
+        gid = $rootScope.currentUser.user_group_id
+        groupFactory.getGroup(gid).success((group) ->
+            vm.group = group
+            vm.users = group.users
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.getGroupUsers()
+
+    vm.deleteUserFromGroup = (uid) ->
+        gid = $rootScope.currentUser.user_group_id
+        groupFactory.removeGroup(gid,uid).success((response) ->
+            $rootScope.splash = 'User deleted: ' + response.status
+            vm.getGroupUsers()
+            usersFactory.setUser()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
     vm.createGroup = () ->
         data =
             title: vm.group_name
@@ -27,6 +50,7 @@ angular.module('timerApp')
         groupFactory.createGroup(data).success((group) ->
             $rootScope.splash = 'Group added: ' + group.title
             vm.getGroups()
+            usersFactory.setUser()
             return
         ).error (error) ->
             $rootScope.error = error
@@ -35,8 +59,8 @@ angular.module('timerApp')
 
     vm.getGroups = () ->
         groupFactory.getGroups().success((groups) ->
+            vm.getGroupUsers()
             vm.groups = groups
-            #console.log vm.groups
             return
         ).error (error) ->
             $rootScope.error = error
@@ -48,6 +72,7 @@ angular.module('timerApp')
         groupFactory.deleteGroup(gid).success((response) ->
             $rootScope.splash = 'Group deleted: ' + response.status
             vm.getGroups()
+            usersFactory.setUser()
             return
         ).error (error) ->
             $rootScope.error = error

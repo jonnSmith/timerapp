@@ -12,4 +12,9 @@ angular.module('timerApp')
         $http.get(urlBase + uid)
     userFactory.updateUser = (uid, data) ->
         $http.put(urlBase + uid, data)
+    userFactory.getUserTimes = (uid, range) ->
+        $http
+            url: urlBase + uid + '/times'
+            method: 'GET'
+            params: range
     userFactory

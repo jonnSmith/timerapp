@@ -5,17 +5,20 @@
         include ../layout/error-block
         .row
             .col-sm-6
-                .form-group
+                .form-group(ng-if='user.times')
                     h3 Times
-                    .list-container(ng-if='user.user.times')
-                        .list-item.small.bg-text(ng-repeat='time in user.user.times', ng-if='time.end')
+                    .list-container
+                        .list-item.small.bg-text(ng-repeat='time in user.times', ng-if='time.end')
                             i.list-icon.material-icons.color-primary query_builder
                             i.list-icon.second.material-icons.color-secundary-text room
                             h3
                                 time-range(start!="{{ time.start }}", end!="{{ time.end }}")
                             p
-                                address-show(location!="{{ time.end_location }}")
-                                address-show(location!="{{ time.start_location }}")
+                                ng-map(center!="{{ time.start_location|locationFilter}}", zoom="14")
+                                    marker(position="{{ time.start_location|locationFilter}}", title="Start")
+                                    marker(position="{{ time.end_location|locationFilter}}", title="End")
+                    hr
+                    h5 Total: {{user.times|timesFilter|date : 'HH:mm:ss' : 'UTC'}}
             .col-sm-6
                 h3 Edit user
                     form

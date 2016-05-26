@@ -36,16 +36,17 @@
                             i.material-icons.color-primary alarm_off
                             span Stop
                 .form-group
-                    h5 Times
+                    h5 Last closed time
                     .list-container
-                        .list-item.small.bg-text(ng-if='currentUser.time_last_closed.start')
+                        .list-item.small.bg-text(ng-if='currentUser.time_last_closed.start', ng-init="dashboard.show_map = false")
                             i.list-icon.material-icons.color-primary query_builder
                             i.list-icon.second.material-icons.color-secundary-text room
                             h3
                                 time-range(start!="{{ currentUser.time_last_closed.start }}", end!="{{ currentUser.time_last_closed.end }}", last="true")
                             p
-                                address-show(location!="{{ currentUser.time_last_closed.end_location }}")
-                                address-show(location!="{{ currentUser.time_last_closed.start_location }}")
+                                ng-map(center!="{{ currentUser.time_last_closed.start_location|locationFilter}}", zoom="14")
+                                    marker(position="{{ currentUser.time_last_closed.start_location|locationFilter}}", title="Start")
+                                    marker(position="{{ currentUser.time_last_closed.end_location|locationFilter}}", title="End")
                 .form-group
                     h5 Auth token
                     .highlight.full-width

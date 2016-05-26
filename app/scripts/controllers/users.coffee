@@ -23,6 +23,7 @@ angular.module('timerApp')
     vm.createGroup = () ->
         data =
             title: vm.group_name
+            description: vm.group_description
         groupFactory.createGroup(data).success((group) ->
             $rootScope.splash = 'Group added: ' + group.title
             vm.getGroups()

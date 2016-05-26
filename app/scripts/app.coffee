@@ -4,7 +4,8 @@ angular
 .module('timerApp', [
     'ui.router',
     'satellizer',
-    'ngGeolocation'
+    'ngGeolocation',
+    'ngMap'
 ])
 .config ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) ->
     $authProvider.loginUrl = '/api/authenticate'

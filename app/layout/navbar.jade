@@ -3,15 +3,17 @@
         .navbar-icons(ng-if='authenticated')
             .icons-left
                 a.username.color-text(ui-sref="dashboard")
-                    i.material-icons.color-text account_circle
-                    span Hi, {{currentUser.name}}
+                    i.material-icons.color-text alarm_on
+                    span dashboard
                 a.color-text(ui-sref="users")
                     i.material-icons.color-text supervisor_account
-                    span Manage users
+                    span manage
             .icons-right
+                a.color-text
+                    span Hi, {{currentUser.name}}
                 a.color-text(ng-click='logout()')
                     i.material-icons.color-text power_settings_new
-                    span Logout
+                    span logout
                 a.color-text(ng-click='refreshToken()')
                     i.material-icons.color-text update
-                    span Refresh token
+                    span refresh token

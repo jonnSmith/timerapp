@@ -6,13 +6,14 @@
         .row
             .col-sm-6
                     h3 Users
-                        a.pull-sm-right.color-primary.icon-button(ng-click='dashboard.refreshUsers()')
+                        a.pull-sm-right.color-primary.icon-button(ng-click='dashboard.getUsers()')
                             i.material-icons.color-primary-dark restore_page
                             span Refresh
                     .list-container(ng-if='dashboard.users')
-                        .list-item.small(ng-repeat='user in dashboard.users', ng-class="user.time_is_open ? 'bg-primary' : 'bg-text'")
+                        .list-item.small.user-list(ng-repeat='user in dashboard.users', ng-class="user.time_is_open ? 'bg-primary' : 'bg-text'")
                             i.list-icon.material-icons(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'", ng-bind="user.time_is_open ? 'check_circle' : 'assignment_ind'")
-                            h3(ng-class="user.time_is_open ? 'color-text' : 'color-primary-text'") {{user.name}}
+                            i.list-icon.second.material-icons(ng-class="user.time_is_open ? 'color-primary-light' : 'color-accent'", ng-click='dashboard.deleteUser(user.id)', ng-if="user.id != currentUser.id") delete_forever
+                            h3(ng-class="user.time_is_open ? 'color-text' : 'color-primary-text'", ui-sref="user({uid:user.id})") {{user.name}}
                             p(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'") {{user.email}}
 
             .col-sm-6

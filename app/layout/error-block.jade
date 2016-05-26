@@ -1,7 +1,11 @@
 .row
-    .com-sm-12
-        .alert.alert-danger(ng-if='error')
+    .col-sm-12
+        .alert.alert-danger(ng-show="error")
+            //button.close(type='button', ng-click="error = false")
+                span(aria-hidden='true') &times;
             strong There was an error:
             | {{error}}
-        .alert.alert-info(ng-if='splash')
+        .alert.alert-info(ng-show="splash")
+            //button.close(type='button', ng-click="splash = false")
+                span &times;
             strong {{splash}}

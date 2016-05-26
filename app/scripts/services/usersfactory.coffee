@@ -20,4 +20,6 @@ angular.module('timerApp')
         $http.get(urlBase+'/authenticate/refresh')
     usersFactory.createUser = (data) ->
         $http.post(urlBase+'/user/create', data)
+    usersFactory.deleteUser = (uid) ->
+        $http.delete(urlBase+'/users/'+uid)
     usersFactory

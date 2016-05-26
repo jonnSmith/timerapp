@@ -23,6 +23,10 @@ angular
         url: '/users'
         templateUrl: 'views/users.html'
         controller: 'UsersCtrl as users'
+    .state 'user',
+        url: '/users/:uid'
+        templateUrl: 'views/user.html'
+        controller: 'UserCtrl as user'
     return
     #$locationProvider
     #.html5Mode
@@ -33,6 +37,7 @@ angular
     $rootScope.language = 'en'
     $rootScope.title = 'LAB Timer'
     $rootScope.error = false
+    $rootScope.splash = false
     $rootScope.interval= 10*60*1000
     $rootScope.token = $auth.getToken()
     $geolocation.watchPosition

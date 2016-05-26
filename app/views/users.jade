@@ -20,3 +20,12 @@
                     .form-group
                         input.form-control(type='text', placeholder='Name', ng-model='users.group_name')
                     button.btn.btn-primary(ng-click='users.createGroup()') Submit
+                h3 Groups
+                    a.pull-sm-right.color-primary.icon-button(ng-click='users.getGroups()')
+                        i.material-icons.color-primary-dark restore_page
+                        span Refresh
+                .list-container(ng-if='users.groups')
+                    .list-item.small.user-list(ng-repeat='group in users.groups')
+                        i.list-icon.material-icons group
+                        i.list-icon.second.material-icons.color-accent(ng-click='users.deleteGroup(group.id)') delete_forever
+                        h3 {{group.title}}

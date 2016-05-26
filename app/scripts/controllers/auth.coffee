@@ -4,6 +4,7 @@ angular.module('timerApp')
 .controller 'AuthCtrl', ($auth, $state,$http,$rootScope) ->
     vm = this
     $rootScope.error = false
+    $rootScope.splash = false
     $rootScope.title = 'Login'
     vm.login = ->
         credentials =

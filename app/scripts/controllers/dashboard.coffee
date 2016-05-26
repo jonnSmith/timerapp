@@ -2,19 +2,12 @@
 
 angular.module('timerApp')
 .controller 'DashboardCtrl', ($scope, $auth, $rootScope, $state, usersFactory, timeFactory, timerFactory, apiTimeFactory, $geolocation) ->
-
-    $rootScope.error = false
-    $rootScope.title = 'Dashboard'
     vm = this
+    $rootScope.error = false
+    $rootScope.splash = false
+    $rootScope.title = 'Dashboard'
 
-    usersFactory.getUsers().success((users) ->
-        vm.users = users
-        return
-    ).error (error) ->
-        $rootScope.error = error
-        return
-
-    vm.refreshUsers = () ->
+    vm.getUsers = () ->
         usersFactory.getUsers().success((users) ->
             vm.users = users
             return
@@ -22,14 +15,25 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-    refresh_users_interval = 5.5*60*1000
+    vm.getUsers()
 
-    setInterval (->
-        token = $auth.getToken()
-        $auth.setToken token
-        vm.refreshUsers()
-        return
-    ), refresh_users_interval
+    vm.deleteUser = (uid) ->
+        usersFactory.deleteUser(uid).success((response) ->
+            $rootScope.splash = 'User deleted: ' + response.status
+            vm.getUsers()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    #refresh_users_interval = 5.05*60*1000
+
+    #setInterval (->
+    #    token = $auth.getToken()
+    #    $auth.setToken token
+    #    vm.getUsers()
+    #    return
+    #), refresh_users_interval
 
     time = new Date().getTime()
 

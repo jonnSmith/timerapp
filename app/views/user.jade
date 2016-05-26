@@ -1,0 +1,35 @@
+.row
+    include ../layout/navbar
+.container
+    .dashboard
+        include ../layout/error-block
+        .row
+            .col-sm-6
+                .form-group
+                    h3 Times
+                    .list-container(ng-if='user.user.times')
+                        .list-item.small.bg-text(ng-repeat='time in user.user.times', ng-if='time.end')
+                            i.list-icon.material-icons.color-primary query_builder
+                            i.list-icon.second.material-icons.color-secundary-text room
+                            h3
+                                time-range(start!="{{ time.start }}", end!="{{ time.end }}")
+                            p
+                                address-show(location!="{{ time.end_location }}")
+                                address-show(location!="{{ time.start_location }}")
+            .col-sm-6
+                h3 Edit user
+                    form
+                        .form-group
+                            input.form-control(type='email', placeholder='Email', ng-model='user.user.email')
+                        .form-group
+                            input.form-control(type='text', placeholder='Name', ng-model='user.user.name')
+                        button.btn.btn-primary(ng-click='user.updateUser()') Submit
+                h3 Groups
+                    a.pull-sm-right.color-primary.icon-button(ng-click='user.getGroups()')
+                        i.material-icons.color-primary-dark restore_page
+                        span Refresh
+                .list-container(ng-if='user.groups')
+                    .list-item.small.user-list(ng-repeat='group in user.groups')
+                        i.list-icon.material-icons group
+                        i.list-icon.second.material-icons.color-primary(ng-click='user.setGroup(group.id)', ng-if='user.user.user_group_id != group.id') group_add
+                        h3 {{group.title}}

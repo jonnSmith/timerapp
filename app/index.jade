@@ -12,6 +12,7 @@ html(ng-app="timerApp")
         // build:css styles/vendor.css
         link(rel='stylesheet', href='styles/bootstrap.css')
         // bower:css
+        link(rel='stylesheet', href='bower_components/angularjs-datepicker/dist/angular-datepicker.min.css')
         link(rel='stylesheet', href='bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')
         // endbower
         // endbuild
@@ -43,6 +44,7 @@ html(ng-app="timerApp")
         script(src='bower_components/satellizer/satellizer.js')
         script(src='bower_components/ngGeolocation/ngGeolocation.js')
         script(src='bower_components/ngmap/build/scripts/ng-map.js')
+        script(src='bower_components/angularjs-datepicker/dist/angular-datepicker.min.js')
         // endbower
         // endbuild
 
@@ -52,20 +54,18 @@ html(ng-app="timerApp")
         script(src="scripts/app.js")
         script(src="scripts/controllers/auth.js")
         script(src="scripts/controllers/dashboard.js")
+        script(src="scripts/controllers/users.js")
+        script(src="scripts/controllers/user.js")
+        script(src="scripts/controllers/settings.js")
         script(src="scripts/services/usersfactory.js")
         script(src="scripts/services/timefactory.js")
         script(src="scripts/services/timerfactory.js")
         script(src="scripts/services/apitimefactory.js")
+        script(src="scripts/services/userfactory.js")
+        script(src="scripts/services/groupfactory.js")
         script(src="scripts/directives/addressshow.js")
         script(src="scripts/directives/timerange.js")
-        script(src="scripts/controllers/createuser.js")
-        script(src="scripts/controllers/users.js")
-        script(src="scripts/services/groupfactory.js")
-        script(src="scripts/controllers/user.js")
-        script(src="scripts/services/user.js")
-        script(src="scripts/services/userfactory.js")
         script(src="scripts/filters/locationfilter.js")
         script(src="scripts/filters/timesfilter.js")
-        script(src="scripts/controllers/settings.js")
         script(src="scripts/filters/strikedfilter.js")
         // endbuild

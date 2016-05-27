@@ -10,6 +10,14 @@
                         a.pull-sm-right.color-primary.icon-button(ng-click='user.getUserTimes()')
                             i.material-icons.color-primary-dark=actions.refresh.icon
                             span=actions.refresh.title
+                    .form-group.datepicker-group
+                        .col-sm-6
+                            datepicker(date-format="yyyy-MM-dd", date-max-limit="{{user.endDate}}")
+                                input.form-control(type="text", ng-model="user.startDate")
+                        .col-sm-6
+                            datepicker(date-format="yyyy-MM-dd", date-max-limit="{{user.currentDate}}", date-min-limit="{{user.startDate}}")
+                                input.form-control(type="text", ng-model="user.endDate")
+                    .clearfix
                     .list-container
                         .list-item.small.bg-text(ng-repeat='time in user.times', ng-if='time.end')
                             i.list-icon.material-icons.color-primary query_builder

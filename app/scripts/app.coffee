@@ -5,7 +5,8 @@ angular
     'ui.router',
     'satellizer',
     'ngGeolocation',
-    'ngMap'
+    'ngMap',
+    '720kb.datepicker'
 ])
 .config ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) ->
     $authProvider.loginUrl = '/api/authenticate'

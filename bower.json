@@ -12,10 +12,14 @@
     "satellizer": "~0.14",
     "ngGeolocation": "~0.0.5",
     "ngmap": "~1.17",
+    "angularjs-datepicker": "~2.1",
     "awesome-bootstrap-checkbox": "^0.3.4"
   },
   "devDependencies": {
     "angular-mocks": "~1.5",
     "angular-scenario": "~1.5"
+  },
+  "resolutions": {
+    "angular": "~1.5.5"
   }
 }

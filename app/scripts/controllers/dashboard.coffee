@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $state, groupFactory, usersFactory, timeFactory, timerFactory, apiTimeFactory, $geolocation) ->
+.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $state, groupFactory, userFactory, usersFactory, timeFactory, timerFactory, apiTimeFactory, $geolocation) ->
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
@@ -18,7 +18,7 @@ angular.module('timerApp')
     vm.getUsers()
 
     vm.getGroupUsers = () ->
-        gid = $rootScope.currentUser.user_group_id
+        gid = $rootScope.currentUser.group_id
         groupFactory.getGroup(gid).success((group) ->
             vm.group = group
             vm.users = group.users
@@ -30,6 +30,24 @@ angular.module('timerApp')
     vm.deleteUser = (uid) ->
         usersFactory.deleteUser(uid).success((response) ->
             $rootScope.splash = 'User deleted: ' + response.status
+            vm.getUsers()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.setStrike = (uid) ->
+        userFactory.userTime(uid, 'strike?value=1').success((response) ->
+            $rootScope.splash = 'Strike set: ' + response.status
+            vm.getUsers()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.removeStrike = (uid) ->
+        userFactory.userTime(uid, 'strike?value=0').success((response) ->
+            $rootScope.splash = 'Strike remove: ' + response.status
             vm.getUsers()
             return
         ).error (error) ->
@@ -74,7 +92,6 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
-        return
 
     vm.timer_comment = ''
 
@@ -100,6 +117,5 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
-        return
 
     return

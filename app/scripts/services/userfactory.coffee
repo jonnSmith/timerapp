@@ -17,4 +17,6 @@ angular.module('timerApp')
             url: urlBase + uid + '/times'
             method: 'GET'
             params: range
+    userFactory.userTime = (uid, action) ->
+        $http.get(urlBase + uid + '/times/' + action)
     userFactory

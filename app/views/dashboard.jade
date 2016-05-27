@@ -10,9 +10,11 @@
                             i.material-icons.color-primary-dark restore_page
                             span Refresh
                     .list-container(ng-if='dashboard.users')
-                        .list-item.small.user-list(ng-repeat='user in dashboard.users', ng-class="user.time_is_open ? 'bg-primary' : 'bg-text'")
+                        .list-item.small.user-list(ng-repeat='user in dashboard.users', ng-class="user.time_is_open ? 'bg-primary' : 'bg-text'", ng-style="{ 'opacity' : (user.time_open.is_strike) ? '0.8' : '1' }")
                             i.list-icon.material-icons(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'", ng-bind="user.time_is_open ? 'check_circle' : 'assignment_ind'")
                             i.list-icon.second.material-icons(ng-class="user.time_is_open ? 'color-primary-light' : 'color-accent'", ng-click='dashboard.deleteUser(user.id)', ng-if="user.id != currentUser.id") delete_forever
+                            i.list-icon.third.material-icons.color-primary-light(ng-click='dashboard.setStrike(user.id)', ng-if='user.id != currentUser.id && user.time_is_open && !user.time_open.is_strike') thumb_down
+                            i.list-icon.third.material-icons.color-primary-light(ng-click='dashboard.removeStrike(user.id)', ng-if='user.id != currentUser.id && user.time_is_open && user.time_open.is_strike') thumb_up
                             h3(ng-class="user.time_is_open ? 'color-text' : 'color-primary-text'", ui-sref="user({uid:user.id})") {{user.name}}
                             p(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'") {{user.email}}
 

@@ -15,7 +15,7 @@
                                 p.alert.alert-danger(ng-if='error')
                                     strong Error: {{error}}
                                 .form-group
-                                    input.form-control(type='email', placeholder='Email', ng-model='auth.email')
+                                    input.form-control(type='email', placeholder='Email', ng-model='auth.email', required)
                                 .form-group
-                                    input.form-control(type='password', placeholder='Password', ng-model='auth.password')
-                                button.btn.btn-primary(ng-click='auth.login()') Submit
+                                    input.form-control(type='password', placeholder='Password', ng-model='auth.password', minlength="4", required)
+                                button.btn.btn-primary(ng-click='auth.login()', ng-disabled="!auth.password || !auth.email") Submit

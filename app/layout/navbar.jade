@@ -9,7 +9,8 @@
                     i.material-icons.color-text supervisor_account
                     span manage
             .icons-right
-                a.color-text
+                a.color-text(ui-sref="settings")
+                    i.material-icons.color-text settings_applications
                     span Hi, {{currentUser.name}}
                 a.color-text(ng-click='logout()')
                     i.material-icons.color-text power_settings_new

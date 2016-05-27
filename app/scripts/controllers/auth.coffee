@@ -22,5 +22,4 @@ angular.module('timerApp')
             ), (error) ->
                 $rootScope.error = error.data.error
                 return
-        return
     return

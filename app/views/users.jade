@@ -5,22 +5,25 @@
         include ../layout/error-block
         .row
             .col-sm-6
-                h3 Add user
+                h3=titles.add_user
                 form
                     .form-group
                         input.form-control(type='email', placeholder='Email', ng-model='users.email', required)
                     .form-group
                         input.form-control(type='text', placeholder='Name', ng-model='users.name', required)
                     .form-group
-                        input.form-control(type='text', placeholder='Password', ng-model='users.password', required)
-                    button.btn.btn-primary(ng-click='users.createUser()', ng-disabled="!users.email || !users.name || !users.password") Submit
+                        input.form-control(type='text', placeholder='Password', ng-model='users.password', required, minlength="4")
+                    .form-group
+                        select.form-control(ng-model='users.group_id', ng-options="group.title for group in users.groups track by group.id")
+                            option(value='') Select Group
+                    button.btn.btn-primary(ng-click='users.createUser()', ng-disabled="!users.email || !users.name || !users.password")=form.submit
                 h3 Add group
                 form
                     .form-group
                         input.form-control(type='text', placeholder='Name', ng-model='users.group_name', required)
                     .form-group
                         input.form-control(type='text', placeholder='Description', ng-model='users.group_description', required)
-                    button.btn.btn-primary(ng-click='users.createGroup()', ng-disabled="!users.group_name || !users.group_description ") Submit
+                    button.btn.btn-primary(ng-click='users.createGroup()', ng-disabled="!users.group_name || !users.group_description ")=form.submit
             .col-sm-6
                 .form-group(ng-if='users.users')
                     h3 {{users.group.title}} users

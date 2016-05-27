@@ -1,12 +1,12 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'UserCtrl', ($scope, $auth, $state, $stateParams, $rootScope, userFactory, usersFactory, groupFactory) ->
+.controller 'SettingsCtrl', ($scope, $auth, $state, $rootScope, userFactory, usersFactory, groupFactory) ->
     $rootScope.error = false
     $rootScope.splash = false
     vm = this
-    vm.uid = $stateParams.uid
-    $rootScope.title = 'User Page'
+    vm.uid = $rootScope.currentUser.id
+    $rootScope.title = 'My settings'
 
     vm.getGroups = () ->
         groupFactory.getGroups().success((groups) ->
@@ -21,7 +21,6 @@ angular.module('timerApp')
     vm.getUser = () ->
         userFactory.getUser(vm.uid).success((user) ->
             vm.user = user
-            $rootScope.title = user.name
             return
         ).error (error) ->
             $rootScope.error = error
@@ -33,7 +32,7 @@ angular.module('timerApp')
         period: 'day'
         offset: 0
         count: 1
-        order: 'desc'
+        order: 'asc'
 
     vm.getUserTimes = () ->
         range = vm.range
@@ -56,7 +55,6 @@ angular.module('timerApp')
             vm.user = user
             usersFactory.setUser()
             $rootScope.title = user.name
-            $rootScope.splash = 'User updated: ' + user.name
             return
         ).error (error) ->
             $rootScope.error = error

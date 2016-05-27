@@ -12,16 +12,17 @@ angular.module('timerApp')
             email: vm.email
             name: vm.name
             password: vm.password
+            group_id: vm.group_id.id
         usersFactory.createUser(data).success((user) ->
             $rootScope.splash = 'User added: ' + user.name
+            vm.getGroupUsers()
             return
         ).error (error) ->
             $rootScope.error = error
             return
-        return
 
     vm.getGroupUsers = () ->
-        gid = $rootScope.currentUser.user_group_id
+        gid = $rootScope.currentUser.group_id
         groupFactory.getGroup(gid).success((group) ->
             vm.group = group
             vm.users = group.users
@@ -33,7 +34,7 @@ angular.module('timerApp')
     vm.getGroupUsers()
 
     vm.deleteUserFromGroup = (uid) ->
-        gid = $rootScope.currentUser.user_group_id
+        gid = $rootScope.currentUser.group_id
         groupFactory.removeGroup(gid,uid).success((response) ->
             $rootScope.splash = 'User deleted: ' + response.status
             vm.getGroupUsers()
@@ -55,7 +56,6 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
-        return
 
     vm.getGroups = () ->
         groupFactory.getGroups().success((groups) ->

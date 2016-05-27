@@ -28,6 +28,10 @@ angular
         url: '/users/:uid'
         templateUrl: 'views/user.html'
         controller: 'UserCtrl as user'
+    .state 'settings',
+        url: '/settings'
+        templateUrl: 'views/settings.html'
+        controller: 'SettingsCtrl as user'
     return
     #$locationProvider
     #.html5Mode

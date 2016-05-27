@@ -22,9 +22,8 @@
                                     marker(position="{{ time.end_location|locationFilter}}", title="End")
                     hr
                     h5 Total: {{user.times|timesFilter|date : 'HH:mm:ss' : 'UTC'}}
-                    h5 Striked: {{user.times|strikedFilter|date : 'HH:mm:ss' : 'UTC'}}
             .col-sm-6
-                h3 Edit user
+                h3 Edit profile
                     form
                         .form-group
                             input.form-control(type='email', placeholder='Email', ng-model='user.user.email', required)

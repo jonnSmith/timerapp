@@ -59,8 +59,9 @@ angular.module('timerApp')
             location.latitude = $geolocation.position.coords.latitude
             location.longitude = $geolocation.position.coords.longitude
             location.accuracy = $geolocation.position.coords.accuracy
-        location = JSON.stringify(location)
-        apiTimeFactory.startTimer(location).success((response) ->
+        data =
+            location: JSON.stringify(location)
+        apiTimeFactory.startTimer(data).success((response) ->
             usersFactory.setUser()
             vm.timer.runTimer(true, $rootScope.currentUser.time_open.start)
             usersFactory.getUsers().success((users) ->
@@ -75,14 +76,18 @@ angular.module('timerApp')
             return
         return
 
+    vm.timer_comment = ''
+
     vm.stopApiTimer = () ->
         location = {}
         if $geolocation.position.coords
             location.latitude = $geolocation.position.coords.latitude
             location.longitude = $geolocation.position.coords.longitude
             location.accuracy = $geolocation.position.coords.accuracy
-        location = JSON.stringify(location)
-        apiTimeFactory.stopTimer(location).success((response) ->
+        data =
+            location: JSON.stringify(location)
+            comment: vm.timer_comment
+        apiTimeFactory.stopTimer(data).success((response) ->
             usersFactory.setUser()
             vm.timer.saveTimer()
             usersFactory.getUsers().success((users) ->

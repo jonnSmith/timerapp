@@ -35,6 +35,7 @@
                         button.btn.btn-secondary(type='button', ng-show='currentUser.time_is_open', ng-click='dashboard.stopApiTimer()')
                             i.material-icons.color-primary alarm_off
                             span Stop
+                        input.form-control.full-width(type='text', ng-model='dashboard.timer_comment', ng-show='currentUser.time_is_open', style='width:427px;')
                 .form-group
                     h3 Last closed time
                     .list-container

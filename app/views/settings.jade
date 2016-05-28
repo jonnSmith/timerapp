@@ -1,51 +1,17 @@
+include ../tpl/mixins/times
+include ../tpl/mixins/forms
 .row
-    include ../layout/navbar
+    include ../tpl/layout/navbar
 .container
     .dashboard
-        include ../layout/error-block
+        include ../tpl/layout/error-block
         .row
             .col-sm-6
                 .form-group(ng-if='user.times')
-                    h3 Times
-                        a.pull-sm-right.color-primary.icon-button(ng-click='user.getUserTimes()')
-                            i.material-icons.color-primary-dark=actions.refresh.icon
-                            span=actions.refresh.title
-                    .form-group.datepicker-group
-                        .col-sm-6
-                            datepicker(date-format="yyyy-MM-dd", date-max-limit="{{user.endDate}}")
-                                input.form-control(type="text", ng-model="user.startDate")
-                        .col-sm-6
-                            datepicker(date-format="yyyy-MM-dd", date-max-limit="{{user.currentDate}}", date-min-limit="{{user.startDate}}")
-                                input.form-control(type="text", ng-model="user.endDate")
-                    .clearfix
-                    .list-container
-                        .list-item.small.bg-text(ng-repeat='time in user.times', ng-if='time.end')
-                            i.list-icon.material-icons.color-primary query_builder
-                            i.list-icon.second.material-icons.color-secundary-text room
-                            h3
-                                time-range(start!="{{ time.start }}", end!="{{ time.end }}")
-                            p
-                                ng-map(center!="{{ time.start_location|locationFilter}}", zoom="14")
-                                    marker(position="{{ time.start_location|locationFilter}}", title="Start")
-                                    marker(position="{{ time.end_location|locationFilter}}", title="End")
-                    hr
-                    h5 Total: {{user.times|timesFilter|date : 'HH:mm:ss' : 'UTC'}}
-                    h5 Striked: {{user.times|strikedFilter|date : 'HH:mm:ss' : 'UTC'}}
+                    +timesList('user')
             .col-sm-6
-                h3 Edit profile
-                    form
-                        .form-group
-                            input.form-control(type='email', placeholder='Email', ng-model='user.user.email', required)
-                        .form-group
-                            input.form-control(type='text', placeholder='Name', ng-model='user.user.name', required)
-                        .form-group
-                            input.form-control(type='text', placeholder='Password', ng-model='user.user.password', minlength="4")
-                        .form-group
-                            select.form-control(ng-model='user.group_id', ng-if="user.groups", ng-init='user.group_id = user.user.group_id')
-                                option(value='') Select Group
-                                option(ng-repeat='group in user.groups', ng-value='group.id', ng-selected='group.id == user.user.group_id') {{group.title}}
-                        button.btn.btn-primary(ng-click='user.updateUser()')=form.submit
-                h3 Groups
+                +editUserForm('user')
+                h3=titles.groups
                     a.pull-sm-right.color-primary.icon-button(ng-click='user.getGroups()')
                         i.material-icons.color-primary-dark=actions.refresh.icon
                         span=actions.refresh.title

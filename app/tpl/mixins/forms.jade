@@ -1,0 +1,14 @@
+mixin editUserForm(controller)
+    h3=titles.edit_user
+    form
+        .form-group
+            input.form-control(type='email', placeholder='Email', ng-model=controller+'.user.email', required)
+        .form-group
+            input.form-control(type='text', placeholder='Name', ng-model=controller+'.user.name', required)
+        .form-group
+            input.form-control(type='text', placeholder='Password', ng-model=controller+'.user.password', minlength="4")
+        .form-group
+            select.form-control(ng-model=controller+'.group_id', ng-if=controller+'.groups', ng-init=controller+'.group_id = '+controller+'.user.group_id')
+                option(value='') Select Group
+                option(ng-repeat='group in '+controller+'.groups', ng-value='group.id', ng-selected='group.id == '+controller+'.user.group_id') {{group.title}}
+        button.btn.btn-primary(ng-click=controller+'.updateUser()')=form.submit

@@ -1,23 +1,13 @@
+include ../tpl/mixins/users
+include ../tpl/mixins/times
 .row
-     include ../layout/navbar
+     include ../tpl/layout/navbar
 .container
     .dashboard
-        include ../layout/error-block
+        include ../tpl/layout/error-block
         .row
             .col-sm-6
-                    h3 Users
-                        a.pull-sm-right.color-primary.icon-button(ng-click='dashboard.getUsers()')
-                            i.material-icons.color-primary-dark restore_page
-                            span Refresh
-                    .list-container(ng-if='dashboard.users')
-                        .list-item.small.user-list(ng-repeat='user in dashboard.users', ng-class="user.time_is_open ? 'bg-primary' : 'bg-text'", ng-style="{ 'opacity' : (user.time_open.is_strike) ? '0.8' : '1' }")
-                            i.list-icon.material-icons(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'", ng-bind="user.time_is_open ? 'check_circle' : 'assignment_ind'")
-                            i.list-icon.second.material-icons(ng-class="user.time_is_open ? 'color-primary-light' : 'color-accent'", ng-click='dashboard.deleteUser(user.id)', ng-if="user.id != currentUser.id") delete_forever
-                            i.list-icon.third.material-icons.color-primary-light(ng-click='dashboard.setStrike(user.id)', ng-if='user.id != currentUser.id && user.time_is_open && !user.time_open.is_strike') thumb_down
-                            i.list-icon.third.material-icons.color-primary-light(ng-click='dashboard.removeStrike(user.id)', ng-if='user.id != currentUser.id && user.time_is_open && user.time_open.is_strike') thumb_up
-                            h3(ng-class="user.time_is_open ? 'color-text' : 'color-primary-text'", ui-sref="user({uid:user.id})") {{user.name}}
-                            p(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'") {{user.email}}
-
+                +usersList('dashboard')
             .col-sm-6
                 .form-group
                     h3 Time
@@ -39,17 +29,7 @@
                             span Stop
                         input.form-control.full-width(type='text', ng-model='dashboard.timer_comment', ng-show='currentUser.time_is_open', style='width:427px;')
                 .form-group
-                    h3 Last closed time
-                    .list-container
-                        .list-item.small.bg-text(ng-if='currentUser.time_last_closed.start', ng-init="dashboard.show_map = false")
-                            i.list-icon.material-icons.color-primary query_builder
-                            i.list-icon.second.material-icons.color-secundary-text room
-                            h3
-                                time-range(start!="{{ currentUser.time_last_closed.start }}", end!="{{ currentUser.time_last_closed.end }}", last="true")
-                            p
-                                ng-map(center!="{{ currentUser.time_last_closed.start_location|locationFilter}}", zoom="14")
-                                    marker(position="{{ currentUser.time_last_closed.start_location|locationFilter}}", title="Start")
-                                    marker(position="{{ currentUser.time_last_closed.end_location|locationFilter}}", title="End")
+                    +lastTime()
                 .form-group
                     h5 Auth token
                     .highlight.full-width

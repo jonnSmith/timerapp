@@ -2,7 +2,18 @@
   "sitename": "Timer app",
   "description": "Time management application",
   "titles": {
-    "add_user": "Add user"
+    "users": "Users",
+    "add_user": "Add user",
+    "edit_user": "Edit user",
+    "times": "Times",
+    "time": "Time",
+    "set_time": "Set time",
+    "closed_time": "Closed time",
+    "total": "Total",
+    "striked": "Striked",
+    "groups": "Groups",
+    "add_group": "Add group",
+    "edit_groups": "Edit groups"
   },
   "form": {
     "submit": "Submit"
@@ -12,6 +23,9 @@
       "title": "Refresh",
       "icon": "restore_page"
     }
+  },
+  "errors": {
+    "no_location": "Start location not set"
   },
   "copyright": "© iskra.ua, powered by Angular 1.5, based on generator-angular-jade-stylus"
 }

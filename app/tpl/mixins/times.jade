@@ -1,0 +1,46 @@
+mixin timesList(controller)
+    h3=titles.times
+        a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getUserTimes()')
+            i.material-icons.color-primary-dark=actions.refresh.icon
+            span=actions.refresh.title
+    .form-group.datepicker-group
+        .col-sm-6
+            datepicker(date-format="yyyy-MM-dd", date-max-limit="{{"+controller+".endDate}}")
+                input.form-control(type="text", ng-model=controller+".startDate")
+        .col-sm-6
+            datepicker(date-format="yyyy-MM-dd", date-max-limit="{{"+controller+".currentDate}}", date-min-limit="{{"+controller+".startDate}}")
+                input.form-control(type="text", ng-model=controller+".endDate")
+    .clearfix
+    .list-container
+        .list-item.small.bg-text(ng-repeat='time in '+controller+'.times', ng-if='time.end')
+            i.list-icon.material-icons.color-primary query_builder
+            i.list-icon.second.material-icons.color-secundary-text(ng-if='time.start_location && time.start_location!="{}"') room
+            h3
+                time-range(start!="{{ time.start }}", end!="{{ time.end }}")
+                span(ng-bind='time.comment')
+            p(ng-if='time.start_location && time.start_location!="{}"')
+                ng-map(center!="{{ time.start_location|locationFilter}}", zoom="14")
+                    marker(position="{{ time.start_location|locationFilter}}", title="Start")
+                    marker(position="{{ time.end_location|locationFilter}}", title="End")
+            p(ng-if='!time.start_location || time.start_location=="{}"')=errors.no_location
+    hr
+    h5=titles.total
+        span &nbsp:&nbsp
+        span(ng-bind=controller+".times|timesFilter|date : 'HH:mm:ss' : 'UTC'")
+    h5=titles.striked
+        span &nbsp:&nbsp
+        span(ng-bind=controller+".times|strikedFilter|date : 'HH:mm:ss' : 'UTC'")
+
+mixin lastTime()
+    h3=titles.closed_time
+    .list-container
+        .list-item.small.bg-text(ng-if='currentUser.time_last_closed.start')
+            i.list-icon.material-icons.color-primary query_builder
+            i.list-icon.second.material-icons.color-secundary-text(ng-if='currentUser.time_last_closed.start_location && currentUser.time_last_closed.start_location!="{}"') room
+            h3
+                time-range(start!="{{ currentUser.time_last_closed.start }}", end!="{{ currentUser.time_last_closed.end }}", last="true")
+            p(ng-if='currentUser.time_last_closed.start_location && currentUser.time_last_closed.start_location!="{}"')
+                ng-map(center!="{{ currentUser.time_last_closed.start_location|locationFilter}}", zoom="14")
+                    marker(position="{{ currentUser.time_last_closed.start_location|locationFilter}}", title="Start")
+                    marker(position="{{ currentUser.time_last_closed.end_location|locationFilter}}", title="End")
+            p(ng-if='!currentUser.time_last_closed.start_location || currentUser.time_last_closed.start_location=="{}"')=errors.no_location

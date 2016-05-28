@@ -1,8 +1,9 @@
+include ../tpl/mixins/users
 .row
-    include ../layout/navbar
+    include ../tpl/layout/navbar
 .container
     .dashboard
-        include ../layout/error-block
+        include ../tpl/layout/error-block
         .row
             .col-sm-6
                 h3=titles.add_user
@@ -17,7 +18,7 @@
                         select.form-control(ng-model='users.group_id', ng-options="group.title for group in users.groups track by group.id")
                             option(value='') Select Group
                     button.btn.btn-primary(ng-click='users.createUser()', ng-disabled="!users.email || !users.name || !users.password")=form.submit
-                h3 Add group
+                h3=titles.add_group
                 form
                     .form-group
                         input.form-control(type='text', placeholder='Name', ng-model='users.group_name', required)
@@ -26,21 +27,12 @@
                     button.btn.btn-primary(ng-click='users.createGroup()', ng-disabled="!users.group_name || !users.group_description ")=form.submit
             .col-sm-6
                 .form-group(ng-if='users.users')
-                    h3 {{users.group.title}} users
-                        a.pull-sm-right.color-primary.icon-button(ng-click='users.getGroupUsers()')
-                            i.material-icons.color-primary-dark restore_page
-                            span Refresh
-                    .list-container(ng-if='users.users')
-                        .list-item.small.user-list(ng-repeat='user in users.users', ng-class="user.time_is_open ? 'bg-primary' : 'bg-text'")
-                            i.list-icon.material-icons(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'", ng-bind="user.time_is_open ? 'check_circle' : 'assignment_ind'")
-                            i.list-icon.second.material-icons(ng-class="user.time_is_open ? 'color-primary-light' : 'color-accent'", ng-click='users.deleteUserFromGroup(user.id)', ng-if="user.id != currentUser.id") delete
-                            h3(ng-class="user.time_is_open ? 'color-text' : 'color-primary-text'", ui-sref="user({uid:user.id})") {{user.name}}
-                            p(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'") {{user.email}}
+                    +groupUsersList('users')
                 .form-group(ng-if='users.groups')
-                    h3 Groups
+                    h3=titles.groups
                         a.pull-sm-right.color-primary.icon-button(ng-click='users.getGroups()')
-                            i.material-icons.color-primary-dark restore_page
-                            span Refresh
+                            i.material-icons.color-primary-dark=actions.refresh.icon
+                            span=actions.refresh.title
                     .list-container(ng-if='users.groups')
                         .list-item.small.user-list(ng-repeat='group in users.groups')
                             i.list-icon.material-icons group

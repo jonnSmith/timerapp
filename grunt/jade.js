@@ -22,7 +22,7 @@ module.exports = {
             expand: true,
             cwd: '<%= package.app %>',
             dest: '<%= package.dist %>',
-            src: ['*.jade', 'views/{,*/}*.jade', 'tpl/{,*/}*.jade'],
+            src: ['*.jade', 'views/{,*/}*.jade'],
             ext: '.html'
         }]
     }

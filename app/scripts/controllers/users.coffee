@@ -44,6 +44,16 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
+    vm.setModerator = (gid,uid) ->
+        groupFactory.setModerator(gid,uid).success((response) ->
+            $rootScope.splash = 'Moderator changed: ' + response.status
+            vm.getGroupUsers()
+            usersFactory.setUser()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
     vm.createGroup = () ->
         data =
             title: vm.group_name

@@ -20,4 +20,6 @@ angular.module('timerApp')
         $http.post(urlBase + '/'+ gid + '/adduser/' + uid)
     groupFactory.removeGroup = (gid, uid) ->
         $http.post(urlBase + '/'+ gid + '/removeuser/' + uid)
+    groupFactory.setModerator = (gid, uid) ->
+        $http.post(urlBase + '/'+ gid + '/setmoderator/' + uid)
     groupFactory

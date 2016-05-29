@@ -12,7 +12,7 @@ mixin timesList(controller)
                 input.form-control(type="text", ng-model=controller+".endDate")
     .clearfix
     .list-container
-        .list-item.small.bg-text(ng-repeat='time in '+controller+'.times', ng-if='time.end')
+        .list-item.small.bg-text(ng-repeat='time in '+controller+'.times', ng-if='time.end', ng-class="time.is_strike ? 'bg-base' : 'bg-text'")
             i.list-icon.material-icons.color-primary query_builder
             i.list-icon.second.material-icons.color-secundary-text(ng-if='time.start_location && time.start_location!="{}"') room
             h3

@@ -17,7 +17,7 @@ mixin timesList(controller)
             i.list-icon.second.material-icons.color-secundary-text(ng-if='time.start_location && time.start_location!="{}"') room
             h3
                 time-range(start!="{{ time.start }}", end!="{{ time.end }}")
-                span(ng-bind='time.comment')
+                span.pull-sm-right(ng-bind='time.comment')
             p(ng-if='time.start_location && time.start_location!="{}"')
                 ng-map(center!="{{ time.start_location|locationFilter}}", zoom="14")
                     marker(position="{{ time.start_location|locationFilter}}", title="Start")
@@ -32,15 +32,37 @@ mixin timesList(controller)
         span(ng-bind=controller+".times|strikedFilter|date : 'HH:mm:ss' : 'UTC'")
 
 mixin lastTime()
-    h3=titles.closed_time
-    .list-container
-        .list-item.small.bg-text(ng-if='currentUser.time_last_closed.start')
-            i.list-icon.material-icons.color-primary query_builder
-            i.list-icon.second.material-icons.color-secundary-text(ng-if='currentUser.time_last_closed.start_location && currentUser.time_last_closed.start_location!="{}"') room
-            h3
-                time-range(start!="{{ currentUser.time_last_closed.start }}", end!="{{ currentUser.time_last_closed.end }}", last="true")
-            p(ng-if='currentUser.time_last_closed.start_location && currentUser.time_last_closed.start_location!="{}"')
-                ng-map(center!="{{ currentUser.time_last_closed.start_location|locationFilter}}", zoom="14")
-                    marker(position="{{ currentUser.time_last_closed.start_location|locationFilter}}", title="Start")
-                    marker(position="{{ currentUser.time_last_closed.end_location|locationFilter}}", title="End")
-            p(ng-if='!currentUser.time_last_closed.start_location || currentUser.time_last_closed.start_location=="{}"')=errors.no_location
+    .form-group
+        h3=titles.closed_time
+        .list-container
+            .list-item.small.bg-text(ng-if='currentUser.time_last_closed.start')
+                i.list-icon.material-icons.color-primary query_builder
+                i.list-icon.second.material-icons.color-secundary-text(ng-if='currentUser.time_last_closed.start_location && currentUser.time_last_closed.start_location!="{}"') room
+                h3
+                    time-range(start!="{{ currentUser.time_last_closed.start }}", end!="{{ currentUser.time_last_closed.end }}", last="true")
+                p(ng-if='currentUser.time_last_closed.start_location && currentUser.time_last_closed.start_location!="{}"')
+                    ng-map(center!="{{ currentUser.time_last_closed.start_location|locationFilter}}", zoom="14")
+                        marker(position="{{ currentUser.time_last_closed.start_location|locationFilter}}", title="Start")
+                        marker(position="{{ currentUser.time_last_closed.end_location|locationFilter}}", title="End")
+                p(ng-if='!currentUser.time_last_closed.start_location || currentUser.time_last_closed.start_location=="{}"')=errors.no_location
+
+mixin timer(controller)
+    .form-group
+        h3=titles.current_time
+        p(ng-bind=controller+".time.time|date:'medium'")
+    .form-group
+        h3=titles.set_time
+        .btn-group.timer-btn-group(role='group', aria-label='timerButtons')
+            button.btn.btn-secondary(ng-show="currentUser.time_is_open")
+                i.material-icons.color-primary alarm
+                span {{ currentUser.time_open.start }}
+            button.btn.btn-secondary
+                i.material-icons.color-primary(ng-bind="currentUser.time_is_open ? 'hourglass_full' : 'hourglass_empty'")
+                span(ng-bind=controller+".timer.timer|date : 'HH:mm:ss' : 'UTC'")
+            button.btn.btn-secondary(type='button', ng-hide='currentUser.time_is_open', ng-click=controller+'.startApiTimer()')
+                i.material-icons.color-primary alarm_add
+                span=titles.start
+            button.btn.btn-secondary(type='button', ng-show='currentUser.time_is_open', ng-click=controller+'.stopApiTimer()')
+                i.material-icons.color-primary alarm_off
+                span=titles.stop
+            input.form-control.full-width(type='text', ng-model=controller+'.timer_comment', ng-show='currentUser.time_is_open', style='width:427px;')

@@ -9,27 +9,8 @@ include ../tpl/mixins/times
             .col-sm-6
                 +usersList('dashboard')
             .col-sm-6
-                .form-group
-                    h3 Time
-                    |{{dashboard.time.time|date:'medium'}}
-                .form-group
-                    h3 Set time
-                    .btn-group.timer-btn-group(role='group', aria-label='timerButtons')
-                        button.btn.btn-secondary(ng-show="currentUser.time_is_open")
-                            i.material-icons.color-primary alarm
-                            span {{ currentUser.time_open.start }}
-                        button.btn.btn-secondary
-                            i.material-icons.color-primary(ng-bind="currentUser.time_is_open ? 'hourglass_full' : 'hourglass_empty'")
-                            span {{dashboard.timer.timer|date : 'HH:mm:ss' : 'UTC'}}
-                        button.btn.btn-secondary(type='button', ng-hide='currentUser.time_is_open', ng-click='dashboard.startApiTimer()')
-                            i.material-icons.color-primary alarm_add
-                            span Start
-                        button.btn.btn-secondary(type='button', ng-show='currentUser.time_is_open', ng-click='dashboard.stopApiTimer()')
-                            i.material-icons.color-primary alarm_off
-                            span Stop
-                        input.form-control.full-width(type='text', ng-model='dashboard.timer_comment', ng-show='currentUser.time_is_open', style='width:427px;')
-                .form-group
-                    +lastTime()
+                +timer('dashboard')
+                +lastTime()
                 .form-group
                     h5 Auth token
                     .highlight.full-width

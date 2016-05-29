@@ -1,4 +1,6 @@
 include ../tpl/mixins/users
+include ../tpl/mixins/groups
+include ../tpl/mixins/forms
 .row
     include ../tpl/layout/navbar
 .container
@@ -6,35 +8,10 @@ include ../tpl/mixins/users
         include ../tpl/layout/error-block
         .row
             .col-sm-6
-                h3=titles.add_user
-                form
-                    .form-group
-                        input.form-control(type='email', placeholder='Email', ng-model='users.email', required)
-                    .form-group
-                        input.form-control(type='text', placeholder='Name', ng-model='users.name', required)
-                    .form-group
-                        input.form-control(type='text', placeholder='Password', ng-model='users.password', required, minlength="4")
-                    .form-group
-                        select.form-control(ng-model='users.group_id', ng-options="group.title for group in users.groups track by group.id")
-                            option(value='') Select Group
-                    button.btn.btn-primary(ng-click='users.createUser()', ng-disabled="!users.email || !users.name || !users.password")=form.submit
-                h3=titles.add_group
-                form
-                    .form-group
-                        input.form-control(type='text', placeholder='Name', ng-model='users.group_name', required)
-                    .form-group
-                        input.form-control(type='text', placeholder='Description', ng-model='users.group_description', required)
-                    button.btn.btn-primary(ng-click='users.createGroup()', ng-disabled="!users.group_name || !users.group_description ")=form.submit
+                +addUserForm('users')
+                +addGroupForm('users')
             .col-sm-6
                 .form-group(ng-if='users.users')
                     +groupUsersList('users')
                 .form-group(ng-if='users.groups')
-                    h3=titles.groups
-                        a.pull-sm-right.color-primary.icon-button(ng-click='users.getGroups()')
-                            i.material-icons.color-primary-dark=actions.refresh.icon
-                            span=actions.refresh.title
-                    .list-container(ng-if='users.groups')
-                        .list-item.small.user-list(ng-repeat='group in users.groups')
-                            i.list-icon.material-icons group
-                            i.list-icon.second.material-icons.color-accent(ng-click='users.deleteGroup(group.id)') delete_forever
-                            h3 {{group.title}}
+                    +groupList('users')

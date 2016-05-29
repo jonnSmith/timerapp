@@ -1,5 +1,5 @@
 include ../tpl/mixins/times
-include ../tpl/mixins/forms
+include ../tpl/mixins/users
 include ../tpl/mixins/groups
 .row
     include ../tpl/layout/navbar
@@ -8,8 +8,6 @@ include ../tpl/mixins/groups
         include ../tpl/layout/error-block
         .row
             .col-sm-6
-                .form-group(ng-if='user.times')
-                    +timesList('user')
+                +groupUsersList('group')
             .col-sm-6
-                +editUserForm('user')
-                +groupList('user')
+                +groupList('group')

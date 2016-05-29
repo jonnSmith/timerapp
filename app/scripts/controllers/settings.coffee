@@ -51,7 +51,7 @@ angular.module('timerApp')
         period: 'day'
         offset: 0
         count: 1
-        order: 'asc'
+        order: 'desc'
 
     vm.getUserTimes = () ->
         range = vm.range

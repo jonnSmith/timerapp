@@ -29,6 +29,10 @@ angular
         url: '/users/:uid'
         templateUrl: 'views/user.html'
         controller: 'UserCtrl as user'
+    .state 'group',
+        url: '/group/:gid'
+        templateUrl: 'views/group.html'
+        controller: 'GroupCtrl as group'
     .state 'settings',
         url: '/settings'
         templateUrl: 'views/settings.html'

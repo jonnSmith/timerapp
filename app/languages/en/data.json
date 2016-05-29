@@ -9,6 +9,9 @@
     "time": "Time",
     "set_time": "Set time",
     "closed_time": "Closed time",
+    "current_time": "Current time",
+    "start": "Start",
+    "stop": "Stop",
     "total": "Total",
     "striked": "Striked",
     "groups": "Groups",
@@ -16,7 +19,14 @@
     "edit_groups": "Edit groups"
   },
   "form": {
-    "submit": "Submit"
+    "submit": "Submit",
+    "placeholders": {
+      "name": "Name",
+      "password": "Password",
+      "email": "Email",
+      "description": "Description",
+      "select_group": "Select group"
+    }
   },
   "actions": {
     "refresh": {

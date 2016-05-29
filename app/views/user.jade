@@ -1,5 +1,6 @@
 include ../tpl/mixins/times
 include ../tpl/mixins/forms
+include ../tpl/mixins/groups
 .row
     include ../tpl/layout/navbar
 .container
@@ -11,12 +12,4 @@ include ../tpl/mixins/forms
                     +timesList('user')
             .col-sm-6
                 +editUserForm('user')
-                h3=titles.groups
-                    a.pull-sm-right.color-primary.icon-button(ng-click='user.getGroups()')
-                        i.material-icons.color-primary-dark=actions.refresh.icon
-                        span=actions.refresh.title
-                .list-container(ng-if='user.groups')
-                    .list-item.small.user-list(ng-repeat='group in user.groups')
-                        i.list-icon.material-icons group
-                        i.list-icon.second.material-icons.color-primary(ng-click='user.setGroup(group.id)', ng-if='user.user.group_id != group.id') group_add
-                        h3 {{group.title}}
+                +groupList('user')

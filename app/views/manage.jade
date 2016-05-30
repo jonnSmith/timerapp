@@ -1,0 +1,19 @@
+include ../tpl/mixins/users
+include ../tpl/mixins/groups
+include ../tpl/mixins/forms
+.row
+    include ../tpl/layout/navbar
+.container
+    .dashboard
+        include ../tpl/layout/error-block
+        .row
+            .col-sm-6
+                .add_users(ng-if='currentUser.is_moderator || currentUser.is_super_admin')
+                    +addUserForm('manage')
+                .add_groups(ng-if='currentUser.is_super_admin')
+                    +addGroupForm('manage')
+            .col-sm-6
+                .form-group(ng-if='manage.users && currentUser.is_moderator')
+                    +groupUsersList('manage')
+                .form-group(ng-if='manage.groups && currentUser.is_super_admin')
+                    +groupList('manage')

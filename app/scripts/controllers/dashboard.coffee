@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $state, groupFactory, userFactory, usersFactory, timeFactory, timerFactory, apiTimeFactory, $geolocation) ->
+.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $state, groupFactory, userFactory, usersFactory, timeFactory, timerFactory, apiTimeFactory, $geolocation, $filter) ->
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
@@ -16,16 +16,6 @@ angular.module('timerApp')
             return
 
     vm.getUsers()
-
-    vm.getGroupUsers = () ->
-        gid = $rootScope.currentUser.group_id
-        groupFactory.getGroup(gid).success((group) ->
-            vm.group = group
-            vm.users = group.users
-            return
-        ).error (error) ->
-            $rootScope.error = error
-            return
 
     vm.deleteUser = (uid) ->
         usersFactory.deleteUser(uid).success((response) ->
@@ -53,15 +43,6 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
-
-    #refresh_users_interval = 5.05*60*1000
-
-    #setInterval (->
-    #    token = $auth.getToken()
-    #    $auth.setToken token
-    #    vm.getUsers()
-    #    return
-    #), refresh_users_interval
 
     time = new Date().getTime()
 

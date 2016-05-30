@@ -5,26 +5,38 @@ mixin usersList(controller)
                 span=actions.refresh.title
         .list-container(ng-if=controller+'.users')
             .list-item.small.user-list(ng-repeat='user in '+controller+'.users', ng-class="user.time_is_open ? 'bg-primary' : 'bg-text'", ng-style="{ 'opacity' : (user.time_open.is_strike) ? '0.8' : '1' }")
+                //time mark
                 i.list-icon.material-icons(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'", ng-bind="user.time_is_open ? 'check_circle' : 'assignment_ind'")
-                i.list-icon.second.material-icons(ng-class="user.time_is_open ? 'color-primary-light' : 'color-accent'", ng-click=controller+'.deleteUser(user.id)', ng-if="user.id != currentUser.id") delete_forever
-                i.list-icon.third.material-icons.color-primary-light(ng-click=controller+'.setStrike(user.id)', ng-if='user.id != currentUser.id && user.time_is_open && !user.time_open.is_strike') thumb_down
-                i.list-icon.third.material-icons.color-primary-light(ng-click=controller+'.removeStrike(user.id)', ng-if='user.id != currentUser.id && user.time_is_open && user.time_open.is_strike') thumb_up
-                h3(ng-class="user.time_is_open ? 'color-text' : 'color-primary-text'", ui-sref="user({uid:user.id})") {{user.name}}
+                .user-controls(ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && user.id != currentUser.id')
+                    //delete user
+                    i.material-icons.color-accent(ng-click=controller+'.deleteUser(user.id)', ng-if='!user.is_super_admin') delete_forever
+                    //strike switch
+                    i.material-icons.color-primary(ng-click=controller+'.setStrike(user.id)', ng-if='user.time_is_open && !user.time_open.is_strike') thumb_down
+                    i.material-icons.color-primary(ng-click=controller+'.removeStrike(user.id)', ng-if='user.time_is_open && user.time_open.is_strike') thumb_up
+                h3(ng-class="user.time_is_open ? 'color-text' : 'color-primary-text'")
+                    a(ui-sref="user({uid:user.id})", ng-show='currentUser.is_moderator || currentUser.is_super_admin') {{user.name}}
+                    span(ng-hide='currentUser.is_moderator || currentUser.is_super_admin') {{user.name}}
                 p(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'") {{user.email}}
+                    |&nbsp;
+                    a(ui-sref="group({gid:user.group.id})", ng-if='user.group.id', ng-show='currentUser.is_super_admin') ({{user.group.title}})
 
 mixin groupUsersList(controller)
     h3
         span(ng-bind=controller+'.group.title')
         span &nbsp;
         span=titles.users
-        a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getGroupUsers()')
+        a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getGroupUsers()', ng-if='currentUser.is_moderator || currentUser.is_super_admin')
             i.material-icons.color-primary-dark=actions.refresh.icon
             span=actions.refresh.title
-    .list-container(ng-if=controller+'.users')
+    .list-container(ng-if=controller+'.users && (currentUser.is_moderator || currentUser.is_super_admin)')
         .list-item.small.user-list(ng-repeat='user in '+controller+'.users', ng-class="user.time_is_open ? 'bg-primary' : 'bg-text'", ng-style="{ 'opacity' : (user.time_open.is_strike) ? '0.8' : '1' }")
             i.list-icon.material-icons(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'", ng-bind="user.time_is_open ? 'check_circle' : 'assignment_ind'")
-            i.list-icon.second.material-icons(ng-class="user.time_is_open ? 'color-primary-light' : 'color-accent'", ng-click=controller+'.deleteUserFromGroup(user.id)', ng-if="user.id != currentUser.id") delete
-            i.list-icon.third.material-icons.color-primary-light(ng-if='!user.is_moderator', ng-click=controller+'.setModerator(groud.id, user,id)') transfer_within_a_station
-            i.list-icon.third.material-icons.color-primary-light(ng-if='user.is_moderator') supervisor_account
-            h3(ng-class="user.time_is_open ? 'color-text' : 'color-primary-text'", ui-sref="user({uid:user.id})") {{user.name}}
+            .user-controls
+                //delete from group
+                i.material-icons.color-accent(ng-click=controller + '.deleteUserFromGroup(user.id)', ng-if="user.id != currentUser.id") delete
+                //moderator switch
+                i.material-icons.color-primary(ng-if='user.id != ' + controller + '.group.moderator_id', ng-click=controller + '.setModerator(user.id)') transfer_within_a_station
+                i.material-icons.color-primary(ng-if='user.id == ' + controller + '.group.moderator_id') supervisor_account
+            h3(ng-class="user.time_is_open ? 'color-text' : 'color-primary-text'")
+                a(ui-sref="user({uid:user.id})") {{user.name}}
             p(ng-class="user.time_is_open ? 'color-text' : 'color-secundary-text'") {{user.email}}

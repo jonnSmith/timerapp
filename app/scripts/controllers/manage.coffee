@@ -1,18 +1,23 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'UsersCtrl', ($scope, $auth, $state, $rootScope, usersFactory, groupFactory) ->
+.controller 'ManageCtrl', ($scope, $auth, $state, $rootScope, usersFactory, groupFactory) ->
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
     $rootScope.title = 'Manage users'
+    vm.gid = $rootScope.currentUser.group_id
 
     vm.createUser = () ->
         data =
             email: vm.email
             name: vm.name
             password: vm.password
-            group_id: vm.group_id.id
+        if vm.group_id
+            data.group_id = vm.group_id.id
+        else
+            data.group_id = vm.gid
+        console.log data
         usersFactory.createUser(data).success((user) ->
             $rootScope.splash = 'User added: ' + user.name
             vm.getGroupUsers()
@@ -22,7 +27,7 @@ angular.module('timerApp')
             return
 
     vm.getGroupUsers = () ->
-        gid = $rootScope.currentUser.group_id
+        gid = vm.gid
         groupFactory.getGroup(gid).success((group) ->
             vm.group = group
             vm.users = group.users
@@ -34,8 +39,8 @@ angular.module('timerApp')
     vm.getGroupUsers()
 
     vm.deleteUserFromGroup = (uid) ->
-        gid = $rootScope.currentUser.group_id
-        groupFactory.removeGroup(gid,uid).success((response) ->
+        gid = vm.gid
+        groupFactory.removeGroup(gid, uid).success((response) ->
             $rootScope.splash = 'User deleted: ' + response.status
             vm.getGroupUsers()
             usersFactory.setUser()
@@ -44,8 +49,9 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-    vm.setModerator = (gid,uid) ->
-        groupFactory.setModerator(gid,uid).success((response) ->
+    vm.setModerator = (uid) ->
+        gid = vm.gid
+        groupFactory.setModerator(gid, uid).success((response) ->
             $rootScope.splash = 'Moderator changed: ' + response.status
             vm.getGroupUsers()
             usersFactory.setUser()

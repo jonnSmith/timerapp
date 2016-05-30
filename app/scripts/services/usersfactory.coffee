@@ -9,7 +9,7 @@ angular.module('timerApp')
         params: data
     usersFactory = {}
     usersFactory.getUsers = () ->
-        $http.get(urlBase + '/authenticate')
+        $http.get(urlBase + '/users')
     usersFactory.setUser = () ->
         $http.get(urlBase+'/authenticate/user').then (response) ->
             user = JSON.stringify(response.data.user)

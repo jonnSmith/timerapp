@@ -7,11 +7,12 @@ include ../tpl/mixins/times
         include ../tpl/layout/error-block
         .row
             .col-sm-6
-                +usersList('dashboard')
+                .users
+                    +usersList('dashboard')
             .col-sm-6
                 +timer('dashboard')
                 +lastTime()
-                .form-group
+                .form-group(ng-if='currentUser.is_super_admin')
                     h5 Auth token
                     .highlight.full-width
-                            code.language-html {{ token }}
+                        code.language-html {{ token }}

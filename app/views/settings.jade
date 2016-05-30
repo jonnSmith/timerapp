@@ -11,5 +11,7 @@ include ../tpl/mixins/groups
                 .form-group(ng-if='user.times')
                     +timesList('user')
             .col-sm-6
-                +editUserForm('user')
-                +groupList('user')
+                .edit-user
+                    +editUserForm('user')
+                .group-list(ng-if='currentUser.is_super_admin')
+                    +groupList('user')

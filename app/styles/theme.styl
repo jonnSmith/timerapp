@@ -182,6 +182,20 @@ $nav-size = 60px
         left 20px
         &.second
             top 75px
+    .user-controls
+        absolute bottom 0 right 0
+        padding 5px
+        height 34px
+        display block
+        background-color $text
+        i.material-icons
+            cursor pointer
+            display inline-block
+            font-size 24px
+            line-height 24px
+            height 24px
+            width 24px
+            margin 0 0 0 5px
     &.small
         padding 5px 5px
         padding-left 65px
@@ -201,8 +215,12 @@ $nav-size = 60px
                 height 100px !important
     &.user-list
         padding-right 65px
-        h3
+        a
             cursor pointer
+            &:hover
+                color:inherit !important
+                text-decoration none
+                opacity 0.75
         .list-icon
             margin 0
             font-size 32px

@@ -22,7 +22,7 @@ mixin addUserForm(controller)
             input.form-control(type='text', placeholder=form.placeholders.name, ng-model=controller+'.name', required)
         .form-group
             input.form-control(type='text', placeholder=form.placeholders.password, ng-model=controller+'.password', required, minlength="4")
-        .form-group
+        .form-group(ng-if='currentUser.is_super_admin')
             select.form-control(ng-model=controller+'.group_id', ng-options="group.title for group in "+controller+".groups track by group.id")
                 option(value='')=form.placeholders.select_group
         button.btn.btn-primary(ng-click=controller+'.createUser()', ng-disabled="!"+controller+".email || !"+controller+".name || !"+controller+".password")=form.submit

@@ -5,8 +5,7 @@ angular
     'ui.router',
     'satellizer',
     'ngGeolocation',
-    'ngMap',
-    '720kb.datepicker'
+    'ngMap'
 ])
 .config ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) ->
     $authProvider.loginUrl = '/api/authenticate'
@@ -21,10 +20,10 @@ angular
         url: '/dashboard'
         templateUrl: 'views/dashboard.html'
         controller: 'DashboardCtrl as dashboard'
-    .state 'users',
-        url: '/users'
-        templateUrl: 'views/users.html'
-        controller: 'UsersCtrl as users'
+    .state 'manage',
+        url: '/manage'
+        templateUrl: 'views/manage.html'
+        controller: 'ManageCtrl as manage'
     .state 'user',
         url: '/users/:uid'
         templateUrl: 'views/user.html'

@@ -7,5 +7,6 @@ mixin groupList(controller)
         .list-item.small.user-list.bg-text(ng-repeat='group in '+controller+'.groups', ng-if='currentUser.is_super_admin')
             i.list-icon.material-icons group
             i.list-icon.second.material-icons.color-accent(ng-click=controller+'.deleteGroup(group.id)') delete_forever
-            h3(ui-sref="group({gid:group.id})")
-                a {{group.title}}
+            h3
+                a(ui-sref="group({gid:group.id})", ng-show='currentUser.is_super_admin') {{group.title}}
+                span(ng-hide='currentUser.is_super_admin') {{group.title}}

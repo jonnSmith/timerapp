@@ -7,7 +7,7 @@ mixin editUserForm(controller)
             input.form-control(type='text', placeholder=form.placeholders.name, ng-model=controller+'.user.name', required)
         .form-group
             input.form-control(type='text', placeholder=form.placeholders.password, ng-model=controller+'.user.password', minlength="4")
-        .form-group
+        .form-group(ng-if='currentUser.is_super_admin')
             select.form-control(ng-model=controller+'.group_id', ng-if=controller+'.groups', ng-init=controller+'.group_id = '+controller+'.user.group_id')
                 option(value='')=form.placeholders.select_group
                 option(ng-repeat='group in '+controller+'.groups', ng-value='group.id', ng-selected='group.id == '+controller+'.user.group_id') {{group.title}}
@@ -29,7 +29,7 @@ mixin addUserForm(controller)
 
 mixin addGroupForm(controller)
     h3=titles.add_group
-    form
+    form(ng-if='currentUser.is_super_admin')
         .form-group
             input.form-control(type='text', placeholder=form.placeholders.name, ng-model=controller+'.group_name', required)
         .form-group

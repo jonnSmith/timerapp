@@ -59,10 +59,10 @@ mixin timer(controller)
             button.btn.btn-secondary
                 i.material-icons.color-primary(ng-bind="currentUser.time_is_open ? 'hourglass_full' : 'hourglass_empty'")
                 span(ng-bind=controller+".timer.timer|date : 'HH:mm:ss' : 'UTC'")
-            button.btn.btn-secondary(type='button', ng-hide='currentUser.time_is_open', ng-click=controller+'.startApiTimer()')
+            button.btn.btn-secondary(type='button', ng-if='!currentUser.time_is_open', ng-click=controller+'.startApiTimer()')
                 i.material-icons.color-primary alarm_add
                 span=titles.start
-            button.btn.btn-secondary(type='button', ng-show='currentUser.time_is_open', ng-click=controller+'.stopApiTimer()')
+            button.btn.btn-secondary(type='button', ng-if='currentUser.time_is_open', ng-click=controller+'.stopApiTimer()')
                 i.material-icons.color-primary alarm_off
                 span=titles.stop
-            input.form-control.full-width(type='text', ng-model=controller+'.timer_comment', ng-show='currentUser.time_is_open', style='width:427px;', maxlength="25")
+            input.form-control.full-width(type='text', ng-model=controller+'.timer_comment', ng-show='currentUser.time_is_open', maxlength="25")

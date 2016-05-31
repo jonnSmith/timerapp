@@ -1,6 +1,7 @@
 {
   "sitename": "Timer app",
   "description": "Time management application",
+  "logo": "alarm_on",
   "titles": {
     "users": "Users",
     "add_user": "Add user",
@@ -35,7 +36,11 @@
     }
   },
   "errors": {
+    "error": "Error",
     "no_location": "Start location not set"
+  },
+  "icons": {
+     "login": "account_circle"
   },
   "copyright": "© iskra.ua, powered by Angular 1.5, based on generator-angular-jade-stylus"
 }

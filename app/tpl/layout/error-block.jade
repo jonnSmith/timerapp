@@ -1,7 +1,8 @@
 .row
     .col-sm-12
         .alert.alert-danger(ng-show="error")
-            strong There was an error:
-            | {{error}}
+            strong=errors.error
+                span &nbsp;:&nbsp;
+            |{{error}}
         .alert.alert-info(ng-show="splash")
             strong {{splash}}

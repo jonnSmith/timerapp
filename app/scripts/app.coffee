@@ -87,10 +87,9 @@ angular
         return
     $rootScope.logout = ->
         $auth.logout().then ( ->
-            localStorage.removeItem 'user'
-            $rootScope.authenticated = false
-            $rootScope.currentUser = null
             $state.go 'auth'
+            $rootScope.authenticated = false
+            localStorage.removeItem 'user'
             return
         ), (error) ->
             $rootScope.error = error.data.error

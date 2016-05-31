@@ -6,16 +6,18 @@
                     .hero.valign-wrapper.bg-primary
                         .titles.logo
                             h1.heading.color-text
-                                i.material-icons.color-text alarm_on
+                                i.material-icons.color-text=logo
                                 span {{title}}
                     .list-container.bg-base
                         .list-item
-                            i.list-icon.material-icons.color-secundary-text account_circle
+                            i.list-icon.material-icons.color-secundary-text=icons.login
                             form
                                 p.alert.alert-danger(ng-if='error')
-                                    strong Error: {{error}}
+                                    strong=errors.error
+                                        span &nbsp;:&nbsp;
+                                    |{{error}}
                                 .form-group
-                                    input.form-control(type='email', placeholder='Email', ng-model='auth.email', required)
+                                    input.form-control(type='email', placeholder=form.placeholders.email, ng-model='auth.email', required)
                                 .form-group
-                                    input.form-control(type='password', placeholder='Password', ng-model='auth.password', minlength="4", required)
-                                button.btn.btn-primary(ng-click='auth.login()', ng-disabled="!auth.password || !auth.email") Submit
+                                    input.form-control(type='password', placeholder=form.placeholders.password, ng-model='auth.password', minlength="4", required)
+                                button.btn.btn-primary(ng-click='auth.login()', ng-disabled="!auth.password || !auth.email")=form.submit

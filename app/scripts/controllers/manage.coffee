@@ -17,7 +17,6 @@ angular.module('timerApp')
             data.group_id = vm.group_id.id
         else
             data.group_id = vm.gid
-        console.log data
         usersFactory.createUser(data).success((user) ->
             $rootScope.splash = 'User added: ' + user.name
             vm.getGroupUsers()

@@ -58,7 +58,7 @@ mixin timer(controller)
                 span {{ currentUser.time_open.start }}
             button.btn.btn-secondary
                 i.material-icons.color-primary(ng-bind="currentUser.time_is_open ? 'hourglass_full' : 'hourglass_empty'")
-                span(ng-bind=controller+".timer.timer|date : 'HH:mm:ss' : 'UTC'")
+                span(ng-bind=controller+".timer.timer|timestampFilter")
             button.btn.btn-secondary(type='button', ng-if='!currentUser.time_is_open', ng-click=controller+'.startApiTimer()')
                 i.material-icons.color-primary alarm_add
                 span=titles.start

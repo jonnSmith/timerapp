@@ -47,7 +47,7 @@ angular.module('timerApp')
     time = new Date().getTime()
 
     vm.time = timeFactory.init(time)
-    vm.timer = timerFactory.setTimer(time, true)
+    vm.timer = timerFactory.setTimer(time)
 
     if $rootScope.currentUser != null && $rootScope.currentUser.time_is_open
         vm.timer.runTimer(true, $rootScope.currentUser.time_open.start)

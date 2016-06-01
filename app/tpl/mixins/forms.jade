@@ -1,6 +1,6 @@
 mixin editUserForm(controller)
     h3=titles.edit_user
-    form
+    form(ng-if='!'+controller+'.user.is_super_admin || ('+controller+'.user.is_super_admin && currentUser.is_super_admin)')
         .form-group
             input.form-control(type='email', placeholder=form.placeholders.email, ng-model=controller+'.user.email', required)
         .form-group

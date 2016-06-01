@@ -9,9 +9,7 @@ angular.module('timerApp')
         obj.is_start = false
         obj.step = 1000
 
-        obj.setTimer = (startTime, init = false) ->
-            if init
-                obj.is_start = false
+        obj.setTimer = (startTime) ->
             obj.start = startTime
             obj.updateTimer()
             obj

@@ -42,7 +42,7 @@ angular
     #.html5Mode
         #enabled: true
         #requireBase: false
-.run ($rootScope, $state, $location, $auth, $geolocation,usersFactory) ->
+.run ($rootScope, $state, $location, $auth, $geolocation,usersFactory,timerFactory) ->
     $rootScope.authenticated = false
     $rootScope.language = 'en'
     $rootScope.title = 'LAB Timer'
@@ -89,6 +89,7 @@ angular
         $auth.logout().then ( ->
             $state.go 'auth'
             $rootScope.authenticated = false
+            timerFactory.saveTimer(false)
             localStorage.removeItem 'user'
             return
         ), (error) ->

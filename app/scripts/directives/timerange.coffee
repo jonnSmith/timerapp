@@ -10,7 +10,7 @@ angular.module('timerApp')
         range = end - start
         if range
             result = $filter('timestampFilter')(range)
-            element.text $filter('date')(start, 'yyyy-MM-dd') + ' : ' + result
+            element.text $filter('date')(start, 'yyyy-MM-dd HH:mm') + ' | ' + result
         if attrs.last
             $rootScope.$watch 'currentUser.time_last_closed.end', ->
                 closed = $rootScope.currentUser.time_last_closed
@@ -19,7 +19,7 @@ angular.module('timerApp')
                 range = end - start
                 if range
                     result = $filter('timestampFilter')(range)
-                    element.text $filter('date')(start, 'yyyy-MM-dd HH') + ' : ' + result
+                    element.text $filter('date')(start, 'yyyy-MM-dd HH:mm') + ' | ' + result
                 return
         return
     replace: true

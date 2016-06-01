@@ -11,7 +11,7 @@ mixin timesList(controller)
             datepicker(date-format="yyyy-MM-dd", date-max-limit="{{"+controller+".currentDate}}", date-min-limit="{{"+controller+".startDate}}")
                 input.form-control(type="text", ng-model=controller+".endDate")
     .clearfix
-    .list-container
+    .list-container.time-list
         .list-item.small.bg-text(ng-repeat='time in '+controller+'.times', ng-if='time.end')
             i.list-icon.material-icons(ng-class="time.is_strike ? 'color-accent' : 'color-primary'") query_builder
             i.list-icon.second.material-icons.color-secundary-text(ng-if='time.start_location && time.start_location!="{}"') room

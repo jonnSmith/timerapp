@@ -8,6 +8,9 @@ angular.module('timerApp')
     vm.uid = $stateParams.uid
     $rootScope.title = 'User Page'
 
+    if !($rootScope.currentUser.is_super_admin || $rootScope.currentUser.is_moderator)
+        $state.go 'dashboard'
+
     currentTime = new Date()
     vm.startDate = vm.endDate = vm.currentDate = $filter('date')(currentTime, 'yyyy-MM-dd')
 
@@ -41,6 +44,8 @@ angular.module('timerApp')
 
     vm.getUser = () ->
         userFactory.getUser(vm.uid).success((user) ->
+            if (user.is_super_admin && !$rootScope.currentUser.is_super_admin) || (!$rootScope.currentUser.is_super_admin && user.group_id != $rootScope.currentUser.group_id)
+                $state.go 'dashboard'
             vm.user = user
             $rootScope.title = user.name
             return

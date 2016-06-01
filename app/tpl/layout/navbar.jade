@@ -1,20 +1,22 @@
-.navbar.bg-primary-dark
-    .container
-        .navbar-icons(ng-if='authenticated')
-            .icons-left
-                a.username.color-text(ui-sref="dashboard")
-                    i.material-icons.color-text alarm_on
-                    span dashboard
-                a.color-text(ui-sref="manage", ng-if='currentUser.is_moderator || currentUser.is_super_admin')
-                    i.material-icons.color-text supervisor_account
-                    span manage
-            .icons-right
-                a.color-text(ui-sref="settings")
-                    i.material-icons.color-text settings_applications
-                    span Hi, {{currentUser.name}}
-                a.color-text(ng-click='logout()')
-                    i.material-icons.color-text power_settings_new
-                    span logout
-                a.color-text(ng-click='refreshToken()')
-                    i.material-icons.color-text update
-                    span refresh token
+.navbar-row
+    .row
+        .navbar.bg-primary-dark
+            .container
+                .navbar-icons(ng-if='authenticated')
+                    .icons-left
+                        a.username.color-text(ui-sref="dashboard")
+                            i.material-icons.color-text alarm_on
+                            span dashboard
+                        a.color-text(ui-sref="manage", ng-if='currentUser.is_moderator || currentUser.is_super_admin')
+                            i.material-icons.color-text supervisor_account
+                            span manage
+                    .icons-right
+                        a.color-text(ui-sref="settings")
+                            i.material-icons.color-text settings_applications
+                            span Hi, {{currentUser.name}}
+                        a.color-text(ng-click='logout()')
+                            i.material-icons.color-text power_settings_new
+                            span logout
+                        a.color-text(ng-click='refreshToken()')
+                            i.material-icons.color-text update
+                            span refresh token

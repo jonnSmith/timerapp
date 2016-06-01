@@ -8,6 +8,7 @@ html, body
     overflow-x hidden
     background-color $base
     font-family "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-weight 400
 body
     padding 0
     >div
@@ -77,13 +78,24 @@ address
             font-size 130px
             display inherit
         span
-            text-transform lowercase
             display inherit
+            font-weight 300
 
-.dashboard
-    padding-top 25px
 
 $nav-size = 60px
+
+.navbar-row
+    absolute top 0px left 0px
+    width 100%
+    height $nav-size
+    z-index 2
+
+.dashboard
+    padding-top $nav-size + 25px
+    position relative
+    z-index 1
+
+
 .theme-container
     max-width 520px
     margin 0

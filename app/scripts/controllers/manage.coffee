@@ -8,6 +8,9 @@ angular.module('timerApp')
     $rootScope.title = 'Manage users'
     vm.gid = $rootScope.currentUser.group_id
 
+    if !($rootScope.currentUser.is_super_admin || $rootScope.currentUser.is_moderator)
+        $state.go 'dashboard'
+
     vm.createUser = () ->
         data =
             email: vm.email

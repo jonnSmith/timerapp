@@ -10,3 +10,16 @@ mixin groupList(controller)
             h3
                 a(ui-sref="group({gid:group.id})", ng-show='currentUser.is_super_admin') {{group.title}}
                 span(ng-hide='currentUser.is_super_admin') {{group.title}}
+
+mixin userGroupList(controller)
+    h3=titles.groups
+    a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getGroups()')
+        i.material-icons.color-primary-dark=actions.refresh.icon
+        span=actions.refresh.title
+    .list-container(ng-if=controller+'.groups')
+        .list-item.small.user-list.bg-text(ng-repeat='group in '+controller+'.groups', ng-if='currentUser.is_super_admin')
+            i.list-icon.material-icons group
+            i.list-icon.second.material-icons.color-primary(ng-click=controller+'.setGroup(group.id)', ng-if='user.user.group_id != group.id') group_add
+            i.list-icon.second.material-icons.color-primary(ng-if='user.user.group_id == group.id') done
+            h3
+                a(ui-sref="group({gid:group.id})") {{group.title}}

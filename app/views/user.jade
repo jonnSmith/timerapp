@@ -14,4 +14,4 @@ include ../tpl/layout/navbar
                 .edit-user
                     +editUserForm('user')
                 .group-list(ng-if='currentUser.is_super_admin')
-                    +groupList('user')
+                    +userGroupList('user')

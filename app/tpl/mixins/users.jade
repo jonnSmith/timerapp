@@ -1,5 +1,7 @@
 mixin usersList(controller)
-        h3=titles.users
+        h3
+            span(ng-if="!currentUser.group.title || currentUser.is_super_admin")=titles.users
+            span(ng-if="currentUser.group.title && !currentUser.is_super_admin") {{currentUser.group.title}}
             a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getUsers()')
                 i.material-icons.color-primary-dark=actions.refresh.icon
                 span=actions.refresh.title

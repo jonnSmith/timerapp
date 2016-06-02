@@ -37,19 +37,26 @@ mixin timesList(controller)
         span(ng-bind=controller+".times|strikedFilter")
 
 mixin lastTime()
-    .form-group
+    .form-group(ng-if='currentUser.time_last_closed.start')
         h3=titles.closed_time
-        .list-container
-            .list-item.small.bg-text(ng-if='currentUser.time_last_closed.start')
-                i.list-icon.material-icons.color-primary query_builder
-                i.list-icon.second.material-icons.color-secundary-text(ng-if='currentUser.time_last_closed.start_location && currentUser.time_last_closed.start_location!="{}"') room
-                h3
-                    time-range(start!="{{ currentUser.time_last_closed.start }}", end!="{{ currentUser.time_last_closed.end }}", last="true")
-                p(ng-if='currentUser.time_last_closed.start_location && currentUser.time_last_closed.start_location!="{}"')
-                    ng-map(center!="{{ currentUser.time_last_closed.start_location|locationFilter}}", zoom="14")
+        .time-list.last-time-closed
+            .hidden
+            .time-list-item
+                i.material-icons.time-icon.color-accent(ng-if="currentUser.time_last_closed.is_strike") notifications_active
+                i.material-icons.time-icon.color-primary(ng-if="!currentUser.time_last_closed.is_strike") alarm_on
+                .text-container.col-sm-6
+                    .text-table
+                        .text-cell
+                            time-range(start!="{{ currentUser.time_last_closed.start }}", end!="{{ currentUser.time_last_closed.end }}", last="true")
+                            p.time-comment(ng-bind='currentUser.time_last_closed.comment')
+                .map-container.col-sm-6
+                    ng-map(center!="{{ currentUser.time_last_closed.start_location|locationFilter}}", zoom="14", ng-if='currentUser.time_last_closed.start_location && currentUser.time_last_closed.start_location!="{}"')
                         marker(position="{{ currentUser.time_last_closed.start_location|locationFilter}}", title="Start")
                         marker(position="{{ currentUser.time_last_closed.end_location|locationFilter}}", title="End")
-                p(ng-if='!currentUser.time_last_closed.start_location || currentUser.time_last_closed.start_location=="{}"')=errors.no_location
+                    .text-table(ng-if='!currentUser.time_last_closed.start_location || currentUser.time_last_closed.start_location=="{}"')
+                        .text-cell
+                            i.material-icons location_off
+                            span=errors.no_location
 
 mixin timer(controller)
     .form-group

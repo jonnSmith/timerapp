@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'AuthCtrl', ($auth, $state,$http,$rootScope) ->
+.controller 'AuthCtrl', ($auth, $state,$http,$rootScope, $localStorage) ->
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
@@ -13,7 +13,7 @@ angular.module('timerApp')
         $auth.login(credentials).then (->
             $http.get('api/authenticate/user').then (response) ->
                 user = JSON.stringify(response.data.user)
-                localStorage.setItem 'user', user
+                $localStorage.user = user
                 $rootScope.authenticated = true
                 $rootScope.currentUser = response.data.user
                 $rootScope.token = $auth.getToken()

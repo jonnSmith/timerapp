@@ -6,6 +6,7 @@ angular
     'satellizer',
     'ngGeolocation',
     'ngMap',
+    'ngStorage',
     '720kb.datepicker'
 ])
 .config ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) ->
@@ -42,7 +43,7 @@ angular
     #.html5Mode
         #enabled: true
         #requireBase: false
-.run ($rootScope, $state, $location, $auth, $geolocation,usersFactory,timerFactory) ->
+.run ($rootScope, $localStorage, $state, $location, $auth, $geolocation,usersFactory,timerFactory) ->
     $rootScope.authenticated = false
     $rootScope.language = 'en'
     $rootScope.title = 'LAB Timer'
@@ -54,8 +55,10 @@ angular
         timeout: $rootScope.interval
         maximumAge: 250
         enableHighAccuracy: true
-    $rootScope.checkRights = ($rootScope, $state, $location) ->
-        $user = JSON.parse(localStorage.getItem('user'))
+    $rootScope.checkRights = () ->
+        $user = false
+        if $localStorage.user
+            $user = JSON.parse($localStorage.user)
         $is_auth = $auth.isAuthenticated()
         if $user && !$rootScope.authenticated && $is_auth
             $rootScope.authenticated = true
@@ -90,7 +93,7 @@ angular
             $state.go 'auth'
             $rootScope.authenticated = false
             timerFactory.saveTimer(false)
-            localStorage.removeItem 'user'
+            delete $localStorage.user
             return
         ), (error) ->
             $rootScope.error = error.data.error
@@ -101,5 +104,5 @@ angular
             if $rootScope.error.error && $rootScope.error.error == 'user_not_found'
                 $rootScope.logout()
             else
-                $rootScope.checkRights($rootScope, $state, $location)
+                $rootScope.checkRights()
         return

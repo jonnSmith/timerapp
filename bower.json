@@ -13,7 +13,9 @@
     "ngGeolocation": "~0.0.5",
     "ngmap": "~1.17",
     "angularjs-datepicker": "~2.1",
-    "awesome-bootstrap-checkbox": "^0.3.4"
+    "awesome-bootstrap-checkbox": "^0.3.4",
+    "ngstorage": "~0.3",
+    "material-design-icons": "latest"
   },
   "devDependencies": {
     "angular-mocks": "~1.5",

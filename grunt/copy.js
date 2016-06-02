@@ -12,6 +12,12 @@ module.exports = {
                 dest: "<%= package.app %>/fonts",
                 cwd: '<%= package.app %>/bower_components/font-awesome/fonts',
                 expand: true
+            },
+            {
+                src: '*.{eot,svg,ttf,woff,woff2,ijmap}',
+                dest: "<%= package.app %>/fonts",
+                cwd: '<%= package.app %>/bower_components/material-design-icons/iconfont',
+                expand: true
             }
         ]
     },

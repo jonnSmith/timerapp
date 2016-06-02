@@ -11,19 +11,24 @@ mixin timesList(controller)
             datepicker(date-format="yyyy-MM-dd", date-max-limit="{{"+controller+".currentDate}}", date-min-limit="{{"+controller+".startDate}}")
                 input.form-control(type="text", ng-model=controller+".endDate")
     .clearfix
-    .list-container.time-list
-        .list-item.small.bg-text(ng-repeat='time in '+controller+'.times', ng-if='time.end')
-            i.list-icon.material-icons(ng-class="time.is_strike ? 'color-accent' : 'color-primary'") query_builder
-            i.list-icon.second.material-icons.color-secundary-text(ng-if='time.start_location && time.start_location!="{}"') room
-            h3
-                time-range(start!="{{ time.start }}", end!="{{ time.end }}")
-                span.pull-sm-right(ng-bind='time.comment')
-            p(ng-if='time.start_location && time.start_location!="{}"')
-                ng-map(center!="{{ time.start_location|locationFilter}}", zoom="14")
+    .time-list
+        .time-list-item(ng-repeat='time in '+controller+'.times', ng-if='time.end')
+            i.material-icons.time-icon.color-accent(ng-if="time.is_strike") notifications_active
+            i.material-icons.time-icon.color-primary(ng-if="!time.is_strike") alarm_on
+            .text-container.col-sm-6
+                .text-table
+                    .text-cell
+                        time-range(start!="{{ time.start }}", end!="{{ time.end }}")
+                        p.time-comment(ng-bind='time.comment')
+            .map-container.col-sm-6
+                ng-map(center!="{{ time.start_location|locationFilter}}", zoom="14", ng-if='time.start_location && time.start_location!="{}"')
                     marker(position="{{ time.start_location|locationFilter}}", title="Start")
                     marker(position="{{ time.end_location|locationFilter}}", title="End")
-            p(ng-if='!time.start_location || time.start_location=="{}"')=errors.no_location
-    hr
+                .text-table(ng-if='!time.start_location || time.start_location=="{}"')
+                    .text-cell
+                        i.material-icons location_off
+                        span=errors.no_location
+        hr
     h5=titles.total
         span &nbsp:&nbsp
         span(ng-bind=controller+".times|timesFilter")
@@ -49,16 +54,16 @@ mixin lastTime()
 mixin timer(controller)
     .form-group
         h3=titles.current_time
-        p(ng-bind=controller+".time.time|date:'medium'")
+        p.digital(ng-bind=controller+".time.time|date:'medium'")
     .form-group
         h3=titles.set_time
         .btn-group.timer-btn-group(role='group', aria-label='timerButtons')
             button.btn.btn-secondary(ng-show="currentUser.time_is_open")
                 i.material-icons.color-primary alarm
-                span {{ currentUser.time_open.start }}
+                span.digital {{ currentUser.time_open.start }}
             button.btn.btn-secondary
                 i.material-icons.color-primary(ng-bind="currentUser.time_is_open ? 'hourglass_full' : 'hourglass_empty'")
-                span(ng-bind=controller+".timer.timer|timestampFilter")
+                span.digital(ng-bind=controller+".timer.timer|timestampFilter")
             button.btn.btn-secondary(type='button', ng-if='!currentUser.time_is_open', ng-click=controller+'.startApiTimer()')
                 i.material-icons.color-primary alarm_add
                 span=titles.start

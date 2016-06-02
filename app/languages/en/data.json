@@ -26,13 +26,14 @@
       "password": "Password",
       "email": "Email",
       "description": "Description",
-      "select_group": "Select group"
+      "select_group": "Select group",
+      "comment": "Comment"
     }
   },
   "actions": {
     "refresh": {
       "title": "Refresh",
-      "icon": "restore_page"
+      "icon": "update"
     }
   },
   "errors": {

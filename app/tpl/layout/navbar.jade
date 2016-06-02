@@ -12,11 +12,11 @@
                             span manage
                     .icons-right
                         a.color-text(ui-sref="settings")
-                            i.material-icons.color-text settings_applications
-                            span Hi, {{currentUser.name}}
-                        a.color-text(ng-click='logout()')
-                            i.material-icons.color-text power_settings_new
-                            span logout
+                            i.material-icons.color-text account_circle
+                            span {{currentUser.name}} profile
                         a.color-text(ng-click='refreshToken()')
                             i.material-icons.color-text update
                             span refresh token
+                        a.color-text(ng-click='logout()')
+                            i.material-icons.color-text power_settings_new
+                            span logout

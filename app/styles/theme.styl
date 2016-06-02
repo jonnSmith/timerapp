@@ -76,7 +76,7 @@ address
         display block
         i
             font-size 130px
-            display inherit
+            display inline-block
         span
             display inherit
             font-weight 300
@@ -252,6 +252,40 @@ $nav-size = 60px
                 right 10px
                 cursor pointer
 
+.timer-container
+    width 100%
+    display block
+    margin-bottom 30px
+    .timer
+        width 100%
+        margin 15px 0 0 0
+        position relative
+        clearfix()
+        .open-time, .current-time
+            display inline-block
+            width 100%
+            font-size 2.6rem
+        .stop-watch
+            display inline-block
+            width 100%
+            font-size 6rem
+        button
+            absolute right 0px bottom 0
+            border none
+            background none
+            margin 0
+            padding 0
+            i
+                font-size 6rem
+                line-height 1
+                display inline-block
+    input
+        display inline-block
+        width 100%
+        background none
+        border:none;
+        border-bottom 1px solid $divider
+
 .time-list
     box-shadow none
     width 100%
@@ -361,12 +395,20 @@ $nav-size = 60px
             .text-container
                 float right
                 padding-right 0
+                time
+                    padding-left 5px
+                p
+                    padding-left 5px
             .map-container
                 padding-left 0
         &:nth-child(odd)
             .text-container
                 padding-left 0
                 text-align right
+                time
+                    padding-right 5px
+                p
+                    padding-right 5px
             .map-container
                 padding-right 0
     &.last-time-closed

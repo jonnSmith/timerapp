@@ -8,6 +8,14 @@ bordered-button(btn-color,btn-background)
     cursor pointer
     padding 2px 10px
 
+no-select()
+    -webkit-touch-callout none
+    -webkit-user-select none
+    -khtml-user-select none
+    -moz-user-select none
+    -ms-user-select none
+    user-select none
+
 for $clase, $color in palette
     .bg-{$clase}
         background-color: $color

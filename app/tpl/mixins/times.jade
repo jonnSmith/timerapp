@@ -59,22 +59,14 @@ mixin lastTime()
                             span=errors.no_location
 
 mixin timer(controller)
-    .form-group
-        h3=titles.current_time
-        p.digital(ng-bind=controller+".time.time|date:'medium'")
-    .form-group
-        h3=titles.set_time
-        .btn-group.timer-btn-group(role='group', aria-label='timerButtons')
-            button.btn.btn-secondary(ng-show="currentUser.time_is_open")
-                i.material-icons.color-primary alarm
-                span.digital {{ currentUser.time_open.start }}
-            button.btn.btn-secondary
-                i.material-icons.color-primary(ng-bind="currentUser.time_is_open ? 'hourglass_full' : 'hourglass_empty'")
-                span.digital(ng-bind=controller+".timer.timer|timestampFilter")
-            button.btn.btn-secondary(type='button', ng-if='!currentUser.time_is_open', ng-click=controller+'.startApiTimer()')
-                i.material-icons.color-primary alarm_add
-                span=titles.start
-            button.btn.btn-secondary(type='button', ng-if='currentUser.time_is_open', ng-click=controller+'.stopApiTimer()')
-                i.material-icons.color-primary alarm_off
-                span=titles.stop
-            input.form-control.full-width(type='text', ng-model=controller+'.timer_comment', ng-show='currentUser.time_is_open', maxlength="25")
+    .timer-container.color-primary
+        .timer
+            .current-time.digital(ng-if="!currentUser.time_is_open", ng-bind=controller + ".time.time|date:'yyyy-MM-DD HH:mm:ss EEE'")
+            .open-time.digital(ng-if="currentUser.time_is_open") {{ currentUser.time_open.start }}
+            .stop-watch.digital(ng-bind=controller+".timer.timer|timestampFilter")
+            button(type='button', ng-if='!currentUser.time_is_open', ng-click=controller+'.startApiTimer()')
+                i.material-icons.color-primary play_circle_filled
+            button(type='button', ng-if='currentUser.time_is_open', ng-click=controller+'.stopApiTimer()')
+                i.material-icons.color-primary cancel
+        .comment
+            input.form-control(type='text', ng-model=controller + '.timer_comment',  maxlength="35", placeholder=form.placeholders.comment)

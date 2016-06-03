@@ -1,7 +1,7 @@
 mixin timesList(controller)
     h3=titles.times
         a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getUserTimes()')
-            i.material-icons.color-primary-dark=actions.refresh.icon
+            i.material-icons.color-primary=actions.refresh.icon
             span=actions.refresh.title
     .form-group.datepicker-group
         .col-sm-6
@@ -29,12 +29,15 @@ mixin timesList(controller)
                         i.material-icons location_off
                         span=errors.no_location
         hr
-    h5=titles.total
-        span &nbsp:&nbsp
-        span(ng-bind=controller+".times|timesFilter")
-    h5=titles.striked
-        span &nbsp:&nbsp
-        span(ng-bind=controller+".times|strikedFilter")
+    .times-summ
+        .col-sm-6
+            h5
+                span.digital(ng-bind=controller+".times|timesFilter")
+                i.material-icons.color-primary alarm_on
+        .col-sm-6
+            h5
+                i.material-icons.color-accent notifications_active
+                span.digital(ng-bind=controller+".times|strikedFilter")
 
 mixin lastTime()
     .form-group(ng-if='currentUser.time_last_closed.start')

@@ -1,7 +1,7 @@
 mixin groupList(controller)
     h3=titles.groups
         a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getGroups()')
-            i.material-icons.color-primary-dark=actions.refresh.icon
+            i.material-icons.color-primary=actions.refresh.icon
             span=actions.refresh.title
     .list-container(ng-if=controller+'.groups')
         .list-item.small.user-list.bg-text(ng-repeat='group in '+controller+'.groups', ng-if='currentUser.is_super_admin')
@@ -14,7 +14,7 @@ mixin groupList(controller)
 mixin userGroupList(controller)
     h3=titles.groups
     a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getGroups()')
-        i.material-icons.color-primary-dark=actions.refresh.icon
+        i.material-icons.color-primary=actions.refresh.icon
         span=actions.refresh.title
     .list-container(ng-if=controller+'.groups')
         .list-item.small.user-list.bg-text(ng-repeat='group in '+controller+'.groups', ng-if='currentUser.is_super_admin')

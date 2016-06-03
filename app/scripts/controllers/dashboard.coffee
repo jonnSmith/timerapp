@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $state, groupFactory, userFactory, usersFactory, timeFactory, timerFactory, apiTimeFactory, $geolocation, $filter) ->
+.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $geolocation, $filter , $localStorage, $state, groupFactory, userFactory, usersFactory, timeFactory, timerFactory, apiTimeFactory) ->
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
@@ -74,7 +74,16 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-    vm.timer_comment = ''
+    comment = $localStorage.comment
+
+    if comment
+        vm.timer_comment = comment
+    else
+        vm.timer_comment = ''
+
+    $scope.$watch 'dashboard.timer_comment', ->
+        $localStorage.comment = vm.timer_comment
+        return
 
     vm.stopApiTimer = () ->
         location = {}
@@ -88,6 +97,8 @@ angular.module('timerApp')
         apiTimeFactory.stopTimer(data).success((response) ->
             usersFactory.setUser()
             vm.timer.saveTimer()
+            delete $localStorage.comment
+            vm.timer_comment = ''
             usersFactory.getUsers().success((users) ->
                 vm.users = users
                 return

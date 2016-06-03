@@ -18,13 +18,13 @@ angular.module('timerApp')
     if myStartDate
         vm.startDate = myStartDate
     else
-        vm.startDate = $filter('date')(currentTime, 'yyyy-MM-dd')
+        vm.startDate = vm.currentDate
 
     myEndDate = $localStorage.endDate
     if myEndDate
         vm.endDate = myEndDate
     else
-        vm.endDate = $filter('date')(currentTime, 'yyyy-MM-dd')
+        vm.endDate = vm.currentDate
 
     $scope.$watch 'user.startDate', ->
         vm.setRange()

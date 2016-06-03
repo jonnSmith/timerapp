@@ -294,6 +294,7 @@ $nav-size = 60px
     float left
     padding 30px 0
     margin 15px 0
+    clearfix()
     hr
         absolute top 0px left 50%
         margin 0 0 0 -2px
@@ -414,6 +415,31 @@ $nav-size = 60px
     &.last-time-closed
         padding: 0
 
+.times-summ
+    width 100%
+    float left
+    margin 10px 0 30px 0
+    >div
+        h5
+            font-size 24px
+            line-height 24px
+            height 24px
+            vertical-align top
+            i
+                display inline-block
+                vertical-align top
+            span
+                display inline-block
+                vertical-align top
+                margin 0 10px
+                font-size 28px
+                line-height 24px
+                font-weight 600
+        &:first-child
+            text-align: right
+        &:last-child
+            text-align: left
+
 
 .timer-btn-group
     width 100%
@@ -429,15 +455,108 @@ $nav-size = 60px
         border-top none
         box-sizing border-box
 
+.users-list-container
+    width 100%
+    margin 20px 0
+    clearfix()
+    .user-list-item
+        background $text
+        padding 15px 15px 40px 115px
+        margin 0 0 30px 0
+        box-shadow 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12)
+        position relative
+        box-sizing border-box
+        border-left 6px solid $primary
+        clearfix()
+        .user-status-icon
+            absolute top 50% left 21px
+            display block
+            text-align center
+            width 64px
+            height 64px
+            border-radius 32px
+            font-size 48px
+            line-height 56px
+            margin -32px 0 0 0
+            background $text
+            box-sizing border-box
+            border 4px solid $primary
+            color $primary
+            z-index 2
+        .user-info
+            display block
+            h5
+                font-size 18px
+                text-transform capitalize
+                padding 0
+                margin 0 0 5px 0
+            p.email
+                font-size 14px
+                text-transform lowercase
+                padding 0
+                margin 0 0 5px 0
+            p.group
+                font-size 16px
+                text-transform none
+                padding 0
+                margin 0 0 5px 0
+                vertical-align top
+                i
+                    display inline-block
+                    vertical-align top
+                    margin 0 5px 0 0
+                    color $divider
+                a
+                    vertical-align top
+                    color $primary
+        .user-controls
+            absolute bottom 0 left 0
+            height 40px
+            width 100%
+            overflow hidden
+            background $gray
+            i
+                cursor pointer
+                display inline-block
+                font-size 28px
+                line-height 40px
+                margin 0 5px 0 0
+            .user-actions
+                float left
+                margin 0 0 0 115px
+                height 40px
+            .group-actions
+                float right
+                margin 0 15px 0 0
+                height 40px
+                i
+                    margin 0 0 0 5px
+            .actions-info
+                float right
+                margin 0 15px 0 0
+                height 40px
+        &.active
+            &.striked
+                border-color $accent
+                .user-status-icon
+                    border-color $accent
+                    color $accent
+        &.sleep
+            border-color $divider
+            .user-status-icon
+                border-color $divider
+                color $divider
+
+
 .icon-button
     text-decoration none
     line-height 30px
     height 30px
     transition .25s all ease
     font-size 16px
-    cursor pointer
     display inline-block
     text-transform lowercase
+    cursor pointer
     i
         float left
         font-size 26px
@@ -445,6 +564,7 @@ $nav-size = 60px
         display inline-block
         padding 0 5px 0 0
         margin 0
+        cursor pointer
     span
         float left
         font-size 16px

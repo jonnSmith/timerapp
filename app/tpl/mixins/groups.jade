@@ -3,7 +3,7 @@ mixin groupList(controller)
         a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getGroups()')
             i.material-icons.color-primary=actions.refresh.icon
     .users-list-container(ng-if=controller+'.groups')
-        .user-list-item(ng-repeat='group in '+controller+'.groups', ng-if='currentUser.is_super_admin')
+        .user-list-item(ng-repeat='group in '+controller+'.groups', ng-if='currentUser.is_super_admin', ng-class!="{'active': user.user.group_id == group.id , 'sleep' : user.user.group_id != group.id}")
             span.user-status-icon {{group.users.length}}
             .user-info
                 h5
@@ -22,7 +22,7 @@ mixin userGroupList(controller)
         a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getGroups()')
             i.material-icons.color-primary=actions.refresh.icon
     .users-list-container(ng-if=controller + '.groups')
-        .user-list-item(ng-repeat='group in ' + controller + '.groups', ng-if='currentUser.is_super_admin')
+        .user-list-item(ng-repeat='group in ' + controller + '.groups', ng-if='currentUser.is_super_admin', ng-class!="{'active': user.user.group_id == group.id , 'sleep' : user.user.group_id != group.id}")
             span.user-status-icon {{group.users.length}}
             .user-info
                 h5

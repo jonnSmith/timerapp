@@ -10,6 +10,8 @@ angular.module('timerApp')
     groupFactory = {}
     groupFactory.createGroup = (data) ->
         $http.post(urlBase+'/create', data)
+    groupFactory.updateGroup = (gid,data) ->
+        $http.put(urlBase+'/'+gid, data)
     groupFactory.getGroups = () ->
         $http.get(urlBase)
     groupFactory.getGroup = (gid) ->

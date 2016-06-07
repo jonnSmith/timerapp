@@ -13,7 +13,7 @@ include ../tpl/layout/navbar
                 .add_groups(ng-if='currentUser.is_super_admin')
                     +addGroupForm('manage')
             .col-sm-6
-                .form-group(ng-if='manage.users && currentUser.is_moderator')
+                .form-group(ng-if='manage.users && (currentUser.is_moderator || currentUser.is_super_admin)')
                     +groupUsersList('manage')
                 .form-group(ng-if='manage.groups && currentUser.is_super_admin')
                     +groupList('manage')

@@ -7,10 +7,6 @@ mixin editUserForm(controller)
             input.form-control(type='text', placeholder=form.placeholders.name, ng-model=controller+'.user.name', required)
         .form-group
             input.form-control(type='text', placeholder=form.placeholders.password, ng-model=controller+'.user.password', minlength="4")
-        .form-group(ng-if='currentUser.is_super_admin')
-            select.form-control(ng-model=controller+'.group_id', ng-if=controller+'.groups', ng-init=controller+'.group_id = '+controller+'.user.group_id')
-                option(value='')=form.placeholders.select_group
-                option(ng-repeat='group in '+controller+'.groups', ng-value='group.id', ng-selected='group.id == '+controller+'.user.group_id') {{group.title}}
         button.btn.btn-primary(ng-click=controller+'.updateUser()')=form.submit
 
 mixin addUserForm(controller)
@@ -35,3 +31,12 @@ mixin addGroupForm(controller)
         .form-group
             input.form-control(type='text', placeholder=form.placeholders.description, ng-model=controller+'.group_description', required)
         button.btn.btn-primary(ng-click=controller+'.createGroup()', ng-disabled="!"+controller+".group_name || !"+controller+".group_description ")=form.submit
+
+mixin editGroupForm(controller)
+    h3=titles.edit_group
+    form(ng-if='currentUser.is_super_admin || currentUser.is_moderator')
+        .form-group
+            input.form-control(type='text', placeholder=form.placeholders.name, ng-model=controller+'.group.title', required)
+        .form-group
+            input.form-control(type='text', placeholder=form.placeholders.description, ng-model=controller+'.group.description', required)
+        button.btn.btn-primary(ng-click=controller+'.updateGroup()', ng-disabled="!"+controller+".group.title || !"+controller+".group.description ")=form.submit

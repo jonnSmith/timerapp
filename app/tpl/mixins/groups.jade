@@ -3,19 +3,19 @@ mixin groupList(controller)
         a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getGroups()')
             i.material-icons.color-primary=actions.refresh.icon
     .users-list-container(ng-if=controller+'.groups')
-        .user-list-item(ng-repeat='group in '+controller+'.groups', ng-if='currentUser.is_super_admin', ng-class!="{'active': currentUser.group_id == group.id , 'sleep' : currentUser.group_id != group.id}")
-            span.user-status-icon {{group.users.length}}
+        .user-list-item(ng-repeat='group_item in '+controller+'.groups', ng-if='currentUser.is_super_admin', ng-class!="{'active': currentUser.group_id == group_item.id , 'sleep' : currentUser.group_id != group_item.id}")
+            span.user-status-icon {{group_item.users.length}}
             .user-info
                 h5
-                    a(ui-sref="group({gid:group.id})") {{group.title}}
+                    a(ui-sref="group({gid:group_item.id})") {{group_item.title}}
             .user-controls
-                .user-actions
+                .user-actions(ng-if='!group_item.users.length')
                     //delete group
-                    i.material-icons.color-accent(ng-click=controller+'.deleteGroup(group.id)') delete_forever
+                    i.material-icons.color-accent(ng-click=controller+'.deleteGroup(group_item.id)') delete_forever
                 .group-actions
                     //switch group
-                    i.list-icon.second.material-icons.color-primary(ng-click=controller + '.setGroup(group.id)', ng-if='currentUser.group_id != group.id') group_add
-                    i.list-icon.second.material-icons.color-primary(ng-if='currentUser.group_id == group.id') done
+                    i.list-icon.second.material-icons.color-primary(ng-click=controller + '.setGroup(group_item.id)', ng-if='currentUser.group_id != group_item.id') group_add
+                    i.list-icon.second.material-icons.color-primary(ng-if='currentUser.group_id == group_item.id') done
 
 mixin userGroupList(controller)
     h3=titles.groups
@@ -29,9 +29,9 @@ mixin userGroupList(controller)
                     a(ui-sref="group({gid:group.id})", ng-if='currentUser.is_super_admin') {{group.title}}
                     span(ng-if='!currentUser.is_super_admin') {{group.title}}
             .user-controls
-                .user-actions(ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && user.id != currentUser.id')
+                .user-actions(ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && user.id != currentUser.id && !group.users.length')
                     //delete user
                     i.material-icons.color-accent(ng-click=controller + '.deleteGroup(group.id)') delete_forever
                 .group-actions(ng-if='currentUser.is_moderator || currentUser.is_super_admin')
                     i.list-icon.second.material-icons.color-primary(ng-click=controller + '.setGroup(group.id)', ng-if='user.user.group_id != group.id') group_add
-                    i.list-icon.second.material-icons.color-primary(ng-if='user.user.group_id == group.id') done
+                    i.list-icon.second.material-icons.color-primary(ng-if=controller + '.user.group_id == group.id') done

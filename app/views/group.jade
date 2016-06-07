@@ -1,6 +1,7 @@
 include ../tpl/mixins/times
 include ../tpl/mixins/users
 include ../tpl/mixins/groups
+include ../tpl/mixins/forms
 
 include ../tpl/layout/navbar
 .container
@@ -10,5 +11,7 @@ include ../tpl/layout/navbar
             .col-sm-6
                 +groupUsersList('group')
             .col-sm-6
+                .edit_groups(ng-if='currentUser.is_super_admin')
+                    +editGroupForm('group')
                 .group-list(ng-if='currentUser.is_super_admin')
                     +groupList('group')

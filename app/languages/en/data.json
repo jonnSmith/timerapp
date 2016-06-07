@@ -17,7 +17,8 @@
     "striked": "Striked",
     "groups": "Groups",
     "add_group": "Add group",
-    "edit_groups": "Edit groups"
+    "edit_groups": "Edit groups",
+    "edit_group": "Edit group"
   },
   "form": {
     "submit": "Submit",

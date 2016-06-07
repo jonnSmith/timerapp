@@ -23,7 +23,6 @@ angular.module('timerApp')
             data.group_id = vm.gid
         usersFactory.createUser(data).success((user) ->
             $rootScope.splash = 'User added: ' + user.name
-            vm.getGroupUsers()
             vm.getGroups()
             return
         ).error (error) ->
@@ -44,9 +43,7 @@ angular.module('timerApp')
         gid = vm.gid
         groupFactory.removeGroup(gid, uid).success((response) ->
             $rootScope.splash = 'User deleted: ' + response.status
-            vm.getGroupUsers()
             vm.getGroups()
-            usersFactory.setUser()
             return
         ).error (error) ->
             $rootScope.error = error
@@ -56,8 +53,7 @@ angular.module('timerApp')
         gid = vm.gid
         groupFactory.setModerator(gid, uid).success((response) ->
             $rootScope.splash = 'Moderator changed: ' + response.status
-            vm.getGroupUsers()
-            usersFactory.setUser()
+            vm.getGroups()
             return
         ).error (error) ->
             $rootScope.error = error
@@ -70,7 +66,6 @@ angular.module('timerApp')
         groupFactory.createGroup(data).success((group) ->
             $rootScope.splash = 'Group added: ' + group.title
             vm.getGroups()
-            usersFactory.setUser()
             return
         ).error (error) ->
             $rootScope.error = error
@@ -78,8 +73,9 @@ angular.module('timerApp')
 
     vm.getGroups = () ->
         groupFactory.getGroups().success((groups) ->
-            vm.getGroupUsers()
             vm.groups = groups
+            usersFactory.setUser()
+            vm.getGroupUsers()
             return
         ).error (error) ->
             $rootScope.error = error
@@ -89,7 +85,6 @@ angular.module('timerApp')
         groupFactory.deleteGroup(gid).success((response) ->
             $rootScope.splash = 'Group deleted: ' + response.status
             vm.getGroups()
-            usersFactory.setUser()
             return
         ).error (error) ->
             $rootScope.error = error
@@ -98,15 +93,13 @@ angular.module('timerApp')
     vm.setGroup = (gid) ->
         groupFactory.setGroup(gid, vm.uid).success((response) ->
             $rootScope.splash = 'Change group: ' + response.status
+            vm.gid = gid
             vm.getGroups()
-            usersFactory.setUser()
             return
         ).error (error) ->
             $rootScope.error = error
             return
 
-
-    vm.getGroupUsers()
     vm.getGroups()
 
     return

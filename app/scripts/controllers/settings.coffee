@@ -59,6 +59,7 @@ angular.module('timerApp')
     vm.getUser = () ->
         userFactory.getUser(vm.uid).success((user) ->
             vm.user = user
+            vm.group_id = vm.user.group_id
             return
         ).error (error) ->
             $rootScope.error = error
@@ -78,7 +79,6 @@ angular.module('timerApp')
             email: vm.user.email
             name: vm.user.name
             password: vm.user.password
-            group_id: vm.group_id
         userFactory.updateUser(vm.uid, data).success((user) ->
             vm.user = user
             usersFactory.setUser()
@@ -93,8 +93,8 @@ angular.module('timerApp')
         groupFactory.setGroup(gid, vm.uid).success((response) ->
             $rootScope.splash = 'Change group: ' + response.status
             vm.getUser()
-            vm.getGroups()
             usersFactory.setUser()
+            vm.getGroups()
             return
         ).error (error) ->
             $rootScope.error = error

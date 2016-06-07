@@ -120,7 +120,22 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
+
+    vm.updateGroup = () ->
+        data =
+            title: vm.group.title
+            description: vm.group.description
+        groupFactory.updateGroup(vm.gid,data).success((response) ->
+            $rootScope.splash = 'Group changed: ' + response.status
+            vm.getGroupUsers()
+            vm.getGroups()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
     vm.setGroup = (gid) ->
+        console.log gid
         groupFactory.setGroup(gid, vm.uid).success((response) ->
             $rootScope.splash = 'Change group: ' + response.status
             vm.getGroupUsers()

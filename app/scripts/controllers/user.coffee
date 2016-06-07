@@ -85,7 +85,6 @@ angular.module('timerApp')
             email: vm.user.email
             name: vm.user.name
             password: vm.user.password
-            group_id: vm.group_id
         userFactory.updateUser(vm.uid, data).success((user) ->
             vm.user = user
             usersFactory.setUser()

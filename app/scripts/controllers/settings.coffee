@@ -8,6 +8,12 @@ angular.module('timerApp')
     vm.uid = $rootScope.currentUser.id
     $rootScope.title = 'My settings'
 
+    vm.range =
+        period: 'day'
+        offset: 0
+        count: 1
+        order: 'desc'
+
     currentTime = new Date()
     vm.currentDate = $filter('date')(currentTime, 'yyyy-MM-dd')
 
@@ -18,6 +24,7 @@ angular.module('timerApp')
         vm.startDate = $filter('date')(currentTime, 'yyyy-MM-dd')
 
     myEndDate = $localStorage.endDate
+
     if myEndDate
         vm.endDate = myEndDate
     else
@@ -49,8 +56,6 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-    vm.getGroups()
-
     vm.getUser = () ->
         userFactory.getUser(vm.uid).success((user) ->
             vm.user = user
@@ -58,14 +63,6 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
-
-    vm.getUser()
-
-    vm.range =
-        period: 'day'
-        offset: 0
-        count: 1
-        order: 'desc'
 
     vm.getUserTimes = () ->
         range = vm.range
@@ -76,8 +73,6 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-    vm.getUserTimes()
-
     vm.updateUser = () ->
         data =
             email: vm.user.email
@@ -87,6 +82,7 @@ angular.module('timerApp')
         userFactory.updateUser(vm.uid, data).success((user) ->
             vm.user = user
             usersFactory.setUser()
+            vm.getGroups()
             $rootScope.title = user.name
             return
         ).error (error) ->
@@ -94,7 +90,7 @@ angular.module('timerApp')
             return
 
     vm.setGroup = (gid) ->
-        groupFactory.setGroup(gid, vm.user.id).success((response) ->
+        groupFactory.setGroup(gid, vm.uid).success((response) ->
             $rootScope.splash = 'Change group: ' + response.status
             vm.getUser()
             vm.getGroups()
@@ -103,5 +99,11 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
+
+
+    vm.getUser()
+    vm.getGroups()
+    vm.setRange()
+
 
     return

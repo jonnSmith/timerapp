@@ -15,8 +15,6 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-    vm.getUsers()
-
     vm.deleteUser = (uid) ->
         usersFactory.deleteUser(uid).success((response) ->
             $rootScope.splash = 'User deleted: ' + response.status
@@ -39,6 +37,26 @@ angular.module('timerApp')
         userFactory.userTime(uid, 'strike?value=0').success((response) ->
             $rootScope.splash = 'Strike remove: ' + response.status
             vm.getUsers()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.deleteUserFromGroup = (uid, gid) ->
+        groupFactory.removeGroup(gid, uid).success((response) ->
+            $rootScope.splash = 'User deleted from group ' + response.status
+            vm.getUsers()
+            usersFactory.setUser()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.setModerator = (uid, gid) ->
+        groupFactory.setModerator(gid, uid).success((response) ->
+            $rootScope.splash = 'Moderator changed: ' + response.status
+            vm.getUsers()
+            usersFactory.setUser()
             return
         ).error (error) ->
             $rootScope.error = error
@@ -109,5 +127,7 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
+
+    vm.getUsers()
 
     return

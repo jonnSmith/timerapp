@@ -24,13 +24,13 @@ mixin usersList(controller)
                         //strike switch
                         i.material-icons.color-accent(ng-click=controller+'.setStrike(user.id)', ng-if='user.time_is_open && !user.time_open.is_strike') notifications_active
                         i.material-icons.color-primary(ng-click=controller+'.removeStrike(user.id)', ng-if='user.time_is_open && user.time_open.is_strike') notifications_off
-                    .group-actions(ng-if='currentUser.is_moderator || currentUser.is_super_admin')
+                    .group-actions(ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && user.group_id')
                         //delete from group
-                        i.material-icons.color-accent(ng-click=controller + '.deleteUserFromGroup(user.id)', ng-if="user.id != currentUser.id") highlight_off
+                        i.material-icons.color-accent(ng-click=controller + '.deleteUserFromGroup(user.id, user.group_id)', ng-if="user.id != currentUser.id && !user.is_moderator") highlight_off
                         //moderator switch
-                        i.material-icons.color-primary(ng-if='!user.is_moderator', ng-click=controller + '.setModerator(user.id)') star_border
+                        i.material-icons.color-primary(ng-if='!user.is_moderator', ng-click=controller + '.setModerator(user.id, user.group_id)') star_border
                         i.material-icons.color-primary(ng-if='user.is_moderator') star
-                    .actions-info(ng-if='!currentUser.is_moderator && !currentUser.is_super_admin')
+                    .actions-info(ng-if='!currentUser.is_moderator && !currentUser.is_super_admin && user.group_id')
                         i.material-icons.color-primary(ng-if=controller + '.user.is_moderator') star
 
 mixin groupUsersList(controller)
@@ -51,7 +51,7 @@ mixin groupUsersList(controller)
                     a(ui-sref="user({uid:user.id})", ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && !user.is_super_admin') {{user.name}}
                     span(ng-if='(!currentUser.is_moderator && !currentUser.is_super_admin) || user.is_super_admin') {{user.name}}
                 p.email {{user.email}}
-                p.group(ng-if='currentUser.is_super_admin && user.group.id')
+                //p.group(ng-if='currentUser.is_super_admin && user.group.id')
                     i.material-icons people
                     a(ui-sref="group({gid:user.group.id})") {{user.group.title}}
             .user-controls
@@ -61,11 +61,11 @@ mixin groupUsersList(controller)
                     //strike switch
                     i.material-icons.color-accent(ng-click=controller + '.setStrike(user.id)', ng-if='user.time_is_open && !user.time_open.is_strike') notifications_active
                     i.material-icons.color-primary(ng-click=controller + '.removeStrike(user.id)', ng-if='user.time_is_open && user.time_open.is_strike') notifications_off
-                .group-actions(ng-if='currentUser.is_moderator || currentUser.is_super_admin')
+                .group-actions(ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && user.group_id')
                     //delete from group
-                    i.material-icons.color-accent(ng-click=controller + '.deleteUserFromGroup(user.id)', ng-if="user.id != currentUser.id") highlight_off
+                    i.material-icons.color-accent(ng-click=controller + '.deleteUserFromGroup(user.id)', ng-if="user.id != currentUser.id && !user.is_moderator") highlight_off
                     //moderator switch
                     i.material-icons.color-primary(ng-if='!user.is_moderator', ng-click=controller + '.setModerator(user.id)') star_border
                     i.material-icons.color-primary(ng-if='user.is_moderator') star
-                .actions-info(ng-if='!currentUser.is_moderator && !currentUser.is_super_admin')
-                    i.material-icons.color-primary(ng-if=controller + '.user.is_moderator') star
+                .actions-info(ng-if='!currentUser.is_moderator && !currentUser.is_super_admin && user.group_id')
+                    i.material-icons.color-primary(ng-if='user.is_moderator') star

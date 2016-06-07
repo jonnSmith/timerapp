@@ -1,11 +1,12 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'GroupCtrl', ($scope, $auth, $state, $rootScope, $stateParams, usersFactory, groupFactory) ->
+.controller 'GroupCtrl', ($scope, $auth, $state, $rootScope, $stateParams, usersFactory, userFactory, groupFactory) ->
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
     vm.gid = $stateParams.gid
+    vm.uid = $rootScope.currentUser.id
     $rootScope.title = 'Manage group'
 
     if !$rootScope.currentUser.is_super_admin
@@ -34,8 +35,6 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
-
-    vm.getGroupUsers()
 
     vm.deleteUserFromGroup = (uid) ->
         gid = vm.gid
@@ -70,7 +69,35 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-    vm.getGroups()
+    vm.deleteUser = (uid) ->
+        usersFactory.deleteUser(uid).success((response) ->
+            $rootScope.splash = 'User deleted: ' + response.status
+            vm.getGroupUsers()
+            vm.getGroups()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.setStrike = (uid) ->
+        userFactory.userTime(uid, 'strike?value=1').success((response) ->
+            $rootScope.splash = 'Strike set: ' + response.status
+            vm.getGroupUsers()
+            vm.getGroups()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.removeStrike = (uid) ->
+        userFactory.userTime(uid, 'strike?value=0').success((response) ->
+            $rootScope.splash = 'Strike remove: ' + response.status
+            vm.getGroupUsers()
+            vm.getGroups()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
 
     vm.deleteGroup = (gid) ->
         groupFactory.deleteGroup(gid).success((response) ->
@@ -92,5 +119,19 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
+
+    vm.setGroup = (gid) ->
+        groupFactory.setGroup(gid, vm.uid).success((response) ->
+            $rootScope.splash = 'Change group: ' + response.status
+            vm.getGroupUsers()
+            vm.getGroups()
+            usersFactory.setUser()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.getGroups()
+    vm.getGroupUsers()
 
     return

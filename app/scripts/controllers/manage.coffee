@@ -7,6 +7,7 @@ angular.module('timerApp')
     $rootScope.splash = false
     $rootScope.title = 'Manage users'
     vm.gid = $rootScope.currentUser.group_id
+    vm.uid = $rootScope.currentUser.id
 
     if !($rootScope.currentUser.is_super_admin || $rootScope.currentUser.is_moderator)
         $state.go 'dashboard'
@@ -23,6 +24,7 @@ angular.module('timerApp')
         usersFactory.createUser(data).success((user) ->
             $rootScope.splash = 'User added: ' + user.name
             vm.getGroupUsers()
+            vm.getGroups()
             return
         ).error (error) ->
             $rootScope.error = error
@@ -38,13 +40,12 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-    vm.getGroupUsers()
-
     vm.deleteUserFromGroup = (uid) ->
         gid = vm.gid
         groupFactory.removeGroup(gid, uid).success((response) ->
             $rootScope.splash = 'User deleted: ' + response.status
             vm.getGroupUsers()
+            vm.getGroups()
             usersFactory.setUser()
             return
         ).error (error) ->
@@ -84,8 +85,6 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-    vm.getGroups()
-
     vm.deleteGroup = (gid) ->
         groupFactory.deleteGroup(gid).success((response) ->
             $rootScope.splash = 'Group deleted: ' + response.status
@@ -95,5 +94,19 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
+
+    vm.setGroup = (gid) ->
+        groupFactory.setGroup(gid, vm.uid).success((response) ->
+            $rootScope.splash = 'Change group: ' + response.status
+            vm.getGroups()
+            usersFactory.setUser()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+
+    vm.getGroupUsers()
+    vm.getGroups()
 
     return

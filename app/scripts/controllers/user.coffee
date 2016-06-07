@@ -54,8 +54,6 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-    vm.getGroups()
-
     vm.getUser = () ->
         userFactory.getUser(vm.uid).success((user) ->
             if (user.is_super_admin && !$rootScope.currentUser.is_super_admin) || (!$rootScope.currentUser.is_super_admin && user.group_id != $rootScope.currentUser.group_id)
@@ -66,8 +64,6 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
-
-    vm.getUser()
 
     vm.range =
         period: 'day'
@@ -84,8 +80,6 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-    vm.getUserTimes()
-
     vm.updateUser = () ->
         data =
             email: vm.user.email
@@ -95,6 +89,7 @@ angular.module('timerApp')
         userFactory.updateUser(vm.uid, data).success((user) ->
             vm.user = user
             usersFactory.setUser()
+            vm.getGroups()
             $rootScope.title = user.name
             $rootScope.splash = 'User updated: ' + user.name
             return
@@ -112,5 +107,10 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
+
+
+    vm.getUser()
+    vm.getGroups()
+    vm.getUserTimes()
 
     return

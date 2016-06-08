@@ -6,7 +6,7 @@ mixin editUserForm(controller)
         .form-group
             input.form-control(type='text', placeholder=form.placeholders.name, ng-model=controller+'.user.name', required)
         .form-group
-            input.form-control(type='text', placeholder=form.placeholders.password, ng-model=controller+'.user.password', minlength="4")
+            pwgen(ng-model=controller+'.user.password', placeholder=form.placeholders.password)
         button.btn.btn-primary(ng-click=controller+'.updateUser()')=form.submit
 
 mixin addUserForm(controller)
@@ -17,7 +17,7 @@ mixin addUserForm(controller)
         .form-group
             input.form-control(type='text', placeholder=form.placeholders.name, ng-model=controller+'.name', required)
         .form-group
-            input.form-control(type='text', placeholder=form.placeholders.password, ng-model=controller+'.password', required, minlength="4")
+            pwgen(ng-model=controller+'.password', placeholder=form.placeholders.password)
         .form-group(ng-if='currentUser.is_super_admin')
             select.form-control(ng-model=controller+'.group_id', ng-options="group.title for group in "+controller+".groups track by group.id")
                 option(value='')=form.placeholders.select_group

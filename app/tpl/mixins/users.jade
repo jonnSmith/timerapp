@@ -5,32 +5,32 @@ mixin usersList(controller)
             a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getUsers()')
                 i.material-icons.color-primary=actions.refresh.icon
         .users-list-container(ng-if=controller+'.users')
-            .user-list-item(ng-repeat='user in '+controller+'.users', ng-class!="{'active': user.time_is_open , 'sleep' : !user.time_is_open, 'striked' : user.time_open.is_strike}")
-                i.material-icons.user-status-icon(ng-if='!user.time_is_open') timelapse
-                i.material-icons.user-status-icon(ng-if='user.time_is_open && !user.time_open.is_strike') alarm_on
-                i.material-icons.user-status-icon(ng-if='user.time_open.is_strike') notifications_active
+            .user-list-item(ng-repeat!='user in '+controller+'.users', ng-class!="{'active': user.time_is_open , 'sleep' : !user.time_is_open, 'striked' : user.time_open.is_strike}")
+                i.material-icons.user-status-icon(ng-if!='!user.time_is_open') timelapse
+                i.material-icons.user-status-icon(ng-if!='user.time_is_open && !user.time_open.is_strike') alarm_on
+                i.material-icons.user-status-icon(ng-if!='user.time_open.is_strike') notifications_active
                 .user-info
                     h5
                         a(ui-sref="user({uid:user.id})", ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && !user.is_super_admin') {{user.name}}
-                        span(ng-if='(!currentUser.is_moderator && !currentUser.is_super_admin) || user.is_super_admin') {{user.name}}
+                        span(ng-if!='(!currentUser.is_moderator && !currentUser.is_super_admin) || user.is_super_admin') {{user.name}}
                     p.email {{user.email}}
                     p.group(ng-if='currentUser.is_super_admin && user.group.id')
                         i.material-icons people
                         a(ui-sref="group({gid:user.group.id})") {{user.group.title}}
                 .user-controls
-                    .user-actions(ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && user.id != currentUser.id')
+                    .user-actions(ng-if!='(currentUser.is_moderator || currentUser.is_super_admin) && user.id != currentUser.id')
                         //delete user
-                        i.material-icons.color-accent(ng-click=controller+'.deleteUser(user.id)', ng-if='!user.is_super_admin') delete_forever
+                        i.material-icons.color-accent(ng-click!=controller+'.deleteUser(user.id)', ng-if='!user.is_super_admin') delete_forever
                         //strike switch
-                        i.material-icons.color-accent(ng-click=controller+'.setStrike(user.id)', ng-if='user.time_is_open && !user.time_open.is_strike') notifications_active
-                        i.material-icons.color-primary(ng-click=controller+'.removeStrike(user.id)', ng-if='user.time_is_open && user.time_open.is_strike') notifications_off
+                        i.material-icons.color-accent(ng-click!=controller+'.setStrike(user.id)', ng-if='user.time_is_open && !user.time_open.is_strike') notifications_active
+                        i.material-icons.color-primary(ng-click!=controller+'.removeStrike(user.id)', ng-if='user.time_is_open && user.time_open.is_strike') notifications_off
                     .group-actions(ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && user.group_id')
                         //delete from group
-                        i.material-icons.color-accent(ng-click=controller + '.deleteUserFromGroup(user.id, user.group_id)', ng-if="user.id != currentUser.id && !user.is_moderator && (!user.is_super_admin && !currentUser.is_super_admin)") highlight_off
+                        i.material-icons.color-accent(ng-click!=controller + '.deleteUserFromGroup(user.id, user.group_id)', ng-if!="user.id != currentUser.id && !user.is_moderator && !user.is_super_admin") highlight_off
                         //moderator switch
-                        i.material-icons.color-primary(ng-if='!user.is_moderator', ng-click=controller + '.setModerator(user.id, user.group_id)') star_border
-                        i.material-icons.color-primary(ng-if='user.is_moderator') star
-                    .actions-info(ng-if='!currentUser.is_moderator && !currentUser.is_super_admin && user.group_id')
+                        i.material-icons.color-primary(ng-if!='!user.is_moderator', ng-click!=controller + '.setModerator(user.id, user.group_id)') star_border
+                        i.material-icons.color-primary(ng-if!='user.is_moderator') star
+                    .actions-info(ng-if!='!currentUser.is_moderator && !currentUser.is_super_admin && user.group_id')
                         i.material-icons.color-primary(ng-if='user.is_moderator') star
 
 mixin groupUsersList(controller)
@@ -38,18 +38,18 @@ mixin groupUsersList(controller)
         span(ng-bind=controller+'.group.title')
         span &nbsp;
         span=titles.users
-        a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getGroupUsers()', ng-if='currentUser.is_moderator || currentUser.is_super_admin')
+        a.pull-sm-right.color-primary.icon-button(ng-click!=controller+'.getGroupUsers()', ng-if!='currentUser.is_moderator || currentUser.is_super_admin')
             i.material-icons.color-primary=actions.refresh.icon
             span=actions.refresh.title
-    .users-list-container(ng-if=controller + '.users')
-        .user-list-item(ng-repeat='user in ' + controller + '.users', ng-class!="{'active': user.time_is_open , 'sleep' : !user.time_is_open, 'striked' : user.time_open.is_strike}")
+    .users-list-container(ng-if!=controller + '.users')
+        .user-list-item(ng-repeat!='user in ' + controller + '.users', ng-class!="{'active': user.time_is_open , 'sleep' : !user.time_is_open, 'striked' : user.time_open.is_strike}")
             i.material-icons.user-status-icon(ng-if='!user.time_is_open') timelapse
             i.material-icons.user-status-icon(ng-if='user.time_is_open && !user.time_open.is_strike') alarm_on
             i.material-icons.user-status-icon(ng-if='user.time_open.is_strike') notifications_active
             .user-info
                 h5
-                    a(ui-sref="user({uid:user.id})", ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && !user.is_super_admin') {{user.name}}
-                    span(ng-if='(!currentUser.is_moderator && !currentUser.is_super_admin) || user.is_super_admin') {{user.name}}
+                    a(ui-sref!="user({uid:user.id})", ng-if!='(currentUser.is_moderator || currentUser.is_super_admin) && !user.is_super_admin') {{user.name}}
+                    span(ng-if!='(!currentUser.is_moderator && !currentUser.is_super_admin) || user.is_super_admin') {{user.name}}
                 p.email {{user.email}}
                 //p.group(ng-if='currentUser.is_super_admin && user.group.id')
                     i.material-icons people
@@ -57,15 +57,15 @@ mixin groupUsersList(controller)
             .user-controls
                 .user-actions(ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && user.id != currentUser.id')
                     //delete user
-                    i.material-icons.color-accent(ng-click=controller + '.deleteUser(user.id)', ng-if='!user.is_super_admin') delete_forever
+                    i.material-icons.color-accent(ng-click!=controller + '.deleteUser(user.id)', ng-if!='!user.is_super_admin') delete_forever
                     //strike switch
-                    i.material-icons.color-accent(ng-click=controller + '.setStrike(user.id)', ng-if='user.time_is_open && !user.time_open.is_strike') notifications_active
-                    i.material-icons.color-primary(ng-click=controller + '.removeStrike(user.id)', ng-if='user.time_is_open && user.time_open.is_strike') notifications_off
+                    i.material-icons.color-accent(ng-click!=controller + '.setStrike(user.id)', ng-if!='user.time_is_open && !user.time_open.is_strike') notifications_active
+                    i.material-icons.color-primary(ng-click!=controller + '.removeStrike(user.id)', ng-if!='user.time_is_open && user.time_open.is_strike') notifications_off
                 .group-actions(ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && user.group_id')
                     //delete from group
-                    i.material-icons.color-accent(ng-click=controller + '.deleteUserFromGroup(user.id)', ng-if="user.id != currentUser.id && !user.is_moderator") highlight_off
+                    i.material-icons.color-accent(ng-click!=controller + '.deleteUserFromGroup(user.id)', ng-if!="user.id != currentUser.id && !user.is_moderator && !user.is_super_admin") highlight_off
                     //moderator switch
-                    i.material-icons.color-primary(ng-if='!user.is_moderator', ng-click=controller + '.setModerator(user.id)') star_border
-                    i.material-icons.color-primary(ng-if='user.is_moderator') star
+                    i.material-icons.color-primary(ng-if!='!user.is_moderator', ng-click=controller + '.setModerator(user.id)') star_border
+                    i.material-icons.color-primary(ng-if!='user.is_moderator') star
                 .actions-info(ng-if='!currentUser.is_moderator && !currentUser.is_super_admin && user.group_id')
-                    i.material-icons.color-primary(ng-if='user.is_moderator') star
+                    i.material-icons.color-primary(ng-if!='user.is_moderator') star

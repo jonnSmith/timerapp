@@ -26,7 +26,7 @@ mixin usersList(controller)
                         i.material-icons.color-primary(ng-click=controller+'.removeStrike(user.id)', ng-if='user.time_is_open && user.time_open.is_strike') notifications_off
                     .group-actions(ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && user.group_id')
                         //delete from group
-                        i.material-icons.color-accent(ng-click=controller + '.deleteUserFromGroup(user.id, user.group_id)', ng-if="user.id != currentUser.id && !user.is_moderator") highlight_off
+                        i.material-icons.color-accent(ng-click=controller + '.deleteUserFromGroup(user.id, user.group_id)', ng-if="user.id != currentUser.id && !user.is_moderator && (!user.is_super_admin && !currentUser.is_super_admin)") highlight_off
                         //moderator switch
                         i.material-icons.color-primary(ng-if='!user.is_moderator', ng-click=controller + '.setModerator(user.id, user.group_id)') star_border
                         i.material-icons.color-primary(ng-if='user.is_moderator') star

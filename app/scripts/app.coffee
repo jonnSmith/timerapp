@@ -11,6 +11,8 @@ angular
 ])
 .config ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) ->
     $authProvider.loginUrl = '/api/authenticate'
+    $authProvider.authHeader = 'Authorization'
+    $authProvider.authToken = 'Basic '
     $urlRouterProvider.otherwise('/dashboard')
     $stateProvider
     .state('auth',

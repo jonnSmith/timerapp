@@ -83,7 +83,6 @@ angular.module('timerApp')
         userFactory.userTime(uid, 'strike?value=1').success((response) ->
             $rootScope.splash = 'Strike set: ' + response.status
             vm.getGroupUsers()
-            vm.getGroups()
             return
         ).error (error) ->
             $rootScope.error = error
@@ -93,7 +92,15 @@ angular.module('timerApp')
         userFactory.userTime(uid, 'strike?value=0').success((response) ->
             $rootScope.splash = 'Strike remove: ' + response.status
             vm.getGroupUsers()
-            vm.getGroups()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.setUserTime = (uid, action) ->
+        userFactory.userTime(uid, action).success((response) ->
+            $rootScope.splash = 'Time changed: ' + action + ' - ' + response.status
+            vm.getGroupUsers()
             return
         ).error (error) ->
             $rootScope.error = error

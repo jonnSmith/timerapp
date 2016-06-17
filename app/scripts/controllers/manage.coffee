@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'ManageCtrl', ($scope, $auth, $state, $rootScope, usersFactory, groupFactory) ->
+.controller 'ManageCtrl', ($scope, $auth, $state, $rootScope, usersFactory, groupFactory, userFactory) ->
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
@@ -95,6 +95,53 @@ angular.module('timerApp')
             $rootScope.splash = 'Change group: ' + response.status
             vm.gid = gid
             vm.getGroups()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.setStrike = (uid) ->
+        userFactory.userTime(uid, 'strike?value=1').success((response) ->
+            $rootScope.splash = 'Strike set: ' + response.status
+            vm.getGroupUsers()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.removeStrike = (uid) ->
+        userFactory.userTime(uid, 'strike?value=0').success((response) ->
+            $rootScope.splash = 'Strike remove: ' + response.status
+            vm.getGroupUsers()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.setUserTime = (uid, action) ->
+        userFactory.userTime(uid, action).success((response) ->
+            $rootScope.splash = 'Time changed: ' + action + ' - ' + response.status
+            vm.getGroupUsers()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.deleteUserFromGroup = (uid, gid) ->
+        groupFactory.removeGroup(gid, uid).success((response) ->
+            $rootScope.splash = 'User deleted from group ' + response.status
+            vm.getGroupUsers()
+            usersFactory.setUser()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+
+    vm.deleteUser = (uid) ->
+        usersFactory.deleteUser(uid).success((response) ->
+            $rootScope.splash = 'User deleted: ' + response.status
+            vm.getGroupUsers()
             return
         ).error (error) ->
             $rootScope.error = error

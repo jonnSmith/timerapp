@@ -42,6 +42,15 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
+    vm.setUserTime = (uid, action) ->
+        userFactory.userTime(uid, action).success((response) ->
+            $rootScope.splash = 'Time changed: ' + action + ' - ' + response.status
+            vm.getUsers()
+            return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
     vm.deleteUserFromGroup = (uid, gid) ->
         groupFactory.removeGroup(gid, uid).success((response) ->
             $rootScope.splash = 'User deleted from group ' + response.status

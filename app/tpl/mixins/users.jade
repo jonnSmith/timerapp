@@ -22,8 +22,11 @@ mixin usersList(controller)
                         //delete user
                         i.material-icons.color-accent(ng-click!=controller+'.deleteUser(user.id)', ng-if='!user.is_super_admin') delete_forever
                         //strike switch
-                        i.material-icons.color-accent(ng-click!=controller+'.setStrike(user.id)', ng-if='user.time_is_open && !user.time_open.is_strike') notifications_active
-                        i.material-icons.color-primary(ng-click!=controller+'.removeStrike(user.id)', ng-if='user.time_is_open && user.time_open.is_strike') notifications_off
+                        i.material-icons.color-accent(ng-click!=controller+'.setStrike(user.id)', ng-if!='user.time_is_open && !user.time_open.is_strike') notifications_active
+                        i.material-icons.color-primary(ng-click!=controller+'.removeStrike(user.id)', ng-if!='user.time_is_open && user.time_open.is_strike') notifications_off
+                        //time switch
+                        i.material-icons.color-accent(ng-click!=controller + ".setUserTime(user.id, 'end')", ng-if!='user.time_is_open') stop
+                        i.material-icons.color-primary(ng-click!=controller + ".setUserTime(user.id, 'start')", ng-if!='!user.time_is_open') play_arrow
                     .group-actions(ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && user.group_id')
                         //delete from group
                         i.material-icons.color-accent(ng-click!=controller + '.deleteUserFromGroup(user.id, user.group_id)', ng-if!="user.id != currentUser.id && !user.is_moderator && !user.is_super_admin") highlight_off
@@ -61,6 +64,9 @@ mixin groupUsersList(controller)
                     //strike switch
                     i.material-icons.color-accent(ng-click!=controller + '.setStrike(user.id)', ng-if!='user.time_is_open && !user.time_open.is_strike') notifications_active
                     i.material-icons.color-primary(ng-click!=controller + '.removeStrike(user.id)', ng-if!='user.time_is_open && user.time_open.is_strike') notifications_off
+                    //time switch
+                    i.material-icons.color-accent(ng-click!=controller + ".setUserTime(user.id, 'end')", ng-if!='user.time_is_open') stop
+                    i.material-icons.color-primary(ng-click!=controller + ".setUserTime(user.id, 'start')", ng-if!='!user.time_is_open') play_arrow
                 .group-actions(ng-if='(currentUser.is_moderator || currentUser.is_super_admin) && user.group_id')
                     //delete from group
                     i.material-icons.color-accent(ng-click!=controller + '.deleteUserFromGroup(user.id)', ng-if!="user.id != currentUser.id && !user.is_moderator && !user.is_super_admin") highlight_off

@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $geolocation, $filter , $localStorage, $state, groupFactory, userFactory, usersFactory, timeFactory, timerFactory, apiTimeFactory) ->
+.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $geolocation, $filter , $localStorage, $state, groupFactory, userFactory, usersFactory, timeFactory, timerFactory, apiTimeFactory, ipLocationFactory) ->
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
@@ -133,6 +133,16 @@ angular.module('timerApp')
                 $rootScope.error = error
                 return
             return
+        ).error (error) ->
+            $rootScope.error = error
+            return
+
+    vm.getIpLocation = (ip) ->
+        ipLocationFactory.getLocationByIP(ip).success((response) ->
+            location = {}
+            location.latitude = response.loc.split(',')[0]
+            location.longitude = response.loc.split(',')[1]
+            location
         ).error (error) ->
             $rootScope.error = error
             return

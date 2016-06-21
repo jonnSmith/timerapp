@@ -149,4 +149,12 @@ angular.module('timerApp')
 
     vm.getUsers()
 
+    interval = (1/2)*60*1000
+
+    setInterval (->
+        if !$rootScope.token_is_refreshing
+            vm.getUsers()
+        return
+    ), interval
+
     return

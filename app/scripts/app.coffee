@@ -51,6 +51,7 @@ angular
     $rootScope.splash = false
     $rootScope.interval= 10*60*1000
     $rootScope.token = $auth.getToken()
+    $rootScope.token_is_refreshing = false
     $geolocation.watchPosition
         timeout: $rootScope.interval
         maximumAge: 250
@@ -72,10 +73,12 @@ angular
     $rootScope.refreshToken = ->
         $is_auth = $auth.isAuthenticated()
         if $is_auth
+            $rootScope.token_is_refreshing = true
             usersFactory.refreshUser().success((response) ->
                 token = response.token
                 $rootScope.token = token
                 $auth.setToken token
+                $rootScope.token_is_refreshing = false
                 return
             ).error (error) ->
                 $rootScope.error = error

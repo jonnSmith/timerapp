@@ -34,6 +34,12 @@ angular.module('timerApp')
         vm.setRange()
         return
 
+    vm.range =
+        period: 'day'
+        offset: 0
+        count: 1
+        order: 'desc'
+
     vm.setRange = () ->
         start = Date.parse if angular.isString(vm.startDate) then vm.startDate.replace(/\-/g, '/') else vm.startDate
         end = Date.parse if angular.isString(vm.endDate) then vm.endDate.replace(/\-/g, '/') else vm.endDate
@@ -43,8 +49,6 @@ angular.module('timerApp')
         $localStorage.startDate = vm.startDate
         $localStorage.endDate = vm.endDate
         vm.getUserTimes()
-
-
 
     vm.getGroups = () ->
         groupFactory.getGroups().success((groups) ->
@@ -64,12 +68,6 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
-
-    vm.range =
-        period: 'day'
-        offset: 0
-        count: 1
-        order: 'desc'
 
     vm.getUserTimes = () ->
         range = vm.range
@@ -107,9 +105,7 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-
     vm.getUser()
     vm.getGroups()
-    vm.getUserTimes()
 
     return

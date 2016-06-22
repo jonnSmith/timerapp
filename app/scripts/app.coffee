@@ -96,6 +96,8 @@ angular
             $state.go 'auth'
             $rootScope.authenticated = false
             timerFactory.saveTimer(false)
+            delete $localStorage.startDate
+            delete $localStorage.endDate
             delete $localStorage.user
             return
         ), (error) ->

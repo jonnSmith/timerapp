@@ -103,7 +103,5 @@ angular.module('timerApp')
 
     vm.getUser()
     vm.getGroups()
-    vm.setRange()
-
 
     return

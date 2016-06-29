@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.factory 'usersFactory', ($http,$auth,$rootScope,$localStorage) ->
+.factory 'usersFactory', ($http,$auth,$rootScope,$localStorage, timerFactory) ->
     urlBase = 'api'
     token = $auth.getToken()
     data = token: token
@@ -15,6 +15,8 @@ angular.module('timerApp')
             user = JSON.stringify(response.data.user)
             $localStorage.user = user
             $rootScope.currentUser = response.data.user
+            if !user.time_is_open
+                timerFactory.clearTimer()
             return
     usersFactory.refreshUser = () ->
         $http.get(urlBase+'/authenticate/refresh')

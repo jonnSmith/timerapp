@@ -7,7 +7,8 @@ angular
     'ngGeolocation',
     'ngMap',
     'ngStorage',
-    '720kb.datepicker'
+    '720kb.datepicker',
+    'n3-line-chart'
 ])
 .config ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) ->
     $authProvider.loginUrl = '/api/authenticate'

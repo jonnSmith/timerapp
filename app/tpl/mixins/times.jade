@@ -64,7 +64,7 @@ mixin lastTime()
 mixin timer(controller)
     .timer-container.color-primary
         .timer
-            .current-time.digital(ng-if="!currentUser.time_is_open", ng-bind=controller + ".time.time|date:'yyyy-MM-DD HH:mm:ss EEE'")
+            .current-time.digital(ng-if="!currentUser.time_is_open", ng-bind=controller + ".time.time|date:'yyyy-MM-dd HH:mm:ss EEE'")
             .open-time.digital(ng-if="currentUser.time_is_open") {{ currentUser.time_open.start }}
             .stop-watch.digital(ng-bind=controller+".timer.timer|timestampFilter")
             button(type='button', ng-if='!currentUser.time_is_open', ng-click=controller+'.startApiTimer()')

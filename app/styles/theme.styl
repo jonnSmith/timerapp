@@ -270,10 +270,18 @@ $nav-size = 60px
             display inline-block
             width 100%
             font-size 2.6rem
+            @media screen and (max-width: 543px)
+                text-align center
+                font-size 1.8rem
+                font-size 8vw
         .stop-watch
             display inline-block
             width 100%
             font-size 6rem
+            @media screen and (max-width: 543px)
+                text-align center
+                font-size 4rem
+                font-size 20vw
         button
             absolute right 0px bottom 0
             border none
@@ -284,6 +292,13 @@ $nav-size = 60px
                 font-size 6rem
                 line-height 1
                 display inline-block
+            @media screen and (max-width: 543px)
+                relative left 0px top 0px
+                width 100%
+                text-align center
+                i
+                    font-size 4rem
+                    font-size 20vw
     input
         display inline-block
         width 100%

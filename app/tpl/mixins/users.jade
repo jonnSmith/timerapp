@@ -2,8 +2,9 @@ mixin usersList(controller)
         h3
             span(ng-if="!currentUser.group.title || currentUser.is_super_admin")=titles.users
             span(ng-if="currentUser.group.title && !currentUser.is_super_admin") {{currentUser.group.title}}
-            a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getUsers()')
+            a.pull-xs-right.color-primary.icon-button(ng-click=controller+'.getUsers()')
                 i.material-icons.color-primary=actions.refresh.icon
+                span.hidden-xs-down=actions.refresh.title
         .users-list-container(ng-if=controller+'.users')
             .user-list-item(ng-repeat!='user in '+controller+'.users', ng-class!="{'active': user.time_is_open , 'sleep' : !user.time_is_open, 'striked' : user.time_open.is_strike}")
                 i.material-icons.user-status-icon(ng-if!='!user.time_is_open') timelapse
@@ -41,9 +42,9 @@ mixin groupUsersList(controller)
         span(ng-bind=controller+'.group.title')
         span &nbsp;
         span=titles.users
-        a.pull-sm-right.color-primary.icon-button(ng-click!=controller+'.getGroupUsers()', ng-if!='currentUser.is_moderator || currentUser.is_super_admin')
+        a.pull-xs-right.color-primary.icon-button(ng-click!=controller+'.getGroupUsers()', ng-if!='currentUser.is_moderator || currentUser.is_super_admin')
             i.material-icons.color-primary=actions.refresh.icon
-            span=actions.refresh.title
+            span.hidden-xs-down=actions.refresh.title
     .users-list-container(ng-if!=controller + '.users')
         .user-list-item(ng-repeat!='user in ' + controller + '.users', ng-class!="{'active': user.time_is_open , 'sleep' : !user.time_is_open, 'striked' : user.time_open.is_strike}")
             i.material-icons.user-status-icon(ng-if='!user.time_is_open') timelapse

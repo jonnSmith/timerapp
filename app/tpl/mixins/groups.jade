@@ -1,7 +1,8 @@
 mixin groupList(controller)
     h3=titles.groups
-        a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getGroups()')
+        a.pull-xs-right.color-primary.icon-button(ng-click=controller+'.getGroups()')
             i.material-icons.color-primary=actions.refresh.icon
+            span.hidden-xs-down=actions.refresh.title
     .users-list-container(ng-if=controller+'.groups')
         .user-list-item(ng-repeat='group_item in '+controller+'.groups', ng-if='currentUser.is_super_admin', ng-class!="{'active': currentUser.group_id == group_item.id , 'sleep' : currentUser.group_id != group_item.id}")
             span.user-status-icon {{group_item.users.length}}
@@ -19,8 +20,9 @@ mixin groupList(controller)
 
 mixin userGroupList(controller)
     h3=titles.groups
-        a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getGroups()')
+        a.pull-xs-right.color-primary.icon-button(ng-click=controller+'.getGroups()')
             i.material-icons.color-primary=actions.refresh.icon
+            span.hidden-xs-down=actions.refresh.title
     .users-list-container(ng-if=controller + '.groups')
         .user-list-item(ng-repeat='group in ' + controller + '.groups', ng-if='currentUser.is_super_admin', ng-class!="{'active': "+controller+".user.group_id == group.id , 'sleep' : "+controller+".user.group_id != group.id}")
             span.user-status-icon {{group.users.length}}

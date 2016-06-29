@@ -1,8 +1,8 @@
 mixin timesList(controller)
     h3=titles.times
-        a.pull-sm-right.color-primary.icon-button(ng-click=controller+'.getUserTimes()')
+        a.pull-xs-right.color-primary.icon-button(ng-click=controller+'.getUserTimes()')
             i.material-icons.color-primary=actions.refresh.icon
-            span=actions.refresh.title
+            span.hidden-xs-down=actions.refresh.title
     .form-group.datepicker-group
         .col-sm-6
             datepicker(date-format="yyyy-MM-dd", date-max-limit="{{"+controller+".endDate}}")

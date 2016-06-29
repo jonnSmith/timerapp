@@ -15,7 +15,7 @@ angular.module('timerApp')
             user = JSON.stringify(response.data.user)
             $localStorage.user = user
             $rootScope.currentUser = response.data.user
-            if !user.time_is_open
+            if !response.data.user.time_is_open
                 timerFactory.clearTimer()
             return
     usersFactory.refreshUser = () ->

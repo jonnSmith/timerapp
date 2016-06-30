@@ -90,6 +90,7 @@ angular.module('timerApp')
         apiTimeFactory.startTimer(data).success((response) ->
             usersFactory.setUser()
             vm.timer.runTimer(true, $rootScope.currentUser.time_open.start)
+            $rootScope.splash = 'Time start: ' + response.status
             usersFactory.getUsers().success((users) ->
                 vm.users = users
                 return
@@ -126,6 +127,7 @@ angular.module('timerApp')
             vm.timer.saveTimer()
             delete $localStorage.comment
             vm.timer_comment = ''
+            $rootScope.splash = 'Time stop: ' + response.status
             usersFactory.getUsers().success((users) ->
                 vm.users = users
                 return

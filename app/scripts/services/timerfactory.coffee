@@ -4,7 +4,8 @@ angular.module('timerApp')
 .factory 'timerFactory', [
     '$rootScope'
     '$timeout'
-    ($rootScope, $timeout) ->
+    '$filter'
+    ($rootScope, $timeout, $filter) ->
         obj = {}
         obj.is_start = false
         obj.step = 1000
@@ -37,6 +38,7 @@ angular.module('timerApp')
         obj.updateTimer = () ->
             obj.timer = new Date().getTime() - obj.start
             if obj.is_start
+                $rootScope.title = 'Time : ' + $filter('timestampFilter')(obj.timer)
                 $timeout obj.updateTimer, obj.step
             return
 

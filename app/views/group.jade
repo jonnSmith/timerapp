@@ -8,10 +8,6 @@ include ../tpl/layout/navbar
     .dashboard
         include ../tpl/layout/error-block
         .row
-            .col-xs-12(style='height:300px;margin:0 0 50px 0;')
-                linechart(data="group.data", options="group.options")
-        .clearfix
-        .row
             .col-sm-6
                 +groupUsersList('group')
             .col-sm-6
@@ -19,3 +15,7 @@ include ../tpl/layout/navbar
                     +editGroupForm('group')
                 .group-list(ng-if='currentUser.is_super_admin')
                     +groupList('group')
+        .clearfix
+        .row
+            .col-xs-12(style='height:300px;margin:0 0 50px 0;')
+                linechart(data="group.data", options="group.options")

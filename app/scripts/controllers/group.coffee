@@ -269,6 +269,5 @@ angular.module('timerApp')
         ]
 
     vm.getGroups()
-    vm.getGroupUsers()
 
     return

@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'GroupCtrl', ($scope, $auth, $state, $rootScope, $stateParams, usersFactory, userFactory, groupFactory) ->
+.controller 'GroupCtrl', ($scope, $auth, $state, $rootScope, $stateParams, $filter, usersFactory, userFactory, groupFactory) ->
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
@@ -26,16 +26,80 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
+    vm.range =
+        period: 'day'
+        offset: 0
+        count: 31
+        order: 'desc'
+
     vm.getGroupUsers = () ->
         gid = vm.gid
         groupFactory.getGroup(gid).success((group) ->
             vm.group = group
             vm.users = group.users
+            vm.setTimesStatistic(group.users)
             return
         ).error (error) ->
             $rootScope.error = error
             return
 
+    vm.time_options =
+        series: [],
+        axes: x:
+            key: 'x'
+
+    vm.time_data =
+        usertimes: []
+
+    currentDate = new Date()
+
+    i = 0
+    while i <= vm.range.count
+        x_day = new Date(currentDate.getTime() - (i*24*60*60*1000))
+        day =
+            x: i
+            day: $filter('date')(x_day, 'yyyy-MM-dd')
+        vm.time_data.usertimes.push(day)
+        i++
+
+    vm.setTimesStatistic = (users) ->
+
+        range = vm.range
+
+        angular.forEach users, (user, key) ->
+
+            graph =
+                axis: 'y'
+                dataset: 'usertimes'
+                key: 'val_'+ user.id
+                label: user.name
+                color: '#0293FF'
+                type: [ 'line' ]
+                id: 'mySeries'+user.id
+
+            vm.time_options.series.push(graph)
+
+            angular.forEach vm.time_data.usertimes, (value,key) ->
+                usertime = vm.time_data.usertimes[key]
+                usertime['val_'+ user.id] = 0
+                vm.time_data.usertimes[key] = usertime
+
+            userFactory.getUserTimes(user.id, range).success((times) ->
+                angular.forEach times, (value, key) ->
+                    if value.end
+                        start = Date.parse if angular.isString(value.start) then value.start.replace(/\-/g, '/') else value.start
+                        end = Date.parse if angular.isString(value.end) then value.end.replace(/\-/g, '/') else value.end
+                        time_range = end - start
+                        angular.forEach vm.time_data.usertimes, (value,key) ->
+                            usertime = vm.time_data.usertimes[key]
+                            if usertime.day == $filter('date')(new Date(start), 'yyyy-MM-dd')
+                                usertime['val_'+ user.id] += Math.floor(time_range/(60*60*1000))
+                                vm.time_data.usertimes[key] = usertime
+                return
+            ).error (error) ->
+                $rootScope.error = error
+                return
+        return
     vm.deleteUserFromGroup = (uid) ->
         gid = vm.gid
         groupFactory.removeGroup(gid,uid).success((response) ->
@@ -142,7 +206,6 @@ angular.module('timerApp')
             return
 
     vm.setGroup = (gid) ->
-        console.log gid
         groupFactory.setGroup(gid, vm.uid).success((response) ->
             $rootScope.splash = 'Change group: ' + response.status
             vm.getGroupUsers()

@@ -37,6 +37,8 @@ go to the app root
       "language": "en",
       "dist": "../../Winginx/home/timer.local/timer/public",
       "views": "../../Winginx/home/timer.local/timer/resources/views",
+      "repository": "https://bitbucket.org/iskraua/lab-fe",
+      "license": "SEE LICENSE IN README.TXT",
       "devDependencies": {
         "grunt": "~0.4.1",
         "gruntfile-gtx": "^0.3.0",
@@ -70,7 +72,8 @@ go to the app root
         "grunt-karma": "~0.12",
         "jshint-stylish": "~0.1.3",
         "load-grunt-tasks": "~0.4.0",
-        "time-grunt": "~0.2.1"
+        "time-grunt": "~0.2.1",
+        "n3-charts": "~2"
       },
       "engines": {
         "node": ">=0.10.0"

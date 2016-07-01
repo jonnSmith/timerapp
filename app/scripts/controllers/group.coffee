@@ -26,12 +26,6 @@ angular.module('timerApp')
             $rootScope.error = error
             return
 
-    vm.range =
-        period: 'day'
-        offset: 0
-        count: 31
-        order: 'desc'
-
     vm.getGroupUsers = () ->
         gid = vm.gid
         groupFactory.getGroup(gid).success((group) ->
@@ -42,6 +36,14 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
+
+    #TODO: Fucking rewrite that shit to normal arch
+
+    vm.range =
+        period: 'day'
+        offset: 0
+        count: 31
+        order: 'desc'
 
     vm.time_options =
         series: [],
@@ -63,11 +65,8 @@ angular.module('timerApp')
         i++
 
     vm.setTimesStatistic = (users) ->
-
         range = vm.range
-
         angular.forEach users, (user, key) ->
-
             graph =
                 axis: 'y'
                 dataset: 'usertimes'
@@ -76,14 +75,11 @@ angular.module('timerApp')
                 color: '#0293FF'
                 type: [ 'line' ]
                 id: 'mySeries'+user.id
-
             vm.time_options.series.push(graph)
-
             angular.forEach vm.time_data.usertimes, (value,key) ->
                 usertime = vm.time_data.usertimes[key]
                 usertime['val_'+ user.id] = 0
                 vm.time_data.usertimes[key] = usertime
-
             userFactory.getUserTimes(user.id, range).success((times) ->
                 angular.forEach times, (value, key) ->
                     if value.end
@@ -93,6 +89,12 @@ angular.module('timerApp')
                         angular.forEach vm.time_data.usertimes, (value,key) ->
                             usertime = vm.time_data.usertimes[key]
                             if usertime.day == $filter('date')(new Date(start), 'yyyy-MM-dd')
+                                totalSec = Math.floor(time_range/ 1000)
+                                hours = parseInt(usertime['val_'+ user.id]) + parseInt(totalSec / 3600)
+                                minutes = getDecimal(usertime['val_'+ user.id]) + (parseInt(totalSec / 60) % 60)/100
+                                if(minutes > 0.6)
+                                    hours++
+                                    minutes = minutes - 0.6
                                 usertime['val_'+ user.id] += Math.floor(time_range/(60*60*1000))
                                 vm.time_data.usertimes[key] = usertime
                 return
@@ -100,6 +102,9 @@ angular.module('timerApp')
                 $rootScope.error = error
                 return
         return
+
+   #ENDTODO
+
     vm.deleteUserFromGroup = (uid) ->
         gid = vm.gid
         groupFactory.removeGroup(gid,uid).success((response) ->
@@ -215,121 +220,6 @@ angular.module('timerApp')
         ).error (error) ->
             $rootScope.error = error
             return
-
-    vm.options =
-        series: [
-            {
-                axis: 'y'
-                dataset: 'testdata'
-                key: 'val_0'
-                label: 'User 1'
-                color: '#0293FF'
-                type: [ 'line' ]
-                id: 'mySeries0'
-            }
-            {
-                axis: 'y'
-                dataset: 'testdata'
-                key: 'val_1'
-                label: 'User 2'
-                color: '#FF5252'
-                type: [ 'line' ]
-                id: 'mySeries1'
-            }
-            {
-                axis: 'y'
-                dataset: 'testdata'
-                key: 'val_2'
-                label: 'User 3'
-                color: '#0293FF'
-                type: [ 'line' ]
-                id: 'mySeries2'
-            }
-            {
-                axis: 'y'
-                dataset: 'testdata'
-                key: 'val_3'
-                label: 'User 4'
-                color: '#FF5252'
-                type: [ 'line' ]
-                id: 'mySeries3'
-            }
-        ]
-        axes: x: key: 'x'
-
-    vm.data =
-        testdata: [
-            {
-                x: 0
-                val_0: 20
-                val_1: 2
-                val_2: 85
-                val_3: 81
-            }
-            {
-                x: 1
-                val_0: 47
-                val_1: 28
-                val_2: 83
-                val_3: 8
-            }
-            {
-                x: 2
-                val_0: 56
-                val_1: 80
-                val_2: 57
-                val_3: 16
-            }
-            {
-                x: 3
-                val_0: 87
-                val_1: 2
-                val_2: 17
-                val_3: 40
-            }
-            {
-                x: 4
-                val_0: 31
-                val_1: 33
-                val_2: 19
-                val_3: 70
-            }
-            {
-                x: 5
-                val_0: 8
-                val_1: 23
-                val_2: 45
-                val_3: 55
-            }
-            {
-                x: 6
-                val_0: 58
-                val_1: 87
-                val_2: 5
-                val_3: 32
-            }
-            {
-                x: 7
-                val_0: 51
-                val_1: 8
-                val_2: 84
-                val_3: 41
-            }
-            {
-                x: 8
-                val_0: 86
-                val_1: 54
-                val_2: 52
-                val_3: 39
-            }
-            {
-                x: 9
-                val_0: 33
-                val_1: 94
-                val_2: 34
-                val_3: 98
-            }
-        ]
 
     vm.getGroups()
 

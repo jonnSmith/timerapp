@@ -91,11 +91,13 @@ angular.module('timerApp')
                             if usertime.day == $filter('date')(new Date(start), 'yyyy-MM-dd')
                                 totalSec = Math.floor(time_range/ 1000)
                                 hours = parseInt(usertime['val_'+ user.id]) + parseInt(totalSec / 3600)
-                                minutes = getDecimal(usertime['val_'+ user.id]) + (parseInt(totalSec / 60) % 60)/100
+                                minutes = (usertime['val_'+ user.id] - parseInt(usertime['val_'+ user.id])) + (parseInt(totalSec / 60) % 60)/100
                                 if(minutes > 0.6)
                                     hours++
                                     minutes = minutes - 0.6
+                                newTime = hours+minutes
                                 usertime['val_'+ user.id] += Math.floor(time_range/(60*60*1000))
+                                console.log newTime+ ' : ' + usertime['val_'+ user.id]
                                 vm.time_data.usertimes[key] = usertime
                 return
             ).error (error) ->

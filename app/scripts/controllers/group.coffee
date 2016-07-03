@@ -42,13 +42,14 @@ angular.module('timerApp')
     vm.range =
         period: 'day'
         offset: 0
-        count: 31
+        count: 30
         order: 'desc'
 
     vm.time_options =
         series: [],
         axes: x:
             key: 'x'
+            type: 'date'
 
     vm.time_data =
         usertimes: []
@@ -59,7 +60,7 @@ angular.module('timerApp')
     while i <= vm.range.count
         x_day = new Date(currentDate.getTime() - (i*24*60*60*1000))
         day =
-            x: i
+            x: new Date($filter('date')(x_day, 'yyyy-MM-dd'))
             day: $filter('date')(x_day, 'yyyy-MM-dd')
         vm.time_data.usertimes.push(day)
         i++
@@ -89,15 +90,14 @@ angular.module('timerApp')
                         angular.forEach vm.time_data.usertimes, (value,key) ->
                             usertime = vm.time_data.usertimes[key]
                             if usertime.day == $filter('date')(new Date(start), 'yyyy-MM-dd')
-                                totalSec = Math.floor(time_range/ 1000)
-                                hours = parseInt(usertime['val_'+ user.id]) + parseInt(totalSec / 3600)
-                                minutes = (usertime['val_'+ user.id] - parseInt(usertime['val_'+ user.id])) + (parseInt(totalSec / 60) % 60)/100
+                                totalSec = parseInt(Math.floor(time_range/1000))
+                                hours = parseInt(usertime['val_'+ user.id]) + parseInt(totalSec/3600)
+                                minutes = (parseInt(parseInt((usertime['val_'+ user.id] - parseInt(usertime['val_'+ user.id]))*100) + (parseInt(totalSec / 60) % 60)))/100
                                 if(minutes > 0.6)
                                     hours++
                                     minutes = minutes - 0.6
                                 newTime = hours+minutes
-                                usertime['val_'+ user.id] += Math.floor(time_range/(60*60*1000))
-                                console.log newTime+ ' : ' + usertime['val_'+ user.id]
+                                usertime['val_'+ user.id] = newTime
                                 vm.time_data.usertimes[key] = usertime
                 return
             ).error (error) ->

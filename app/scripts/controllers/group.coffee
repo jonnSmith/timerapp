@@ -57,10 +57,11 @@ angular.module('timerApp')
     currentDate = new Date()
 
     i = 0
+    unit = 24*60*60*1000
     while i <= vm.range.count
-        x_day = new Date(currentDate.getTime() - (i*24*60*60*1000))
+        x_day = new Date(currentDate.getTime() - (i*unit))
         day =
-            x: new Date($filter('date')(x_day, 'yyyy-MM-dd'))
+            x:  new Date($filter('date')(x_day, 'yyyy-MM-dd'))
             day: $filter('date')(x_day, 'yyyy-MM-dd')
         vm.time_data.usertimes.push(day)
         i++
@@ -74,7 +75,7 @@ angular.module('timerApp')
                 key: 'val_'+ user.id
                 label: user.name
                 color: '#0293FF'
-                type: [ 'line' ]
+                type: [ 'column' ]
                 id: 'mySeries'+user.id
             vm.time_options.series.push(graph)
             angular.forEach vm.time_data.usertimes, (value,key) ->
@@ -93,7 +94,7 @@ angular.module('timerApp')
                                 totalSec = parseInt(Math.floor(time_range/1000))
                                 hours = parseInt(usertime['val_'+ user.id]) + parseInt(totalSec/3600)
                                 minutes = (parseInt(parseInt((usertime['val_'+ user.id] - parseInt(usertime['val_'+ user.id]))*100) + (parseInt(totalSec / 60) % 60)))/100
-                                if(minutes > 0.6)
+                                if(minutes >= 0.6)
                                     hours++
                                     minutes = minutes - 0.6
                                 newTime = hours+minutes

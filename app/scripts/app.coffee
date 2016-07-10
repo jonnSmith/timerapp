@@ -8,7 +8,8 @@ angular
     'ngMap',
     'ngStorage',
     '720kb.datepicker',
-    'n3-line-chart'
+    'n3-line-chart',
+    'angular-web-notification'
 ])
 .config ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) ->
     $authProvider.loginUrl = '/api/authenticate'

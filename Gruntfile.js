@@ -40,6 +40,28 @@ module.exports = function (grunt) {
         'clean:views'
     ]);
 
+    gtx.alias('dev', [
+        'clean:dist',
+        'bowerInstall',
+        'sass',
+        'jade:dist',
+        'coffee:dist',
+        'stylus:dist',
+        'useminPrepare',
+        'autoprefixer',
+        'concat',
+        'copy:fonts',
+        'copy:dist',
+        'cdnify',
+        'cssmin',
+        'uglify',
+        'rev',
+        'usemin',
+        'pleeease',
+        'copy:views',
+        'clean:views'
+    ]);
+
     gtx.finalise();
 
 };

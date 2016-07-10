@@ -51,6 +51,12 @@ module.exports = {
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
     },
+    scripts: {
+        expand: true,
+        cwd: '.tmp/concat/scripts',
+        dest: '<%= package.dist %>/scripts',
+        src: '{,*/}*.js'
+    },
     views: {
         expand: true,
         cwd: '<%= package.dist %>',

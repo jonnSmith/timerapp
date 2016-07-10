@@ -54,10 +54,10 @@ module.exports = function (grunt) {
         'copy:dist',
         'cdnify',
         'cssmin',
-        'uglify',
         'rev',
         'usemin',
         'pleeease',
+        'copy:scripts',
         'copy:views',
         'clean:views'
     ]);

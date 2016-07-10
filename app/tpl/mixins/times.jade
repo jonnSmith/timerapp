@@ -13,8 +13,8 @@ mixin timesList(controller)
     .clearfix
     .time-list
         .time-list-item(ng-repeat='time in '+controller+'.times', ng-if='time.end')
-            i.material-icons.time-icon.color-accent(ng-if="time.is_strike || time.is_strike == '1'") notifications_active
-            i.material-icons.time-icon.color-primary(ng-if="!time.is_strike || time.is_strike == '0'") alarm_on
+            i.material-icons.time-icon.color-accent(ng-if="time.is_strike") notifications_active
+            i.material-icons.time-icon.color-primary(ng-if="!time.is_strike") alarm_on
             .text-container.col-sm-6
                 .text-table
                     .text-cell

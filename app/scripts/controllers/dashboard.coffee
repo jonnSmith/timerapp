@@ -157,7 +157,8 @@ angular.module('timerApp')
         if !$rootScope.token_is_refreshing
             vm.getUsers()
             usersFactory.setUser()
-            webNotificationFactory.showMessage('Background:', 'Users updated', 'images/notification.png')
+            if $rootScope.devmode
+                webNotificationFactory.showMessage('Background:', 'Users updated', 'images/notification.png')
         return
     ), interval
 

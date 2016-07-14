@@ -45,7 +45,7 @@ angular
     #.html5Mode
         #enabled: true
         #requireBase: false
-.run ($rootScope, $localStorage, $state, $location, $auth, $geolocation,usersFactory,timerFactory) ->
+.run ($rootScope, $localStorage, $state, $location, $auth, $geolocation,usersFactory,timerFactory,webNotificationFactory) ->
     $rootScope.authenticated = false
     $rootScope.language = 'en'
     $rootScope.title = 'LAB Timer'
@@ -54,6 +54,7 @@ angular
     $rootScope.interval= 10*60*1000
     $rootScope.token = $auth.getToken()
     $rootScope.token_is_refreshing = false
+    $rootScope.devmode = false
     $geolocation.watchPosition
         timeout: $rootScope.interval
         maximumAge: 250
@@ -108,8 +109,14 @@ angular
         return
     $rootScope.$watch 'error', ->
         if $rootScope.error
+            webNotificationFactory.showMessage('Error:', $rootScope.error, 'images/notification.png')
             if $rootScope.error.error && $rootScope.error.error == 'user_not_found'
                 $rootScope.logout()
             else
                 $rootScope.checkRights()
+        return
+
+    $rootScope.$watch 'splash', ->
+        if $rootScope.splash
+            webNotificationFactory.showMessage('Action:', $rootScope.splash, 'images/notification.png')
         return

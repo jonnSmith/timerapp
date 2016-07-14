@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.factory 'usersFactory', ($http,$auth,$rootScope,$localStorage, timerFactory) ->
+.factory 'usersFactory', ($http,$auth,$rootScope,$localStorage,timerFactory) ->
     urlBase = 'api'
     token = $auth.getToken()
     data = token: token

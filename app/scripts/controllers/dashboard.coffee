@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $geolocation, $filter , $localStorage, $state, groupFactory, userFactory, usersFactory, timeFactory, timerFactory, apiTimeFactory, ipLocationFactory, webNotification) ->
+.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $geolocation, $filter , $localStorage, $state, groupFactory, userFactory, usersFactory, timeFactory, timerFactory, apiTimeFactory, ipLocationFactory, webNotificationFactory) ->
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
@@ -153,28 +153,12 @@ angular.module('timerApp')
 
     interval = 1*60*1000
 
-    showMessage = (title, text, icon) ->
-        webNotification.showNotification title, {
-            body: text
-            icon: icon
-            autoClose:  interval
-        }, (error, hide) ->
-            if error
-                console.log 'Unable to show notification: ' + error.message
-            else
-                setTimeout (->
-                    console.log 'Hiding notification....'
-                    hide()
-                    return
-                ), interval
-            return
-        return
-
     setInterval (->
         if !$rootScope.token_is_refreshing
             vm.getUsers()
             usersFactory.setUser()
-            #showMessage()
+            if $rootScope.devmode
+                webNotificationFactory.showMessage('Background:', 'Users updated', 'images/notification.png')
         return
     ), interval
 

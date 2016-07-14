@@ -7,6 +7,9 @@ angular.module('timerApp')
     $rootScope.splash = false
     $rootScope.title = 'Dashboard'
 
+    vm.showNumber = 5
+    vm.showOffset = 0
+
     vm.getUsers = () ->
         usersFactory.getUsers().success((users) ->
             vm.users = users

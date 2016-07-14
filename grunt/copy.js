@@ -35,7 +35,7 @@ module.exports = {
                 'languages/{,*/}*.json',
                 'views/{,*/}*.html',
                 'tpl/{,*/}*.html',
-                'images/{,*/}*.{webp}',
+                'images/*',
                 'fonts/*'
             ]
         }, {

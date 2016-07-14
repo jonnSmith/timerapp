@@ -9,7 +9,7 @@ module.exports = {
         'stylus:test'
     ],
     dist: [
-        'imagemin',
+        //'imagemin',
         'svgmin'
     ]
 }

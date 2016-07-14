@@ -1,5 +1,8 @@
 module.exports = {
     dist: {
+        options: {
+            force: true
+        },
         files: [{
             expand: true,
             cwd: '<%= package.app %>/images',

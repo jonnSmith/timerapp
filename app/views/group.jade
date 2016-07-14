@@ -23,5 +23,5 @@ include ../tpl/layout/navbar
         .row
             .col-xs-12
                 .map-container.col-sm-12(style='margin-bottom:50px')
-                    ng-map(center!="{{ currentUser.time_last_closed.start_location|locationFilter}}", ng-if!="group.users" zoom="8")
+                    ng-map(center!="{{ currentUser.time_last_closed.start_location|locationFilter}}", ng-if!="group.users" zoom="10")
                         marker(ng-repeat!='user in group.users', ng-if!='user.time_is_open', position!="{{ user.time_open.start_location|locationFilter}}", title!="{{user.name}}")

@@ -55,6 +55,7 @@ angular
     $rootScope.token = $auth.getToken()
     $rootScope.token_is_refreshing = false
     $rootScope.devmode = false
+    $rootScope.perPage = 5
     $geolocation.watchPosition
         timeout: $rootScope.interval
         maximumAge: 250

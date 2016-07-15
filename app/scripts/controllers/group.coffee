@@ -15,6 +15,9 @@ angular.module('timerApp')
         count: 30
         order: 'desc'
 
+    vm.showNumber = $rootScope.perPage
+    vm.showOffset = 0
+
     if !$rootScope.currentUser.is_super_admin
         $state.go 'dashboard'
 

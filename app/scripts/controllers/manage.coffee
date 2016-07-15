@@ -12,6 +12,9 @@ angular.module('timerApp')
     vm.showNumber = $rootScope.perPage
     vm.showOffset = 0
 
+    vm.showGroupNumber = $rootScope.perPage
+    vm.showGroupOffset = 0
+
     if !($rootScope.currentUser.is_super_admin || $rootScope.currentUser.is_moderator)
         $state.go 'dashboard'
 

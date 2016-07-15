@@ -10,6 +10,9 @@ angular.module('timerApp')
     vm.showNumber = $rootScope.perPage
     vm.showOffset = 0
 
+    vm.showGroupNumber = $rootScope.perPage
+    vm.showGroupOffset = 0
+
     vm.getUsers = () ->
         usersFactory.getUsers().success((users) ->
             vm.users = users

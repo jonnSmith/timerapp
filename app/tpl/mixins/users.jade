@@ -36,7 +36,7 @@ mixin usersList(controller)
                         i.material-icons.color-primary(ng-if!='user.is_moderator') star
                     .actions-info(ng-if!='!currentUser.is_moderator && !currentUser.is_super_admin && user.group_id')
                         i.material-icons.color-primary(ng-if='user.is_moderator') star
-            .row
+            .row(ng-if!=controller + ".users.length > "+controller + ".showNumber")
                 .col-sm-12
                     button.btn.pull-sm-left(ng-click=controller + ".showOffset = " + controller + ".showOffset - " + controller + ".showNumber", ng-disabled!=controller + ".showOffset <= 0")
                         i.material-icons.color-primary keyboard_arrow_left
@@ -82,7 +82,7 @@ mixin groupUsersList(controller)
                     i.material-icons.color-primary(ng-if!='user.is_moderator') star
                 .actions-info(ng-if='!currentUser.is_moderator && !currentUser.is_super_admin && user.group_id')
                     i.material-icons.color-primary(ng-if!='user.is_moderator') star
-        .row
+        .row(ng-if!=controller + ".users.length > "+controller + ".showNumber")
             .col-sm-12
                 button.btn.pull-sm-left(ng-click=controller + ".showOffset = " + controller + ".showOffset - " + controller + ".showNumber", ng-disabled!=controller + ".showOffset <= 0")
                     i.material-icons.color-primary keyboard_arrow_left

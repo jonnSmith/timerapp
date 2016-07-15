@@ -8,6 +8,12 @@ angular.module('timerApp')
     vm.uid = $rootScope.currentUser.id
     $rootScope.title = 'My settings'
 
+    vm.showNumber = $rootScope.perPage
+    vm.showOffset = 0
+
+    vm.showGroupNumber = $rootScope.perPage
+    vm.showGroupOffset = 0
+
     vm.range =
         period: 'day'
         offset: 0

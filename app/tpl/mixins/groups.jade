@@ -4,7 +4,7 @@ mixin groupList(controller)
             i.material-icons.color-primary=actions.refresh.icon
             span.hidden-xs-down=actions.refresh.title
     .users-list-container(ng-if=controller+'.groups')
-        .user-list-item(ng-repeat='group_item in '+controller+'.groups', ng-if='currentUser.is_super_admin', ng-class!="{'active': currentUser.group_id == group_item.id , 'sleep' : currentUser.group_id != group_item.id}")
+        .user-list-item(ng-repeat='group_item in '+controller+'.groups', ng-if='currentUser.is_super_admin', ng-class!="{'active': currentUser.group_id == group_item.id , 'sleep' : currentUser.group_id != group_item.id}", ng-show!=controller+".showGroupOffset <= $index && $index  < "+controller+".showGroupOffset + " + controller+".showGroupNumber")
             span.user-status-icon {{group_item.users.length}}
             .user-info
                 h5
@@ -17,6 +17,12 @@ mixin groupList(controller)
                     //switch group
                     i.list-icon.second.material-icons.color-primary(ng-click=controller + '.setGroup(group_item.id)', ng-if='currentUser.group_id != group_item.id') group_add
                     i.list-icon.second.material-icons.color-primary(ng-if='currentUser.group_id == group_item.id') done
+        .row(ng-if!=controller + ".groups.length > " + controller + ".showGroupNumber")
+            .col-sm-12
+                button.btn.pull-sm-left(ng-click=controller + ".showGroupOffset = " + controller + ".showGroupOffset - " + controller + ".showGroupNumber", ng-disabled!=controller + ".showGroupOffset <= 0")
+                    i.material-icons.color-primary keyboard_arrow_left
+                button.btn.pull-sm-right(ng-click=controller + ".showGroupOffset = " + controller + ".showGroupOffset + " + controller + ".showGroupNumber", ng-disabled!=controller + ".groups.length <= (" + controller + ".showGroupOffset + " + controller + ".showGroupNumber)")
+                    i.material-icons.color-primary keyboard_arrow_right
 
 mixin userGroupList(controller)
     h3=titles.groups
@@ -24,7 +30,7 @@ mixin userGroupList(controller)
             i.material-icons.color-primary=actions.refresh.icon
             span.hidden-xs-down=actions.refresh.title
     .users-list-container(ng-if=controller + '.groups')
-        .user-list-item(ng-repeat='group in ' + controller + '.groups', ng-if='currentUser.is_super_admin', ng-class!="{'active': "+controller+".user.group_id == group.id , 'sleep' : "+controller+".user.group_id != group.id}")
+        .user-list-item(ng-repeat='group in ' + controller + '.groups', ng-if='currentUser.is_super_admin', ng-class!="{'active': "+controller+".user.group_id == group.id , 'sleep' : "+controller+".user.group_id != group.id}", ng-show!=controller+".showGroupOffset <= $index && $index  < "+controller+".showGroupOffset + " + controller+".showGroupNumber")
             span.user-status-icon {{group.users.length}}
             .user-info
                 h5
@@ -37,3 +43,9 @@ mixin userGroupList(controller)
                 .group-actions(ng-if='currentUser.is_moderator || currentUser.is_super_admin')
                     i.list-icon.second.material-icons.color-primary(ng-click=controller + '.setGroup(group.id)', ng-if='user.user.group_id != group.id') group_add
                     i.list-icon.second.material-icons.color-primary(ng-if=controller + '.user.group_id == group.id') done
+        .row(ng-if!=controller + ".groups.length > " + controller + ".showGroupNumber")
+            .col-sm-12
+                button.btn.pull-sm-left(ng-click=controller + ".showGroupOffset = " + controller + ".showGroupOffset - " + controller + ".showGroupNumber", ng-disabled!=controller + ".showGroupOffset <= 0")
+                    i.material-icons.color-primary keyboard_arrow_left
+                button.btn.pull-sm-right(ng-click=controller + ".showGroupOffset = " + controller + ".showGroupOffset + " + controller + ".showGroupNumber", ng-disabled!=controller + ".groups.length <= (" + controller + ".showGroupOffset + " + controller + ".showGroupNumber)")
+                    i.material-icons.color-primary keyboard_arrow_right

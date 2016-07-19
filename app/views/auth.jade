@@ -11,7 +11,7 @@
                     .list-item
                         i.list-icon.material-icons.color-secundary-text=icons.login
                         form
-                            p.alert.alert-danger(ng-if='error')
+                            p.alert.alert-danger(ng-if='error && error')
                                 strong=errors.error
                                     span &nbsp;:&nbsp;
                                 |{{error}}

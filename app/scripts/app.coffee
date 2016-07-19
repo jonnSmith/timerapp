@@ -51,7 +51,7 @@ angular
     $rootScope.title = 'LAB Timer'
     $rootScope.error = false
     $rootScope.splash = false
-    $rootScope.interval= 10*60*1000
+    $rootScope.interval= 30*60*1000
     $rootScope.token = $auth.getToken()
     $rootScope.token_is_refreshing = false
     $rootScope.devmode = false
@@ -83,6 +83,8 @@ angular
                 $rootScope.token = token
                 $auth.setToken token
                 $rootScope.token_is_refreshing = false
+                if $rootScope.currentUser.time_is_open
+                    webNotificationFactory.showMessage('Time is open', 'Are you still working?', 'images/notification.png')
                 return
             ).error (error) ->
                 $rootScope.error = error

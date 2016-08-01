@@ -160,7 +160,7 @@ angular.module('timerApp')
     interval = 1*60*1000
 
     setInterval (->
-        if !$rootScope.token_is_refreshing
+        if !$rootScope.token_is_refreshing && $rootScope.authenticated
             vm.getUsers()
             usersFactory.setUser()
             if $rootScope.devmode

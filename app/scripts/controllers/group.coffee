@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'GroupCtrl', ($scope, $auth, $state, $rootScope, $stateParams, $filter, usersFactory, userFactory, groupFactory, chartTimesFactory) ->
+.controller 'GroupCtrl', ($scope, $auth, $state, $rootScope, $stateParams, $filter, usersFactory, userFactory, groupFactory, chartTimesFactory, colorFactory) ->
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
@@ -56,7 +56,7 @@ angular.module('timerApp')
 
     vm.setTimesStatistic = (users, range) ->
         angular.forEach users, (user, key) ->
-            vm.chartTimes = chartTimesFactory.initUserChartTimes(user, vm.chartTimes, 'column',  getRandomColor())
+            vm.chartTimes = chartTimesFactory.initUserChartTimes(user, vm.chartTimes, 'column',  colorFactory.getRandomColor())
             userFactory.getUserTimes(user.id, range).success((times) ->
                 vm.chartTimes = chartTimesFactory.setUserChartTimes(times, user, vm.chartTimes)
                 return
@@ -64,15 +64,6 @@ angular.module('timerApp')
                 $rootScope.error = error
                 return
         return
-
-    getRandomColor = ->
-        letters = '0123456789ABCDEF'.split('')
-        color = '#'
-        i = 0
-        while i < 6
-          color += letters[Math.floor(Math.random() * 16)]
-          i++
-        color
 
     vm.deleteUserFromGroup = (uid) ->
         gid = vm.gid

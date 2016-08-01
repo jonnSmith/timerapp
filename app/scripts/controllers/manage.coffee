@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'ManageCtrl', ($scope, $auth, $state, $rootScope, usersFactory, groupFactory, userFactory) ->
+.controller 'ManageCtrl', ($scope, $auth, $state, $rootScope, usersFactory, groupFactory, userFactory, chartTimesFactory, colorFactory) ->
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
@@ -14,6 +14,12 @@ angular.module('timerApp')
 
     vm.showGroupNumber = $rootScope.perPage
     vm.showGroupOffset = 0
+
+    vm.range =
+        period: 'day'
+        offset: 0
+        count: 30
+        order: 'desc'
 
     if !($rootScope.currentUser.is_super_admin || $rootScope.currentUser.is_moderator)
         $state.go 'dashboard'
@@ -40,10 +46,24 @@ angular.module('timerApp')
         groupFactory.getGroup(gid).success((group) ->
             vm.group = group
             vm.users = group.users
+            vm.setTimesStatistic(group.users, vm.range)
             return
         ).error (error) ->
             $rootScope.error = error
             return
+
+    vm.chartTimes = chartTimesFactory.initVariables(vm.range)
+
+    vm.setTimesStatistic = (users, range) ->
+        angular.forEach users, (user, key) ->
+            vm.chartTimes = chartTimesFactory.initUserChartTimes(user, vm.chartTimes, 'column',  colorFactory.getRandomColor())
+            userFactory.getUserTimes(user.id, range).success((times) ->
+                vm.chartTimes = chartTimesFactory.setUserChartTimes(times, user, vm.chartTimes)
+                return
+            ).error (error) ->
+                $rootScope.error = error
+                return
+        return
 
     vm.deleteUserFromGroup = (uid) ->
         gid = vm.gid

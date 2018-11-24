@@ -1,0 +1,22 @@
+.container
+    .table
+        .table-cell
+            .col.col-md-8.offset-md-2.col-lg-6.offset-lg-3.col-xl-4.offset-xl-4
+                .hero.valign-wrapper.bg-primary
+                    .titles.logo
+                        h1.heading.color-text
+                            i.material-icons.color-text=logo
+                            span=sitename
+                .list-container.bg-base
+                    .list-item
+                        i.list-icon.material-icons.color-secundary-text=icons.login
+                        form
+                            p.alert.alert-danger(ng-if='error && devmode')
+                                strong=errors.error
+                                    span &nbsp;:&nbsp;
+                                |{{error}}
+                            .form-group
+                                input.form-control(type='email', placeholder=form.placeholders.email, ng-model='auth.email', required)
+                            .form-group
+                                input.form-control(type='password', placeholder=form.placeholders.password, ng-model='auth.password', minlength="4", required)
+                            button.btn.btn-primary(ng-click='auth.login()', ng-disabled="!auth.password || !auth.email")=form.submit

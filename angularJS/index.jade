@@ -1,0 +1,34 @@
+doctype html
+html(ng-app="timerApp")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    title(ng-bind!="title")
+    meta(name="description", content="")
+    meta(name="viewport", content="width=device-width")
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic', rel='stylesheet', type='text/css')
+
+    link(rel='stylesheet', href='./styles/compiled.css')
+
+  body
+    <!--[if lt IE 7]>
+    p.browsehappy
+      | You are using an
+      strong outdated
+      |  browser. Please
+      a(href="http://browsehappy.com/") upgrade your browser
+      |  to improve your experience.
+    <![endif]-->
+
+    .app
+      .container-fluid(ui-view)
+
+    script.
+      paceOptions = {
+        target: ".app",
+        ghostTime: 500
+      }
+
+    script(src='./scripts/vendor.js')
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAkRAyaI22wCtmvvyq25nNy2y6GVSUofn0')
+    script(src="./scripts/app.js")

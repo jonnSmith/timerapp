@@ -12,10 +12,10 @@ angular.module('timerApp')
             password: vm.password
         $auth.login(credentials).then (->
             $http.get('api/authenticate/user').then (response) ->
-                user = JSON.stringify(response)
+                user = JSON.stringify(response.data)
                 $localStorage.user = user
                 $rootScope.authenticated = true
-                $rootScope.currentUser = response
+                $rootScope.currentUser = response.data
                 $rootScope.token = $auth.getToken()
                 $state.go 'dashboard'
                 return

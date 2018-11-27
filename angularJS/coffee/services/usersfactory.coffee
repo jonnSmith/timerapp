@@ -12,10 +12,10 @@ angular.module('timerApp')
         $http.get(urlBase + '/users')
     usersFactory.setUser = () ->
         $http.get(urlBase+'/authenticate/user').then (response) ->
-            user = JSON.stringify(response.data.user)
+            user = JSON.stringify(response.data)
             $localStorage.user = user
-            $rootScope.currentUser = response.data.user
-            if !response.data.user.time_is_open
+            $rootScope.currentUser = response.data
+            if !response.data.time_is_open
                 timerFactory.clearTimer()
             return
     usersFactory.createUser = (data) ->

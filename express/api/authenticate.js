@@ -18,23 +18,20 @@ router.post('/', (req, res, next) => {
                 res.send(err);
             }
             const token = jwt.sign(user, config.jwt.secretOrKey);
-            return db.updateItemFieldByKey('users/', 'email', user.email, 'token', token).then( _ => {
-                return res.json({user, token});
+            let item =  Object.assign({}, user);
+            item.token = token;
+            db.updateItemById('users/', item.id, item).then(_ => {
+                return res.status(200).json({user, token});
+            }, (err) => {
+                return res.status(400).send(err);
             });
         });
     })
     (req, res);
 });
 
-router.get('/user/:email', passport.authenticate('jwt', {session: false}), (req, res) => {
-    const email = req.params.email;
-    db.getItemByField('users/', 'email', email).then((user) => {
-        res(user);
-    }, (err) => {
-        rej(err);
-    });
-}, (err) => {
-    res.status(500).json(err);
+router.get('/user', passport.authenticate('jwt', {session: false}), (req, res) => {
+   res.status(200).json(req.user);
 });
 
 module.exports = {router: router};

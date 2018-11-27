@@ -11,8 +11,6 @@ router.get('', (req, res) => {
     }, (err) => {
         res.status(500).json(err);
     });
-}, (err) => {
-    res.status(500).json(err);
 });
 
 router.post('/create', addRequestId, (req, res) => {
@@ -20,13 +18,10 @@ router.post('/create', addRequestId, (req, res) => {
     user.id = req.id;
     user.remember_token = jwt.sign(user, config.jwt.secretOrKey);
     db.setItemInFolder(user, 'users/', user.id).then((snap) => {
-        console.log(JSON.parse(snap));
-        res.status(201).json(user);
+        res.status(201).json(snap);
     }, (err) => {
         res.status(500).json(err);
     });
-}, (err) => {
-    res.status(500).json(err);
 });
 
 module.exports = {router: router};

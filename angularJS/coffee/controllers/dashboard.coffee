@@ -157,14 +157,4 @@ angular.module('timerApp')
 
     vm.getUsers()
 
-    interval = 1*60*1000
-
-    setInterval (->
-        if !$rootScope.token_is_refreshing && $rootScope.authenticated
-            vm.getUsers()
-            usersFactory.setUser()
-            console.log('Background:', 'Users updated', 'images/notification.png')
-        return
-    ), interval
-
     return

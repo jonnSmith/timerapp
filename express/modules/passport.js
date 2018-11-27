@@ -3,6 +3,7 @@ const passportJWT = require("passport-jwt");
 const ExtractJWT = passportJWT.ExtractJwt;
 const LocalStrategy = require('passport-local').Strategy;
 const JWTStrategy   = passportJWT.Strategy;
+const config = require('./config');
 const db = require('./fdb');
 
 passport.use(new LocalStrategy({
@@ -20,39 +21,28 @@ passport.use(new LocalStrategy({
 
 passport.use(new JWTStrategy({
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-        secretOrKey: 'timerapp-jwt'
-    }, (jwtPayload, cb) => getUser(jwtPayload.id)
-        .then( user => {
+        secretOrKey   : config.jwt.secretOrKey
+    },
+    function (jwtPayload, cb) {
+        db.getItemById('users/', jwtPayload.id).then((user) => {
             return cb(null, user);
-        })
-        .catch(err => {
-            return cb(err);
-        })
-
+        }, (err) => {
+            return cb(null, err);
+        });
+    }
 ));
 
 checkUser = function({email, password}) {
     return new Promise((res, rej) => {
         db.getItemByField('users/', 'email', email).then((user) => {
             if(user.password === password) {
-                console.log('password', password);
                 res(user);
+            } else {
+                rej({error: 'User check error'});
             }
-            else { rej({error: 'User check error'}); }
             res(user);
         }, (err) => {
             rej(err);
         });
     });
 };
-
-getUser = function(token) {
-    return new Promise((res, rej) => {
-        db.getItemByField('users/', 'token', token).then((user) => {
-            res(user);
-        }, (err) => {
-            rej(err);
-        });
-    });
-};
-

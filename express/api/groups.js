@@ -6,13 +6,11 @@ const config = require('../modules/config');
 const addRequestId = require('express-request-id')();
 
 router.get('', (req, res) => {
-    db.getItemsFromFolder('users/').then((snap) => {
+    db.getItemsFromFolder('groups/').then((snap) => {
         res.status(201).json(snap);
     }, (err) => {
         res.status(500).json(err);
     });
-}, (err) => {
-    res.status(500).json(err);
 });
 
 router.post('/create', addRequestId, (req, res) => {
@@ -24,8 +22,6 @@ router.post('/create', addRequestId, (req, res) => {
     }, (err) => {
         res.status(500).json(err);
     });
-}, (err) => {
-    res.status(500).json(err);
 });
 
 module.exports = {router: router};

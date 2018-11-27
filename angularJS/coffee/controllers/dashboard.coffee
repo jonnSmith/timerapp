@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('timerApp')
-.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $geolocation, $filter , $localStorage, $state, groupFactory, userFactory, usersFactory, timeFactory, timerFactory, apiTimeFactory, ipLocationFactory, webNotificationFactory) ->
+.controller 'DashboardCtrl', ($scope, $auth, $rootScope, $geolocation, $filter , $localStorage, $state, groupFactory, userFactory, usersFactory, timeFactory, timerFactory, apiTimeFactory, ipLocationFactory) ->
     vm = this
     $rootScope.error = false
     $rootScope.splash = false
@@ -163,8 +163,7 @@ angular.module('timerApp')
         if !$rootScope.token_is_refreshing && $rootScope.authenticated
             vm.getUsers()
             usersFactory.setUser()
-            if $rootScope.devmode
-                webNotificationFactory.showMessage('Background:', 'Users updated', 'images/notification.png')
+            console.log('Background:', 'Users updated', 'images/notification.png')
         return
     ), interval
 

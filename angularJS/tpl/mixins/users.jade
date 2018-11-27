@@ -2,9 +2,8 @@ mixin usersList(controller)
         h3
             span(ng-if="!currentUser.group.title || currentUser.is_super_admin")=titles.users
             span(ng-if="currentUser.group.title && !currentUser.is_super_admin") {{currentUser.group.title}}
-            a.pull-xs-right.color-primary.icon-button(ng-click=controller+'.getUsers()')
-                i.material-icons.color-primary=actions.refresh.icon
-                span.hidden-xs-down=actions.refresh.title
+            button.btn.btn-light.float-right(ng-click=controller+'.getUsers()')
+                i.material-icons.color-primary-text=actions.refresh.icon
         .users-list-container(ng-if=controller+'.users')
             .user-list-item(ng-repeat!='user in '+controller+'.users', ng-class!="{'active': user.time_is_open , 'sleep' : !user.time_is_open, 'striked' : user.time_open.is_strike}", ng-show!=controller+".showOffset <= $index && $index  < "+controller+".showOffset + " + controller+".showNumber")
                 i.material-icons.user-status-icon(ng-if!='!user.time_is_open') timelapse

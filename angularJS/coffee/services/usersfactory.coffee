@@ -18,8 +18,6 @@ angular.module('timerApp')
             if !response.data.user.time_is_open
                 timerFactory.clearTimer()
             return
-    usersFactory.refreshUser = () ->
-        $http.get(urlBase+'/authenticate/refresh')
     usersFactory.createUser = (data) ->
         $http.post(urlBase+'/user/create', data)
     usersFactory.deleteUser = (uid) ->

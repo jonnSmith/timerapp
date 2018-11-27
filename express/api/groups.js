@@ -16,12 +16,11 @@ router.get('', (req, res) => {
 });
 
 router.post('/create', addRequestId, (req, res) => {
-    let user = req.body;
-    user.id = req.id;
-    user.remember_token = jwt.sign(user, config.jwt.secretOrKey);
-    db.setItemInFolder(user, 'users/', user.id).then((snap) => {
+    let group = req.body;
+    group.id = req.id;
+    db.setItemInFolder(group, 'groups/', group.id).then((snap) => {
         console.log(JSON.parse(snap));
-        res.status(201).json(user);
+        res.status(201).json(group);
     }, (err) => {
         res.status(500).json(err);
     });

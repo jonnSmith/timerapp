@@ -19,11 +19,11 @@ const TMP_DIR = './tmp';
 const ASSETS_DIR = './public/';
 
 gulp.task('start', (cb) => {
-    runSequence('clean-tmp', 'clean-assets', 'styles', 'scripts', 'fonts', 'clean-tmp', 'server', cb);
+    runSequence('clean-tmp', 'clean-assets', 'styles', 'scripts', 'fonts', 'workers', 'clean-tmp', 'server', cb);
 });
 
 gulp.task('build', (cb) => {
-    runSequence('clean-tmp', 'clean-assets', 'fonts', 'styles', 'scripts', 'clean-tmp', cb);
+    runSequence('clean-tmp', 'clean-assets', 'fonts', 'styles', 'scripts', 'workers', 'clean-tmp', cb);
 });
 
 gulp.task('server',  _ => {
@@ -45,6 +45,11 @@ gulp.task('clean-assets', _ =>
 gulp.task('fonts', _ =>
     gulp.src(['./node_modules/font-awesome/fonts/*', APP_DIR + '/assets/fonts/*', 'node_modules/material-icons/iconfont/MaterialIcons-Regular.*'])
         .pipe(gulp.dest(ASSETS_DIR + '/fonts/'))
+);
+
+gulp.task('workers', _ =>
+    gulp.src([APP_DIR + 'angularJS/workers/*'])
+        .pipe(gulp.dest(ASSETS_DIR + '/'))
 );
 
 gulp.task('styles', (cb) => {
@@ -104,7 +109,6 @@ gulp.task('app-scripts', _ =>
         TMP_DIR + '/scripts/services/iplocationfactory.js',
         TMP_DIR + '/scripts/services/colorfactory.js',
         TMP_DIR + '/scripts/services/charttimesfactory.js',
-        TMP_DIR + '/scripts/services/webnotificationfactory.js',
         TMP_DIR + '/scripts/directives/addressshow.js',
         TMP_DIR + '/scripts/directives/timerange.js',
         TMP_DIR + '/scripts/directives/pwgen.js',
@@ -134,8 +138,6 @@ gulp.task('vendor-scripts', _ =>
         './node_modules/ngstorage/ngStorage.js',
         './node_modules/pace.js/pace.js',
         './node_modules/d3/d3.js',
-        './node_modules/HTML5-Desktop-Notifications2/desktop-notify.js',
-        './node_modules/angular-web-notification/angular-web-notification.js',
         './node_modules/n3-charts/build/LineChart.js',
         './node_modules/jquery/dist/jquery.js',
         './node_modules/bootstrap/dist/js/bootstrap.js',

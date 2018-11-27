@@ -1,9 +1,8 @@
 const FCM = require('fcm-node');
+const config = require('./config');
 
 let fcmService = {};
 fcmService.fcm = {};
-
-const FCM_KEY = '';
 
 /**
  * FCM helper module to send FCM pushes from NodeJS application
@@ -18,7 +17,7 @@ const FCM_KEY = '';
  * @param image Image url for display in push message
  */
 fcmService.sendMessage = function(token, title, body, url, image) {
-    fcmService.fcm = new FCM(FCM_KEY);
+    fcmService.fcm = new FCM(config.fcm.key);
     let message = {
         to: token,
         priority: "high",

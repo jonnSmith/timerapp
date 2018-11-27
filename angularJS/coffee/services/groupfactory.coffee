@@ -2,7 +2,7 @@
 
 angular.module('timerApp')
 .factory 'groupFactory', ($http,$auth,$rootScope) ->
-    urlBase = 'api/usergroups'
+    urlBase = 'api/groups'
     token = $auth.getToken()
     data = token: token
     config =

@@ -1,0 +1,7 @@
+{
+    "short_name": "Timer",
+    "name": "Timer App",
+    "start_url": "/",
+    "gcm_sender_id": "639237944589",
+    "icons": []
+}

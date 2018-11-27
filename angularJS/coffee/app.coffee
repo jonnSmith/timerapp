@@ -8,8 +8,7 @@ angular
     'ngMap',
     'ngStorage',
     '720kb.datepicker',
-    'n3-line-chart',
-    'angular-web-notification'
+    'n3-line-chart'
 ])
 .config ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) ->
     $authProvider.loginUrl = '/api/authenticate'
@@ -45,7 +44,7 @@ angular
     #.html5Mode
         #enabled: true
         #requireBase: false
-.run ($rootScope, $localStorage, $state, $location, $auth, $geolocation,usersFactory,timerFactory,webNotificationFactory) ->
+.run ($rootScope, $localStorage, $state, $location, $auth, $geolocation, usersFactory,timerFactory) ->
     $rootScope.authenticated = false
     $rootScope.language = 'en'
     $rootScope.title = 'LAB Timer'
@@ -68,32 +67,13 @@ angular
         if $user && !$rootScope.authenticated && $is_auth
             $rootScope.authenticated = true
             $rootScope.currentUser = $user
-            if $state.$urlRouter.location == '' || $state.$urlRouter.location == '/auth' || $state.$urlRouter.location == 'auth'
-                $location.path('/dashboard')
+            console.log '$state', $state
+#            if $state.$urlRouter && $state.$urlRouter.location == '' || $state.$urlRouter.location == '/auth' || $state.$urlRouter.location == 'auth'
+#                $location.path('/dashboard')
         else if !$user || !$is_auth
             $rootScope.logout()
             $location.path('/auth')
         return
-    $rootScope.refreshToken = ->
-        $is_auth = $auth.isAuthenticated()
-        if $is_auth
-            $rootScope.token_is_refreshing = true
-            usersFactory.refreshUser().success((response) ->
-                token = response.token
-                $rootScope.token = token
-                $auth.setToken token
-                $rootScope.token_is_refreshing = false
-                if $rootScope.currentUser.time_is_open
-                    webNotificationFactory.showMessage('Time is open', 'Are you still working?', 'images/notification.png')
-                return
-            ).error (error) ->
-                $rootScope.error = error
-                return
-        return
-    setInterval (->
-        $rootScope.refreshToken()
-        return
-    ), $rootScope.interval
     $rootScope.$on '$locationChangeStart', (event, next, current) ->
         $rootScope.checkRights($rootScope, $state, $location)
         return
@@ -112,7 +92,7 @@ angular
         return
     $rootScope.$watch 'error', ->
         if $rootScope.error
-            webNotificationFactory.showMessage('Error:', $rootScope.error, 'images/notification.png')
+            console.log('Error:', $rootScope.error)
             if $rootScope.error.error && $rootScope.error.error == 'user_not_found'
                 $rootScope.logout()
             else
@@ -121,5 +101,5 @@ angular
 
     $rootScope.$watch 'splash', ->
         if $rootScope.splash
-            webNotificationFactory.showMessage('Action:', $rootScope.splash, 'images/notification.png')
+            console.log('Error:', $rootScope.error)
         return

@@ -15,6 +15,9 @@ module.exports = Object.freeze({
     "jwt": {
         "secretOrKey": "timer-app-jwt"
     },
+    "bcrypt": {
+        "rounds": 10
+    },
     "jade": {
         "sitename": "TimerApp",
         "description": "Time management application",
@@ -78,6 +81,26 @@ module.exports = Object.freeze({
             "token": null,
             "group_id": 0,
             "is_super_admin": true
+        },
+        "time": {
+            "id": 0,
+            "start": null,
+            "end": null,
+            "user_id": 0,
+            "is_strike": false,
+            "comment": "Comment",
+            "start_location": {
+                "latitude": "51.5285582",
+                "longitude": "-0.2416796,11",
+                "accuracy": "105"
+            },
+            "end_location": {
+                "latitude": "51.5285582",
+                "longitude": "-0.2416796,11",
+                "accuracy": "105"
+            },
+            "start_ip": "127.0.0.1",
+            "end_ip": "127.0.0.1"
         }
     }
 });

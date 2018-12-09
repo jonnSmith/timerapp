@@ -3,6 +3,7 @@ const passportJWT = require("passport-jwt");
 const ExtractJWT = passportJWT.ExtractJwt;
 const LocalStrategy = require('passport-local').Strategy;
 const JWTStrategy   = passportJWT.Strategy;
+const bcrypt = require('bcrypt');
 const config = require('./config');
 const db = require('./fdb');
 
@@ -35,7 +36,7 @@ passport.use(new JWTStrategy({
 checkUser = function({email, password}) {
     return new Promise((res, rej) => {
         db.getItemByField('users/', 'email', email).then((user) => {
-            if(user.password === password) {
+            if(bcrypt.compareSync(password, user.password)) {
                 res(user);
             } else {
                 rej({error: 'User check error'});

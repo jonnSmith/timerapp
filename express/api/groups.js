@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
 const db = require('../modules/fdb');
 const config = require('../modules/config');
 const addRequestId = require('express-request-id')();

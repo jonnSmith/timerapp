@@ -10,10 +10,6 @@ include ../tpl/layout/navbar
                 +timer('dashboard')
                 .hidden-xs-down
                     +lastTime()
-                    .form-group(ng-if='currentUser.is_super_admin')
-                        h5 Auth token
-                        .highlight.full-width
-                            code.language-html {{ token }}
             .col-sm-6.col-xs-12
                 .users
                     +usersList('dashboard')

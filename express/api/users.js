@@ -3,6 +3,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const db = require('../modules/fdb');
 const config = require('../modules/config');
+const bcrypt = require('bcrypt');
 const addRequestId = require('express-request-id')();
 
 router.get('', (req, res) => {
@@ -16,6 +17,7 @@ router.get('', (req, res) => {
 router.post('/create', addRequestId, (req, res) => {
     let user = req.body;
     user.id = req.id;
+    user.password = bcrypt.hashSync(user.password, config.bcrypt.rounds);
     user.remember_token = jwt.sign(user, config.jwt.secretOrKey);
     db.setItemInFolder(user, 'users/', user.id).then((snap) => {
         res.status(201).json(snap);

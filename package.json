@@ -5,7 +5,7 @@
     "scripts": {
         "gulp": "./node_modules/.bin/babel-node --presets es2015 ./node_modules/gulp/bin/gulp.js",
         "build": "npm run gulp build",
-        "start": "npm run gulp start"
+        "start": "npm run gulp server"
     },
     "dependencies": {
         "express": "^4.16.4",

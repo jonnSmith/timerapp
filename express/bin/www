@@ -38,10 +38,10 @@ if(args.find((a) => a === 'build')) {
         runServer();
     });
 } else {
-    runServer(server);
+    runServer();
 }
 
-function runServer(server) {
+function runServer() {
     server = http.createServer(app);
     server.listen(port);
     server.on('error', onError);

@@ -4,10 +4,10 @@
     "language": "en",
     "scripts": {
         "gulp": "./node_modules/.bin/babel-node --presets es2015 ./node_modules/gulp/bin/gulp.js",
-        "postinstall": "npm run gulp build",
-        "start": "./node_modules/.bin/babel-node --presets es2015 ./express/bin/www build",
-        "development": "./node_modules/.bin/babel-node --presets es2015 ./express/bin/www fixtures development",
-        "server": "./node_modules/.bin/babel-node --presets es2015 ./express/bin/www"
+        "build": "npm run gulp build",
+        "start": "./node_modules/.bin/babel-node --presets es2015 ./express/bin/www",
+        "deploy": "./node_modules/.bin/babel-node --presets es2015 ./express/bin/www build",
+        "development": "./node_modules/.bin/babel-node --presets es2015 ./express/bin/www fixtures development"
     },
     "dependencies": {
         "express": "^4.16.4",
@@ -67,16 +67,13 @@
         "gulp-concat": "^2.6.1",
         "gulp-coffee": "^3.0.3",
         "gulp-clean": "^0.4.0",
-        "gulp-sass-variables": "^1.2.0",
         "gulp-stylus": "^2.7.0",
         "gulp-concat-css": "^3.1.0",
         "gulp-cssnano": "^2.1.3",
         "run-sequence": "^2.2.1",
-        "yargs": "^12.0.4",
         "jasmine-core": "^2.4.1",
         "jshint-stylish": "~0.1.3",
         "karma": "^0.13.22",
-        "load-grunt-tasks": "~0.4.0",
         "phantomjs": "^2.1.7",
         "require-directory": "^2.1.1",
         "time-grunt": "~0.2.1",

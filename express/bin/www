@@ -8,7 +8,6 @@ const http = require('http');
 const {exec} = require('child_process');
 const config = require('../modules/config');
 const app = require('../app');
-const fs = require('fs');
 const args = require('process').argv;
 
 
@@ -19,7 +18,6 @@ const args = require('process').argv;
 const port = normalizePort(config.app.port || '8080');
 app.set('port', port);
 let server = null;
-console.log(args);
 
 // Init textures if arg is passed
 if(args.find((a) => a === 'fixtures')) {
@@ -30,7 +28,7 @@ if(args.find((a) => a === 'fixtures')) {
 /**
  * Create HTTP server.
  */
-if(args.find((a) => a === 'build') || !fs.existsSync('./public')) {
+if(args.find((a) => a === 'build')) {
     exec('npm run gulp build', (error, stdout, stderr) => {
         if (error) {
             throw new Error(error);

@@ -3,6 +3,7 @@ const path = require('path');
 const logger = require('morgan');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const http = require('http');
 require('./express/modules/passport');
 const config = require('./express/modules/config');
 
@@ -33,5 +34,6 @@ app.use('/api/time', passport.authenticate('jwt', {session: false}), api.time);
 // Init textures
 const fixtures = require('./express/modules/fixtures').router;
 app.use('/fixtures', fixtures);
-
-app.listen(config.app.port);
+app.set('port', config.app.port);
+const server = http.createServer(app);
+server.listen(config.app.port);

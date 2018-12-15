@@ -1,7 +1,7 @@
 module.exports = Object.freeze({
     "app": {
         "path": "/angularJS",
-        "port": 3000
+        "port": '8080'
     },
     "fcm": {
         "key": "AAAA2VcT0Us:APA91bFvwtedpzV085Juhb4KDUZVuTE6i72gzYpCoTTJtwpgAdVwK0cCRvPKiY0Qc8rXSCswJgQiU0QRc8OnOuZ59jw_bOD4YKsumJfN9volSm1Iwi3TQBBvUhJYV94ZeRcRgxT9f5S4"

@@ -33,7 +33,7 @@ passport.use(new JWTStrategy({
     }
 ));
 
-checkUser = function({email, password}) {
+const checkUser = function({email, password}) {
     return new Promise((res, rej) => {
         db.getItemByField('users/', 'email', email).then((user) => {
             if(bcrypt.compareSync(password, user.password)) {

@@ -1,5 +1,4 @@
 import gulp from 'gulp';
-import gls from 'gulp-live-server';
 import sass from 'gulp-sass';
 import coffee from 'gulp-coffee';
 import concat from 'gulp-concat';
@@ -11,25 +10,13 @@ import stylus from 'gulp-stylus';
 import nib from 'nib';
 
 import runSequence from 'run-sequence';
-import sassVariables from 'gulp-sass-variables';
-import yargs from 'yargs';
 
 const APP_DIR = './angularJS';
 const TMP_DIR = './tmp';
 const ASSETS_DIR = './public/';
 
-gulp.task('start', (cb) => {
-    runSequence('clean-tmp', 'clean-assets', 'styles', 'scripts', 'fonts', 'workers', 'clean-tmp', 'server', cb);
-});
-
 gulp.task('build', (cb) => {
     runSequence('clean-tmp', 'clean-assets', 'fonts', 'styles', 'scripts', 'workers', 'clean-tmp', cb);
-});
-
-gulp.task('server',  _ => {
-    const server = gls.new('app.js');
-    server.start();
-    gulp.watch('app.js', () => server.start.bind(server)());
 });
 
 gulp.task('clean-tmp', _ =>
